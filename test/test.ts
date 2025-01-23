@@ -1,7 +1,7 @@
 import { OpenDppApiClient } from "../dist";
 
 const client = new OpenDppApiClient({
-    baseURL: 'https://api.cloud.open-dpp.de'
+    baseURL: 'https://api.cloud.open-dpp.de',
 });
 
 async function main() {
