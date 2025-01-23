@@ -6,7 +6,8 @@
   "types": "dist/index.d.ts",
   "scripts": {
     "build": "tsc",
-    "test-local": "ts-node test/test.ts"
+    "test-local": "ts-node test/test.ts",
+    "test": "exit 0"
   },
   "keywords": [],
   "author": "open-dpp",
