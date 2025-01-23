@@ -1,12 +1,12 @@
 {
-  "name": "open-dpp-api-client",
+  "name": "@open-dpp/api-client",
   "version": "1.0.0",
   "description": "A client for my API",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
     "build": "tsc",
-    "test": "ts-node test/test.ts"
+    "test-local": "ts-node test/test.ts"
   },
   "keywords": [],
   "author": "open-dpp",
