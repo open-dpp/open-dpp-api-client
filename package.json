@@ -1,0 +1,23 @@
+{
+  "name": "open-dpp-api-client",
+  "version": "1.0.0",
+  "description": "A client for my API",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "test": "ts-node test/test.ts"
+  },
+  "keywords": [],
+  "author": "open-dpp",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "axios": "^1.7.9"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.9",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.7.3"
+  }
+}
