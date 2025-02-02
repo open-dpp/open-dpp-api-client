@@ -17,31 +17,19 @@ class OpenDppApiClient {
         });
     }
     async getOrganizations() {
-        try {
-            const response = await this.axiosInstance.get(`/organizations`);
-            return response.data;
-        }
-        catch (error) {
-            throw error;
-        }
+        return this.axiosInstance.get(`/organizations`);
     }
-    async getOrganization(id) {
-        try {
-            const response = await this.axiosInstance.get(`/organizations/${id}`);
-            return response.data;
-        }
-        catch (error) {
-            throw error;
-        }
+    async getOrganizationById(id) {
+        return this.axiosInstance.get(`/organizations/${id}`);
     }
     async postOrganization(data) {
-        try {
-            const response = await this.axiosInstance.post('/organizations', data);
-            return response.data;
-        }
-        catch (error) {
-            throw error;
-        }
+        return this.axiosInstance.post('/organizations', data);
+    }
+    async postModel(data) {
+        return this.axiosInstance.post('/models', data);
+    }
+    async getModelById(id) {
+        return this.axiosInstance.get(`/models/${id}`);
     }
 }
 exports.OpenDppApiClient = OpenDppApiClient;

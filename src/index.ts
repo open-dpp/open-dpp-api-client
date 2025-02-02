@@ -1,5 +1,7 @@
-import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios';
-import { OrganizationDto } from "./OrganizationDto";
+import axios, {AxiosInstance, AxiosRequestConfig} from 'axios';
+import {OrganizationDto} from "./organization.dto";
+import {ModelDto} from "./model.dto";
+import {ModelCreateDto} from "./model.create.dto";
 
 export interface ApiClientOptions extends AxiosRequestConfig {
     apiKey?: string;
@@ -19,30 +21,23 @@ export class OpenDppApiClient {
         });
     }
 
-    public async getOrganizations(): Promise<OrganizationDto[]> {
-        try {
-            const response: AxiosResponse = await this.axiosInstance.get(`/organizations`);
-            return response.data as OrganizationDto[];
-        } catch (error) {
-            throw error;
-        }
+    public async getOrganizations() {
+        return this.axiosInstance.get<OrganizationDto[]>(`/organizations`);
     }
 
-    public async getOrganization(id: string): Promise<OrganizationDto> {
-        try {
-            const response: AxiosResponse = await this.axiosInstance.get(`/organizations/${id}`);
-            return response.data as OrganizationDto;
-        } catch (error) {
-            throw error;
-        }
+    public async getOrganizationById(id: string) {
+        return this.axiosInstance.get<OrganizationDto>(`/organizations/${id}`);
     }
 
-    public async postOrganization(data: any): Promise<OrganizationDto> {
-        try {
-            const response: AxiosResponse = await this.axiosInstance.post('/organizations', data);
-            return response.data as OrganizationDto;
-        } catch (error) {
-            throw error;
-        }
+    public async postOrganization(data: any) {
+        return this.axiosInstance.post<OrganizationDto>('/organizations', data);
+    }
+
+    public async postModel(data: ModelCreateDto) {
+        return this.axiosInstance.post<ModelDto>('/models', data);
+    }
+
+    public async getModelById(id: string) {
+        return this.axiosInstance.get<ModelDto>(`/models/${id}`);
     }
 }
