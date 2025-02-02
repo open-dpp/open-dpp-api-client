@@ -1,16 +1,18 @@
-import { AxiosRequestConfig, AxiosResponse } from 'axios';
+import { AxiosRequestConfig } from 'axios';
 import { OrganizationDto } from "./organization.dto";
 import { ModelDto } from "./model.dto";
 import { ModelCreateDto } from "./model.create.dto";
+import { OrganizationCreateDto } from "./organization.create.dto";
 export interface ApiClientOptions extends AxiosRequestConfig {
     apiKey?: string;
 }
 export declare class OpenDppApiClient {
     private axiosInstance;
     constructor(options?: ApiClientOptions);
-    getOrganizations(): Promise<AxiosResponse<OrganizationDto[], any>>;
-    getOrganizationById(id: string): Promise<AxiosResponse<OrganizationDto, any>>;
-    postOrganization(data: any): Promise<AxiosResponse<OrganizationDto, any>>;
-    postModel(data: ModelCreateDto): Promise<AxiosResponse<ModelDto, any>>;
-    getModelById(id: string): Promise<AxiosResponse<ModelDto, any>>;
+    getOrganizations(): Promise<import("axios").AxiosResponse<OrganizationDto[], any>>;
+    getOrganizationById(id: string): Promise<import("axios").AxiosResponse<OrganizationDto, any>>;
+    postOrganization(data: OrganizationCreateDto): Promise<import("axios").AxiosResponse<OrganizationDto, any>>;
+    postModel(data: ModelCreateDto): Promise<import("axios").AxiosResponse<ModelDto, any>>;
+    getModels(): Promise<import("axios").AxiosResponse<ModelDto, any>>;
+    getModelById(id: string): Promise<import("axios").AxiosResponse<ModelDto, any>>;
 }

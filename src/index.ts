@@ -38,6 +38,10 @@ export class OpenDppApiClient {
         return this.axiosInstance.post<ModelDto>('/models', data);
     }
 
+    public async getModels() {
+        return this.axiosInstance.get<ModelDto>('/models');
+    }
+
     public async getModelById(id: string) {
         return this.axiosInstance.get<ModelDto>(`/models/${id}`);
     }

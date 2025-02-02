@@ -28,6 +28,9 @@ class OpenDppApiClient {
     async postModel(data) {
         return this.axiosInstance.post('/models', data);
     }
+    async getModels() {
+        return this.axiosInstance.get('/models');
+    }
     async getModelById(id) {
         return this.axiosInstance.get(`/models/${id}`);
     }
