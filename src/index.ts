@@ -10,20 +10,39 @@ export interface ApiClientOptions extends AxiosRequestConfig {
 
 export class OpenDppApiClient {
     private axiosInstance: AxiosInstance;
+    private readonly initOptions: ApiClientOptions;
 
     constructor(options: ApiClientOptions = {}) {
+        this.initOptions = options;
         this.axiosInstance = axios.create({
-            baseURL: options.baseURL ?? 'https://api.cloud.open-dpp.de',
+            baseURL: this.initOptions.baseURL ?? 'https://api.cloud.open-dpp.de',
             headers: {
-                'Authorization': options.apiKey ? `Bearer ${options.apiKey}` : '',
-                ...options.headers,
+                'Authorization': this.initOptions.apiKey ? `Bearer ${this.initOptions.apiKey}` : '',
+                ...this.initOptions.headers,
             },
-            ...options,
+            ...this.initOptions,
         });
     }
 
     public setApiKey(apiKey: string) {
-        this.axiosInstance.defaults.headers.common['Authorization'] = `Bearer ${apiKey}`;
+        this.createNewAxiosInstance(apiKey);
+    }
+
+    private createNewAxiosInstance(apiKey?: string) {
+        let auth = '';
+        if (apiKey) {
+            auth = `Bearer ${apiKey}`;
+        } else if (this.initOptions.apiKey) {
+            auth = `Bearer ${this.initOptions.apiKey}`;
+        }
+        this.axiosInstance = axios.create({
+            baseURL: this.initOptions.baseURL ?? 'https://api.cloud.open-dpp.de',
+            headers: {
+                'Authorization': auth,
+                ...this.initOptions.headers,
+            },
+            ...this.initOptions,
+        });
     }
 
     public async getOrganizations() {
