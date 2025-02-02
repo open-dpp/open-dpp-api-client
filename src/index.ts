@@ -2,6 +2,7 @@ import axios, {AxiosInstance, AxiosRequestConfig} from 'axios';
 import {OrganizationDto} from "./organization.dto";
 import {ModelDto} from "./model.dto";
 import {ModelCreateDto} from "./model.create.dto";
+import {OrganizationCreateDto} from "./organization.create.dto";
 
 export interface ApiClientOptions extends AxiosRequestConfig {
     apiKey?: string;
@@ -29,7 +30,7 @@ export class OpenDppApiClient {
         return this.axiosInstance.get<OrganizationDto>(`/organizations/${id}`);
     }
 
-    public async postOrganization(data: any) {
+    public async postOrganization(data: OrganizationCreateDto) {
         return this.axiosInstance.post<OrganizationDto>('/organizations', data);
     }
 
