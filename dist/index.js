@@ -16,6 +16,9 @@ class OpenDppApiClient {
             ...options,
         });
     }
+    setApiKey(apiKey) {
+        this.axiosInstance.defaults.headers.common['Authorization'] = `Bearer ${apiKey}`;
+    }
     async getOrganizations() {
         return this.axiosInstance.get(`/organizations`);
     }

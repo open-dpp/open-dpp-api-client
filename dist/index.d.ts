@@ -9,6 +9,7 @@ export interface ApiClientOptions extends AxiosRequestConfig {
 export declare class OpenDppApiClient {
     private axiosInstance;
     constructor(options?: ApiClientOptions);
+    setApiKey(apiKey: string): void;
     getOrganizations(): Promise<import("axios").AxiosResponse<OrganizationDto[], any>>;
     getOrganizationById(id: string): Promise<import("axios").AxiosResponse<OrganizationDto, any>>;
     postOrganization(data: OrganizationCreateDto): Promise<import("axios").AxiosResponse<OrganizationDto, any>>;
