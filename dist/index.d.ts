@@ -13,6 +13,6 @@ export declare class OpenDppApiClient {
     getOrganizationById(id: string): Promise<import("axios").AxiosResponse<OrganizationDto, any>>;
     postOrganization(data: OrganizationCreateDto): Promise<import("axios").AxiosResponse<OrganizationDto, any>>;
     postModel(data: ModelCreateDto): Promise<import("axios").AxiosResponse<ModelDto, any>>;
-    getModels(): Promise<import("axios").AxiosResponse<ModelDto, any>>;
+    getModels(): Promise<import("axios").AxiosResponse<ModelDto[], any>>;
     getModelById(id: string): Promise<import("axios").AxiosResponse<ModelDto, any>>;
 }
