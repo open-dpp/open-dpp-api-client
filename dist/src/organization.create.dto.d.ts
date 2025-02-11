@@ -1,3 +1,3 @@
 export interface OrganizationCreateDto {
-  name: string;
+    name: string;
 }

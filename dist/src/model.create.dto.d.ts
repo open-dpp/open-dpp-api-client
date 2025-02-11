@@ -1,3 +1,3 @@
 export interface ModelCreateDto {
-  name: string;
+    name: string;
 }
