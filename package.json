@@ -1,6 +1,6 @@
 {
   "name": "@open-dpp/api-client",
-  "version": "1.0.12",
+  "version": "1.1.0",
   "description": "A client for my API",
   "repository": {
     "url": "https://github.com/open-dpp/open-dpp-api-client"
@@ -12,6 +12,7 @@
     "format": "prettier --write \"src/**/*.ts\" \"tests/**/*.ts\"",
     "lint": "eslint \"{src,tests}/**/*.ts\"",
     "lint:fix": "eslint \"{src,tests}/**/*.ts\" --fix",
+    "check-ts": "tsc --noEmit",
     "test": "jest"
   },
   "keywords": [],

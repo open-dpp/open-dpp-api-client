@@ -3,7 +3,10 @@ import { OrganizationDto } from "./organization.dto";
 import { DataValuePatchDto, ModelDto } from "./model.dto";
 import { ModelCreateDto } from "./model.create.dto";
 import { OrganizationCreateDto } from "./organization.create.dto";
-import { ProductDataModelDto } from "./product.data.model.dto";
+import {
+  ProductDataModelDto,
+  ProductDataModelGetAllDto,
+} from "./product.data.model.dto";
 
 export interface ApiClientOptions extends AxiosRequestConfig {
   apiKey?: string;
@@ -68,17 +71,35 @@ export class OpenDppApiClient {
     productDataModelId: string,
     modelId: string,
   ) {
-    return this.axiosInstance.post(
+    return this.axiosInstance.post<ModelDto>(
       `/models/${modelId}/product-data-models/${productDataModelId}`,
     );
   }
 
   public async updateModelData(modelId: string, data: DataValuePatchDto[]) {
-    return this.axiosInstance.patch(`/models/${modelId}/data-values`, data);
+    return this.axiosInstance.patch<ModelDto>(
+      `/models/${modelId}/data-values`,
+      data,
+    );
   }
 
   public async createProductDataModel(data: ProductDataModelDto) {
-    return this.axiosInstance.post("/product-data-models", data);
+    return this.axiosInstance.post<ProductDataModelDto>(
+      "/product-data-models",
+      data,
+    );
+  }
+
+  public async getProductDataModels() {
+    return this.axiosInstance.get<ProductDataModelGetAllDto>(
+      "/product-data-models",
+    );
+  }
+
+  public async getProductDataModelById(id: string) {
+    return this.axiosInstance.get<ProductDataModelDto>(
+      `/product-data-models/${id}`,
+    );
   }
 
   public async getModels() {

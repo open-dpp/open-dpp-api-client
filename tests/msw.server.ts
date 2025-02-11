@@ -101,6 +101,19 @@ const handlers = [
   http.post(`${baseURL}/product-data-models`, async ({ request }) => {
     return HttpResponse.json(await request.json(), { status: 201 });
   }),
+  http.get(`${baseURL}/product-data-models`, async () => {
+    return HttpResponse.json(
+      [{ id: productDataModel.id, name: productDataModel.name }],
+      { status: 200 },
+    );
+  }),
+  http.get(
+    `${baseURL}/product-data-models/${productDataModel.id}`,
+    async () => {
+      return HttpResponse.json(productDataModel, { status: 200 });
+    },
+  ),
+
   http.post(
     `${baseURL}/models/${model.id}/product-data-models/${productDataModel.id}`,
     async () => {

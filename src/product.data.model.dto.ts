@@ -17,3 +17,8 @@ export interface ProductDataModelDto
   id: string;
   sections: SectionDto[];
 }
+
+export interface ProductDataModelGetAllDto {
+  id: string;
+  name: string;
+}

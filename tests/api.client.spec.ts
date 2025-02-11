@@ -37,6 +37,24 @@ describe("ApiClient", () => {
     expect(response.data).toEqual(productDataModel);
   });
 
+  it("should get all product data models", async () => {
+    const client = new OpenDppApiClient({
+      baseURL,
+    });
+    const response = await client.getProductDataModels();
+    expect(response.data).toEqual([
+      { id: productDataModel.id, name: productDataModel.name },
+    ]);
+  });
+
+  it("should get product data model by id", async () => {
+    const client = new OpenDppApiClient({
+      baseURL,
+    });
+    const response = await client.getProductDataModelById(productDataModel.id);
+    expect(response.data).toEqual(productDataModel);
+  });
+
   it("should update model data", async () => {
     const client = new OpenDppApiClient({
       baseURL,
