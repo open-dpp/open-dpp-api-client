@@ -21,7 +21,7 @@
     "lint:fix": "eslint \"{src,tests}/**/*.ts\" --fix",
     "check-ts": "tsc --noEmit",
     "test": "jest",
-    "patch": "git fetch --tags && npm version patch && git push --tags",
+    "patch": "git fetch --tags && npm version patch && git push --follow-tags",
     "minor": "git fetch --tags && npm version minor && git push --tags",
     "major": "git fetch --tags && npm version major && git push --tags"
   },
