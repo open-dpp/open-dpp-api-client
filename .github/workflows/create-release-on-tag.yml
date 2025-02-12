@@ -22,8 +22,7 @@ jobs:
               --repo="$GITHUB_REPOSITORY" \
               --title="${GITHUB_REPOSITORY#*/} ${tag#v}" \
               --generate-notes
-  publish-workflow:
-    permissions:
-      contents: read
-      id-token: write
-    uses: ./.github/workflows/npm-publish.yml
+      - name: Create release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: gh workflow run npm-publish.yml
