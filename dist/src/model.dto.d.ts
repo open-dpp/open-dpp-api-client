@@ -3,7 +3,11 @@ interface UniqueProductIdentifiers {
     view: string;
     referenceId: string;
 }
-interface DataValue {
+export interface DataValuePatchDto {
+    id: string;
+    value: unknown;
+}
+export interface DataValueDto {
     id: string;
     value: unknown;
     dataSectionId: string;
@@ -15,7 +19,7 @@ export interface ModelDto {
     description: string;
     uniqueProductIdentifiers: UniqueProductIdentifiers[];
     productDataModelId: string;
-    dataValues: DataValue[];
+    dataValues: DataValueDto[];
     owner: string;
 }
 export {};

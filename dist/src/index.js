@@ -52,7 +52,19 @@ class OpenDppApiClient {
         return this.axiosInstance.post("/models", data);
     }
     async assignProductDataModelToModel(productDataModelId, modelId) {
-        return {};
+        return this.axiosInstance.post(`/models/${modelId}/product-data-models/${productDataModelId}`);
+    }
+    async updateModelData(modelId, data) {
+        return this.axiosInstance.patch(`/models/${modelId}/data-values`, data);
+    }
+    async createProductDataModel(data) {
+        return this.axiosInstance.post("/product-data-models", data);
+    }
+    async getProductDataModels() {
+        return this.axiosInstance.get("/product-data-models");
+    }
+    async getProductDataModelById(id) {
+        return this.axiosInstance.get(`/product-data-models/${id}`);
     }
     async getModels() {
         return this.axiosInstance.get("/models");
