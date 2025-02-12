@@ -1,14 +1,26 @@
 {
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "extends": "@tsconfig/node16/tsconfig.json",
   "compilerOptions": {
     "target": "ES2020",
     "module": "CommonJS",
-    "rootDir": "src",
-    "allowJs": true,
+    "moduleResolution": "node",
     "outDir": "dist",
     "declaration": true,
+    "emitDeclarationOnly": true,
+    "stripInternal": true,
     "strict": true,
-    "esModuleInterop": true,
-    "skipLibCheck": true
+    /* Additional Checks */
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noImplicitOverride": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    /* This needs to be false so our types are possible to consume without setting this */
+    "esModuleInterop": false,
+    "isolatedModules": true,
+    "skipLibCheck": false,
+    "resolveJsonModule": true
   },
   "include": [
     "src/**/*"
