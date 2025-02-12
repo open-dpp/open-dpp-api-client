@@ -22,3 +22,5 @@ jobs:
               --repo="$GITHUB_REPOSITORY" \
               --title="${GITHUB_REPOSITORY#*/} ${tag#v}" \
               --generate-notes
+  publish-workflow:
+    uses: ./.github/workflows/npm-publish.yml
