@@ -6,6 +6,45 @@ The open source platform for digital product passports.
 
 This repository contains a HTTP client for the REST API of our open-dpp platform.
 
+# Usage Guide
+
+## Installation
+
+```bash
+$ npm install @open-dpp/api-client
+```
+
+## Usage
+
+Create a new instance of a client with the baseURL parameter directing to your API.
+
+```typescript
+const apiClient = new OpenDppApiClient({baseURL: API_URL});
+```
+
+Set the ApiKey for the client to enable it to authenticate to your API.
+
+```typescript
+apiClient.setApiKey(token);
+```
+
+Use any function of the client. E.g., create an organization.
+
+```typescript
+const addOrganization = async () => {
+   console.log('Creating organization...');
+   const response = await apiClient.postOrganization({
+      name: "Test",
+   });
+   console.log('Finished creating an organization.');
+   if (response.status === 201) {
+      console.log("Successfully created an organization.");
+   } else {
+      console.error("Error on creating an organization.");
+   }
+};
+```
+
 # Development Guide
 
 ## Installation
@@ -16,10 +55,14 @@ $ npm install
 
 ## Deployment
 
-1. Run ```npm run build``` to see if your code compiles
-2. Run ```npm run test``` to see if your code fails
-3. Update the version in [package.json]() using semantic versioning (e.g. 1.0.0)
-4. Create a PR to the main branch
-5. Approve and merge the PR
-6. Start creating a new Release in GitHub and create a new tag for the release there. Use the version
-   from [package.json]() with a v-Prefix (v1.0.0) as the tag name. Also let GitHub create changelogs.
+1. Commit your current changed files for a clean working tree in the next step
+2. Merge your changes on the main branch
+3. Run ```npm run build``` to see if your code compiles
+4. Run ```npm run test``` to see if your code fails
+5. Determine whether you want to create a patch, minor or major version. Run the fitting npm scripts (e.g., npm run
+   patch)
+   1. This updates the version number in the package.json
+   2. Also, a git tag is created for the version
+   3. The git tag and current branch are pushed to GitHub
+   4. First, the push triggers a workflow to create a new release in GitHub
+   5. Finishing that workflow triggers another one to publish the release to npm
