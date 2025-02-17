@@ -22,3 +22,6 @@ src
 tests
 .idea
 .github
+
+dist/*.d.ts
+!dist/index.d.ts

@@ -1,12 +1,7 @@
 import axios, { AxiosInstance, AxiosRequestConfig } from "axios";
-import { OrganizationDto } from "./organization.dto";
-import { DataValuePatchDto, ModelDto } from "./model.dto";
-import { ModelCreateDto } from "./model.create.dto";
-import { OrganizationCreateDto } from "./organization.create.dto";
-import {
-  ProductDataModelDto,
-  ProductDataModelGetAllDto,
-} from "./product.data.model.dto";
+import { OrganizationsNamespace } from "./namespaces/organizations.namespace";
+import { ModelsNamespace } from "./namespaces/models.namespace";
+import { ProductDataModelsNamespace } from "./namespaces/product-data-models.namespace";
 
 export interface ApiClientOptions extends AxiosRequestConfig {
   apiKey?: string;
@@ -15,6 +10,9 @@ export interface ApiClientOptions extends AxiosRequestConfig {
 export class OpenDppApiClient {
   private axiosInstance: AxiosInstance;
   private readonly initOptions: ApiClientOptions;
+  public organizations: OrganizationsNamespace;
+  public models: ModelsNamespace;
+  public productDataModels: ProductDataModelsNamespace;
 
   constructor(options: ApiClientOptions = {}) {
     this.initOptions = options;
@@ -28,6 +26,9 @@ export class OpenDppApiClient {
       },
       ...this.initOptions,
     });
+    this.organizations = new OrganizationsNamespace(this.axiosInstance);
+    this.models = new ModelsNamespace(this.axiosInstance);
+    this.productDataModels = new ProductDataModelsNamespace(this.axiosInstance);
   }
 
   public setApiKey(apiKey: string) {
@@ -49,74 +50,8 @@ export class OpenDppApiClient {
       },
       ...this.initOptions,
     });
-  }
-
-  public async getOrganizations() {
-    return this.axiosInstance.get<OrganizationDto[]>(`/organizations`);
-  }
-
-  public async getOrganizationById(id: string) {
-    return this.axiosInstance.get<OrganizationDto>(`/organizations/${id}`);
-  }
-
-  public async postOrganization(data: OrganizationCreateDto) {
-    return this.axiosInstance.post<OrganizationDto>("/organizations", data);
-  }
-
-  public async postModel(data: ModelCreateDto) {
-    return this.axiosInstance.post<ModelDto>("/models", data);
-  }
-
-  public async assignProductDataModelToModel(
-    productDataModelId: string,
-    modelId: string,
-  ) {
-    return this.axiosInstance.post<ModelDto>(
-      `/models/${modelId}/product-data-models/${productDataModelId}`,
-    );
-  }
-
-  public async updateModelData(modelId: string, data: DataValuePatchDto[]) {
-    return this.axiosInstance.patch<ModelDto>(
-      `/models/${modelId}/data-values`,
-      data,
-    );
-  }
-
-  public async createProductDataModel(data: ProductDataModelDto) {
-    return this.axiosInstance.post<ProductDataModelDto>(
-      "/product-data-models",
-      data,
-    );
-  }
-
-  public async getProductDataModels() {
-    return this.axiosInstance.get<ProductDataModelGetAllDto[]>(
-      "/product-data-models",
-    );
-  }
-
-  public async getProductDataModelById(id: string) {
-    return this.axiosInstance.get<ProductDataModelDto>(
-      `/product-data-models/${id}`,
-    );
-  }
-
-  public async getModels() {
-    return this.axiosInstance.get<ModelDto[]>("/models");
-  }
-
-  public async getModelById(id: string) {
-    return this.axiosInstance.get<ModelDto>(`/models/${id}`);
+    this.organizations = new OrganizationsNamespace(this.axiosInstance);
+    this.models = new ModelsNamespace(this.axiosInstance);
+    this.productDataModels = new ProductDataModelsNamespace(this.axiosInstance);
   }
 }
-
-export type {
-  ProductDataModelDto,
-  ProductDataModelGetAllDto,
-  ModelDto,
-  ModelCreateDto,
-  DataValuePatchDto,
-  OrganizationDto,
-  OrganizationCreateDto,
-};

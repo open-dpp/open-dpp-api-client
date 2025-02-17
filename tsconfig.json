@@ -2,12 +2,12 @@
   "$schema": "https://json.schemastore.org/tsconfig",
   "extends": "@tsconfig/node16/tsconfig.json",
   "compilerOptions": {
-    "target": "ES2020",
-    "module": "CommonJS",
+    "target": "ESNext",
+    "module": "ESNext",
     "moduleResolution": "node",
     "outDir": "dist",
     "declaration": true,
-    "emitDeclarationOnly": false,
+    "emitDeclarationOnly": true,
     "stripInternal": true,
     "strict": true,
     /* Additional Checks */
