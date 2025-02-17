@@ -20,7 +20,8 @@
     "esModuleInterop": false,
     "isolatedModules": true,
     "skipLibCheck": false,
-    "resolveJsonModule": true
+    "resolveJsonModule": true,
+    "allowJs": true
   },
   "include": [
     "src/**/*"
