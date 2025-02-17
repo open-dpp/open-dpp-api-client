@@ -1,4 +1,4 @@
-interface UniqueProductIdentifiers {
+export interface UniqueProductIdentifiers {
   uuid: string;
   view: string;
   referenceId: string;
