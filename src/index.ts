@@ -110,3 +110,5 @@ export class OpenDppApiClient {
     return this.axiosInstance.get<ModelDto>(`/models/${id}`);
   }
 }
+
+export type { ProductDataModelDto, ProductDataModelGetAllDto, ModelDto };
