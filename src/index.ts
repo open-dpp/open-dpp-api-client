@@ -111,4 +111,12 @@ export class OpenDppApiClient {
   }
 }
 
-export type { ProductDataModelDto, ProductDataModelGetAllDto, ModelDto };
+export type {
+  ProductDataModelDto,
+  ProductDataModelGetAllDto,
+  ModelDto,
+  ModelCreateDto,
+  DataValuePatchDto,
+  OrganizationDto,
+  OrganizationCreateDto,
+};
