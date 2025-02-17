@@ -1,8 +1,3 @@
-import {
-  DataFieldCreateDto,
-  ProductDataModelCreateDto,
-} from "./product.data.model.create.dto";
-
 export interface DataFieldDto extends DataFieldCreateDto {
   id: string;
 }
@@ -21,4 +16,20 @@ export interface ProductDataModelDto
 export interface ProductDataModelGetAllDto {
   id: string;
   name: string;
+}
+
+export interface DataFieldCreateDto {
+  type: string;
+  name: string;
+  options: unknown;
+}
+
+export interface SectionCreateDto {
+  dataFields: DataFieldCreateDto[];
+}
+
+export interface ProductDataModelCreateDto {
+  name: string;
+  version: string;
+  sections: SectionCreateDto[];
 }

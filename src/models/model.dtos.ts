@@ -25,3 +25,7 @@ export interface ModelDto {
   dataValues: DataValueDto[];
   owner: string;
 }
+
+export interface ModelCreateDto {
+  name: string;
+}

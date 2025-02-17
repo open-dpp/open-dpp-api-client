@@ -1,8 +1,8 @@
 import { http, HttpResponse } from "msw";
 import { setupServer } from "msw/node";
 import { randomUUID } from "node:crypto";
-import { ProductDataModelDto } from "../src/product.data.model.dto";
-import { DataValueDto, DataValuePatchDto } from "../src/model.dto";
+import { ProductDataModelDto } from "../src/product-data-models/product.data.model.dtos";
+import { DataValueDto, DataValuePatchDto } from "../src/models/model.dtos";
 
 const baseURL = "https://api.cloud.open-dpp.de";
 

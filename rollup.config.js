@@ -1,12 +1,13 @@
-import dts from "rollup-plugin-dts";
+import typescript from "@rollup/plugin-typescript";
 
 export default {
-  input: "./dist/index.d.ts", // the entry declaration file from tsc
+  input: "./src/index.ts", // the entry declaration file from tsc
   output: [
     {
       file: "./dist/index.d.ts",
       format: "es",
     },
   ],
-  plugins: [dts()],
+  plugins: [typescript()],
+  external: ["axios"],
 };

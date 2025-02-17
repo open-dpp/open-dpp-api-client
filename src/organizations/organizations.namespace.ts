@@ -1,5 +1,4 @@
-import { OrganizationDto } from "../organization.dto";
-import { OrganizationCreateDto } from "../organization.create.dto";
+import { OrganizationCreateDto, OrganizationDto } from "./organization.dtos";
 import { AxiosInstance } from "axios";
 
 export class OrganizationsNamespace {

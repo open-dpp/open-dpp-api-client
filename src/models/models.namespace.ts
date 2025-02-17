@@ -1,6 +1,5 @@
 import { AxiosInstance } from "axios";
-import { ModelCreateDto } from "../model.create.dto";
-import { DataValuePatchDto, ModelDto } from "../model.dto";
+import { DataValuePatchDto, ModelCreateDto, ModelDto } from "./model.dtos";
 
 export class ModelsNamespace {
   constructor(private readonly axiosInstance: AxiosInstance) {}
