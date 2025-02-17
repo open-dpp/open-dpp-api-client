@@ -5,7 +5,6 @@
   "repository": {
     "url": "https://github.com/open-dpp/open-dpp-api-client"
   },
-  "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "scripts": {
     "build": "tsc && rollup -c",
