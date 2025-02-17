@@ -91,7 +91,7 @@ export class OpenDppApiClient {
   }
 
   public async getProductDataModels() {
-    return this.axiosInstance.get<ProductDataModelGetAllDto>(
+    return this.axiosInstance.get<ProductDataModelGetAllDto[]>(
       "/product-data-models",
     );
   }
