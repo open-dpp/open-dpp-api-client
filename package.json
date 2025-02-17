@@ -6,11 +6,6 @@
     "url": "https://github.com/open-dpp/open-dpp-api-client"
   },
   "types": "./dist/index.d.ts",
-  "exports": {
-    ".": {
-      "types": "./dist/index.d.ts"
-    }
-  },
   "scripts": {
     "build": "tsc && rollup -c",
     "format": "prettier --write \"src/**/*.ts\" \"tests/**/*.ts\"",
