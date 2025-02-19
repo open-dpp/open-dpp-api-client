@@ -93,6 +93,24 @@ const handlers = [
             dataFieldId,
           })),
         },
+        { status: 200 },
+      );
+    },
+  ),
+  http.post(
+    `${baseURL}/models/${model.id}/data-values`,
+    async ({ request }) => {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const body: any = await request.json();
+      return HttpResponse.json(
+        {
+          ...model,
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          dataValues: body.map((b: any) => ({
+            id: randomUUID(),
+            ...b,
+          })),
+        },
         { status: 201 },
       );
     },

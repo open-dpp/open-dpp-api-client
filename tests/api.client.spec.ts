@@ -7,6 +7,7 @@ import {
   updateDataValues,
 } from "./msw.server";
 import { OpenDppApiClient } from "../src";
+import { randomUUID } from "node:crypto";
 
 describe("ApiClient", () => {
   beforeAll(() => server.listen());
@@ -67,6 +68,30 @@ describe("ApiClient", () => {
       updateDataValues,
     );
     expect(response.data.dataValues).toEqual(responseDataValues);
+  });
+
+  it("should add model data", async () => {
+    const client = new OpenDppApiClient({
+      baseURL,
+    });
+    const addDataValues = [
+      {
+        dataFieldId: randomUUID(),
+        dataSectionId: randomUUID(),
+        row: 0,
+        value: "A",
+      },
+      {
+        dataFieldId: randomUUID(),
+        dataSectionId: randomUUID(),
+        row: 0,
+        value: "B",
+      },
+    ];
+    const response = await client.models.addModelData(model.id, addDataValues);
+    expect(response.data.dataValues).toEqual(
+      addDataValues.map((v) => ({ ...v, id: expect.any(String) })),
+    );
   });
 
   it("should assign product data model to model", async () => {
