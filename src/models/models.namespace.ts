@@ -1,11 +1,23 @@
 import { AxiosInstance } from "axios";
-import { DataValuePatchDto, ModelCreateDto, ModelDto } from "./model.dtos";
+import {
+  DataValueCreateDto,
+  DataValuePatchDto,
+  ModelCreateDto,
+  ModelDto,
+} from "./model.dtos";
 
 export class ModelsNamespace {
   constructor(private readonly axiosInstance: AxiosInstance) {}
 
   public async postModel(data: ModelCreateDto) {
     return this.axiosInstance.post<ModelDto>("/models", data);
+  }
+
+  public async addModelData(modelId: string, data: DataValueCreateDto[]) {
+    return this.axiosInstance.post<ModelDto>(
+      `/models/${modelId}/data-values`,
+      data,
+    );
   }
 
   public async updateModelData(modelId: string, data: DataValuePatchDto[]) {

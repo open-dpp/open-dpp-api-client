@@ -9,6 +9,10 @@ export interface DataValuePatchDto {
   value: unknown;
 }
 
+export interface DataValueCreateDto extends Omit<DataValueDto, "id"> {
+  row: number;
+}
+
 export interface DataValueDto {
   id: string;
   value: unknown;
