@@ -2,8 +2,15 @@ export interface DataFieldDto extends DataFieldCreateDto {
   id: string;
 }
 
+export enum SectionType {
+  GROUP = "Group",
+  REPEATABLE = "Repeatable",
+}
+
 export interface SectionDto {
   id: string;
+  name: string;
+  type: SectionType;
   dataFields: DataFieldDto[];
 }
 

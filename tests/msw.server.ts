@@ -1,7 +1,12 @@
 import { http, HttpResponse } from "msw";
 import { setupServer } from "msw/node";
 import { randomUUID } from "node:crypto";
-import { DataValueDto, DataValuePatchDto, ProductDataModelDto } from "../src";
+import {
+  DataValueDto,
+  DataValuePatchDto,
+  ProductDataModelDto,
+  SectionType,
+} from "../src";
 
 const baseURL = "https://api.cloud.open-dpp.de";
 
@@ -35,6 +40,8 @@ export const productDataModel: ProductDataModelDto = {
   sections: [
     {
       id: randomUUID(),
+      type: SectionType.GROUP,
+      name: "section name",
       dataFields: [
         {
           id: randomUUID(),
