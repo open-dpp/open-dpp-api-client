@@ -1,5 +1,6 @@
 import { OrganizationCreateDto, OrganizationDto } from "./organization.dtos";
 import { AxiosInstance } from "axios";
+import { UserDto } from "../users/user.dtos";
 
 export class OrganizationsNamespace {
   constructor(private readonly axiosInstance: AxiosInstance) {}
@@ -20,6 +21,12 @@ export class OrganizationsNamespace {
     return this.axiosInstance.post<OrganizationDto>(
       `/organizations/${organizationId}/invite`,
       { email },
+    );
+  }
+
+  public async getMembers(organizationId: string) {
+    return this.axiosInstance.get<UserDto>(
+      `/organizations/${organizationId}/members`,
     );
   }
 }

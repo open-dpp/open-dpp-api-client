@@ -5,3 +5,4 @@ export * from "./organizations/organization.dtos";
 export * from "./organizations/organizations.namespace";
 export * from "./product-data-models/product.data.model.dtos";
 export * from "./product-data-models/product-data-models.namespace";
+export * from "./users/user.dtos";
