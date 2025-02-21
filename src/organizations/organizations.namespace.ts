@@ -25,7 +25,7 @@ export class OrganizationsNamespace {
   }
 
   public async getMembers(organizationId: string) {
-    return this.axiosInstance.get<UserDto>(
+    return this.axiosInstance.get<Array<UserDto>>(
       `/organizations/${organizationId}/members`,
     );
   }
