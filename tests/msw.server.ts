@@ -67,6 +67,8 @@ export const updateDataValues: DataValuePatchDto[] = [
   },
 ];
 
+export const uniqueProductIdentifierId = randomUUID();
+
 const dataSectionId = randomUUID();
 const dataFieldId = randomUUID();
 
@@ -76,12 +78,33 @@ export const responseDataValues: DataValueDto[] = updateDataValues.map((v) => ({
   dataFieldId,
 }));
 
+export const responseView = {
+  name: "Standard",
+  sections: [
+    {
+      name: "Technische Spezifikation",
+      rows: [
+        {
+          fields: [
+            {
+              type: "TextField",
+              name: "Prozessor",
+              value: "fdasrew",
+            },
+          ],
+        },
+      ],
+    },
+  ],
+};
+
 const handlers = [
   // Intercept "GET https://example.com/user" requests...
   http.get(`${baseURL}/organizations`, () => {
     // ...and respond to them using this JSON response.
     return HttpResponse.json([...organizations]);
   }),
+
   http.get(`${baseURL}/models/${model.id}`, () => {
     return HttpResponse.json(model);
   }),
@@ -145,6 +168,12 @@ const handlers = [
         { ...model, productDataModelId: productDataModel.id },
         { status: 201 },
       );
+    },
+  ),
+  http.get(
+    `${baseURL}/unique-product-identifiers/${uniqueProductIdentifierId}/view`,
+    () => {
+      return HttpResponse.json({ ...responseView });
     },
   ),
 ];

@@ -3,7 +3,9 @@ import {
   organizations,
   productDataModel,
   responseDataValues,
+  responseView,
   server,
+  uniqueProductIdentifierId,
   updateDataValues,
 } from "./msw.server";
 import { OpenDppApiClient } from "../src";
@@ -105,6 +107,18 @@ describe("ApiClient", () => {
     expect(response.data).toEqual({
       ...model,
       productDataModelId: productDataModel.id,
+    });
+  });
+
+  it("should return view by unique product identifier", async () => {
+    const client = new OpenDppApiClient({
+      baseURL,
+    });
+    const response = await client.uniqueProductIdentifiers.getView(
+      uniqueProductIdentifierId,
+    );
+    expect(response.data).toEqual({
+      ...responseView,
     });
   });
 });
