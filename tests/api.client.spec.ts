@@ -1,15 +1,13 @@
-import {
-  model,
-  organizations,
-  productDataModel,
-  responseDataValues,
-  responseView,
-  server,
-  uniqueProductIdentifierId,
-  updateDataValues,
-} from "./msw.server";
+import { server } from "./msw.server";
 import { OpenDppApiClient } from "../src";
 import { randomUUID } from "node:crypto";
+import { activeOrganization, organizations } from "./handlers/organization";
+import { model, responseDataValues, updateDataValues } from "./handlers/model";
+import { productDataModel } from "./handlers/product.data.model";
+import {
+  responseView,
+  uniqueProductIdentifierId,
+} from "./handlers/unique.product.identifiers";
 
 describe("ApiClient", () => {
   beforeAll(() => server.listen());
@@ -28,6 +26,7 @@ describe("ApiClient", () => {
     const client = new OpenDppApiClient({
       baseURL,
     });
+    client.setActiveOrganizationId(activeOrganization.id);
     const response = await client.models.getModelById(model.id);
     expect(response.data).toEqual(model);
   });
@@ -65,6 +64,8 @@ describe("ApiClient", () => {
     const client = new OpenDppApiClient({
       baseURL,
     });
+    client.setActiveOrganizationId(activeOrganization.id);
+
     const response = await client.models.updateModelData(
       model.id,
       updateDataValues,
@@ -76,6 +77,8 @@ describe("ApiClient", () => {
     const client = new OpenDppApiClient({
       baseURL,
     });
+    client.setActiveOrganizationId(activeOrganization.id);
+
     const addDataValues = [
       {
         dataFieldId: randomUUID(),
@@ -100,6 +103,8 @@ describe("ApiClient", () => {
     const client = new OpenDppApiClient({
       baseURL,
     });
+    client.setActiveOrganizationId(activeOrganization.id);
+
     const response = await client.models.assignProductDataModelToModel(
       productDataModel.id,
       model.id,

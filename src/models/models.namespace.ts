@@ -7,22 +7,28 @@ import {
 } from "./model.dtos";
 
 export class ModelsNamespace {
-  constructor(private readonly axiosInstance: AxiosInstance) {}
+  private readonly modelsEndpoint: string;
+  constructor(
+    private readonly axiosInstance: AxiosInstance,
+    private readonly organizationId?: string,
+  ) {
+    this.modelsEndpoint = `/organizations/${this.organizationId}/models`;
+  }
 
   public async postModel(data: ModelCreateDto) {
-    return this.axiosInstance.post<ModelDto>("/models", data);
+    return this.axiosInstance.post<ModelDto>(this.modelsEndpoint, data);
   }
 
   public async addModelData(modelId: string, data: DataValueCreateDto[]) {
     return this.axiosInstance.post<ModelDto>(
-      `/models/${modelId}/data-values`,
+      `${this.modelsEndpoint}/${modelId}/data-values`,
       data,
     );
   }
 
   public async updateModelData(modelId: string, data: DataValuePatchDto[]) {
     return this.axiosInstance.patch<ModelDto>(
-      `/models/${modelId}/data-values`,
+      `${this.modelsEndpoint}/${modelId}/data-values`,
       data,
     );
   }
@@ -32,15 +38,15 @@ export class ModelsNamespace {
     modelId: string,
   ) {
     return this.axiosInstance.post<ModelDto>(
-      `/models/${modelId}/product-data-models/${productDataModelId}`,
+      `${this.modelsEndpoint}/${modelId}/product-data-models/${productDataModelId}`,
     );
   }
 
   public async getModels() {
-    return this.axiosInstance.get<ModelDto[]>("/models");
+    return this.axiosInstance.get<ModelDto[]>(this.modelsEndpoint);
   }
 
   public async getModelById(id: string) {
-    return this.axiosInstance.get<ModelDto>(`/models/${id}`);
+    return this.axiosInstance.get<ModelDto>(`${this.modelsEndpoint}/${id}`);
   }
 }
