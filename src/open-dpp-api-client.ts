@@ -3,6 +3,7 @@ import { OrganizationsNamespace } from "./organizations/organizations.namespace"
 import { ModelsNamespace } from "./models/models.namespace";
 import { ProductDataModelsNamespace } from "./product-data-models/product-data-models.namespace";
 import { UniqueProductIdentifiersNamespace } from "./unique-product-identifiers/unique.product.identifiers.namespace";
+import { ItemsNamespace } from "./items/items.namespace";
 
 export interface ApiClientOptions extends AxiosRequestConfig {
   apiKey?: string;
@@ -12,6 +13,7 @@ export interface ApiClientOptions extends AxiosRequestConfig {
 export class OpenDppApiClient {
   public organizations!: OrganizationsNamespace;
   public models!: ModelsNamespace;
+  public items!: ItemsNamespace;
   public productDataModels!: ProductDataModelsNamespace;
   public uniqueProductIdentifiers!: UniqueProductIdentifiersNamespace;
   private axiosInstance!: AxiosInstance;
@@ -45,6 +47,10 @@ export class OpenDppApiClient {
     });
     this.organizations = new OrganizationsNamespace(this.axiosInstance);
     this.models = new ModelsNamespace(
+      this.axiosInstance,
+      this.options.activeOrganizationId,
+    );
+    this.items = new ItemsNamespace(
       this.axiosInstance,
       this.options.activeOrganizationId,
     );

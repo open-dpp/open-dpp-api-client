@@ -8,6 +8,7 @@ import {
   responseView,
   uniqueProductIdentifierId,
 } from "./handlers/unique.product.identifiers";
+import { item1, item2 } from "./handlers/item";
 
 describe("ApiClient", () => {
   beforeAll(() => server.listen());
@@ -125,5 +126,25 @@ describe("ApiClient", () => {
     expect(response.data).toEqual({
       ...responseView,
     });
+  });
+
+  it("should create item", async () => {
+    const client = new OpenDppApiClient({
+      baseURL,
+    });
+    client.setActiveOrganizationId(activeOrganization.id);
+
+    const response = await client.items.createItem(model.id);
+    expect(response.data).toEqual(item1);
+  });
+
+  it("should get items", async () => {
+    const client = new OpenDppApiClient({
+      baseURL,
+    });
+    client.setActiveOrganizationId(activeOrganization.id);
+
+    const response = await client.items.getItems(model.id);
+    expect(response.data).toEqual([item1, item2]);
   });
 });
