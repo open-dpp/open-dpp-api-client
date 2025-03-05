@@ -1,8 +1,4 @@
-export interface UniqueProductIdentifiers {
-  uuid: string;
-  view: string;
-  referenceId: string;
-}
+import { UniqueProductIdentifiers } from "../unique-product-identifiers/unique.product.identifiers.dtos";
 
 export interface DataValuePatchDto {
   id: string;

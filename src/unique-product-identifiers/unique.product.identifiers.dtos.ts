@@ -11,3 +11,9 @@ export interface ViewDto {
   name: string;
   sections: SectionViewDto[];
 }
+
+export interface UniqueProductIdentifiers {
+  uuid: string;
+  view: string;
+  referenceId: string;
+}
