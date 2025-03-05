@@ -21,4 +21,10 @@ export class ItemsNamespace {
       `${this.modelsEndpoint}/${modelId}/items`,
     );
   }
+
+  public async getItem(modelId: string, itemId: string) {
+    return this.axiosInstance.get<ItemDto>(
+      `${this.modelsEndpoint}/${modelId}/items/${itemId}`,
+    );
+  }
 }

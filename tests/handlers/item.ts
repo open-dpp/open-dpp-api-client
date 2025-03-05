@@ -28,4 +28,10 @@ export const itemHandlers = [
       return HttpResponse.json([item1, item2]);
     },
   ),
+  http.get(
+    `${baseURL}/organizations/${activeOrganization.id}/models/${model.id}/items/${item1.id}`,
+    () => {
+      return HttpResponse.json(item1);
+    },
+  ),
 ];
