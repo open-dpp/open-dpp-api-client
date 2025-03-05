@@ -147,4 +147,14 @@ describe("ApiClient", () => {
     const response = await client.items.getItems(model.id);
     expect(response.data).toEqual([item1, item2]);
   });
+
+  it("should get single item", async () => {
+    const client = new OpenDppApiClient({
+      baseURL,
+    });
+    client.setActiveOrganizationId(activeOrganization.id);
+
+    const response = await client.items.getItem(model.id, item1.id);
+    expect(response.data).toEqual(item1);
+  });
 });
