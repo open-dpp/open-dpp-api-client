@@ -7,6 +7,15 @@ export enum SectionType {
   REPEATABLE = "Repeatable",
 }
 
+export enum DataFieldType {
+  TEXT_FIELD = "TextField",
+}
+
+export enum VisibilityLevel {
+  PRIVATE = "Private",
+  PUBLIC = "Public",
+}
+
 export interface SectionDto {
   id: string;
   name: string;
@@ -18,6 +27,9 @@ export interface ProductDataModelDto
   extends Omit<ProductDataModelCreateDto, "sections"> {
   id: string;
   sections: SectionDto[];
+  visibility: VisibilityLevel;
+  createdByUserId?: string;
+  ownedByOrganizationId?: string;
 }
 
 export interface ProductDataModelGetAllDto {
@@ -26,9 +38,9 @@ export interface ProductDataModelGetAllDto {
 }
 
 export interface DataFieldCreateDto {
-  type: string;
+  type: DataFieldType;
   name: string;
-  options: unknown;
+  options: Record<string, unknown>;
 }
 
 export interface SectionCreateDto {

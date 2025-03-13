@@ -8,10 +8,14 @@ const jest = require("eslint-plugin-jest");
 
 module.exports = [
   js.configs.recommended,
+
   {
     files: ["**/*.ts"],
     languageOptions: {
       parser: tsParser,
+      globals: {
+        URL: "readonly", // Ensure URL is recognized
+      },
     },
     plugins: { "@typescript-eslint": ts },
     rules: {
