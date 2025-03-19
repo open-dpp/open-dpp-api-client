@@ -182,8 +182,8 @@ describe("ApiClient", () => {
         productDataModelDraft.id,
         sectionDraft.id,
         {
-          name: sectionDraft.name,
-          type: sectionDraft.type,
+          name: dataFieldDraft.name,
+          type: dataFieldDraft.type,
           options: { max: 2 },
         },
       );

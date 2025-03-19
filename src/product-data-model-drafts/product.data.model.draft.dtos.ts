@@ -43,9 +43,9 @@ export interface ProductDataModelDraftGetAllDto {
 }
 
 export interface DataFieldDraftCreateDto {
-  type: string;
+  type: DataFieldType;
   name: string;
-  options: Record<string, unknown>;
+  options?: Record<string, unknown>;
 }
 
 export interface SectionDraftCreateDto {
