@@ -59,7 +59,7 @@ export interface ProductDataModelDraftCreateDto {
 
 export interface DataFieldDraftUpdateDto {
   name: string;
-  options: Record<string, unknown>;
+  options?: Record<string, unknown>;
 }
 
 export interface SectionDraftUpdateDto {
