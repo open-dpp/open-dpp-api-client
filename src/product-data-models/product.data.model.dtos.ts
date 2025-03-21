@@ -35,6 +35,7 @@ export interface ProductDataModelDto
 export interface ProductDataModelGetAllDto {
   id: string;
   name: string;
+  version: string;
 }
 
 export interface DataFieldCreateDto {
