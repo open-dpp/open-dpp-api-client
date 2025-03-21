@@ -10,7 +10,6 @@ import {
   SectionDraftCreateDto,
   SectionDraftUpdateDto,
 } from "./product.data.model.draft.dtos";
-import { ProductDataModelDto } from "../product-data-models/product.data.model.dtos";
 
 export class ProductDataModelDraftsNamespace {
   private readonly draftsEndpoint;
@@ -104,7 +103,7 @@ export class ProductDataModelDraftsNamespace {
   }
 
   public async publish(draftId: string, data: PublicationCreateDto) {
-    return this.axiosInstance.post<ProductDataModelDto>(
+    return this.axiosInstance.post<ProductDataModelDraftDto>(
       `${this.draftsEndpoint}/${draftId}/publish`,
       data,
     );
