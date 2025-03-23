@@ -2,6 +2,8 @@
 
 The open source platform for digital product passports.
 
+![CodeRabbit Pull Request Reviews](https://img.shields.io/coderabbit/prs/github/open-dpp/open-dpp-api-client?utm_source=oss&utm_medium=github&utm_campaign=open-dpp%2Fopen-dpp-api-client&labelColor=171717&color=FF570A&link=https%3A%2F%2Fcoderabbit.ai&label=CodeRabbit+Reviews)
+
 # Description
 
 This repository contains a HTTP client for the REST API of our open-dpp platform.
