@@ -1,10 +1,10 @@
 import axios, { AxiosInstance, AxiosRequestConfig } from "axios";
 import { OrganizationsNamespace } from "./organizations/organizations.namespace";
 import { ModelsNamespace } from "./models/models.namespace";
-import { ProductDataModelDraftsNamespace } from "./product-data-model-drafts/product.data.model.drafts.namespace";
-import { UniqueProductIdentifiersNamespace } from "./unique-product-identifiers/unique.product.identifiers.namespace";
+import { ProductDataModelDraftsNamespace } from "./product-data-model-drafts/product-data-model-drafts.namespace";
+import { UniqueProductIdentifiersNamespace } from "./unique-product-identifiers/unique-product-identifiers.namespace";
 import { ItemsNamespace } from "./items/items.namespace";
-import { ProductDataModelsNamespace } from "./product-data-models/product.data.models.namespace";
+import { ProductDataModelsNamespace } from "./product-data-models/product-data-models.namespace";
 
 export interface ApiClientOptions extends AxiosRequestConfig {
   apiKey?: string;

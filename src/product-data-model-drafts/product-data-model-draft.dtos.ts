@@ -2,7 +2,7 @@ import {
   DataFieldType,
   SectionType,
   VisibilityLevel,
-} from "../product-data-models/product.data.model.dtos";
+} from "../product-data-models/product-data-model.dtos";
 
 export interface DataFieldDraftDto {
   id: string;

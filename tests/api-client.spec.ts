@@ -3,18 +3,18 @@ import { OpenDppApiClient, VisibilityLevel } from "../src";
 import { randomUUID } from "node:crypto";
 import { activeOrganization, organizations } from "./handlers/organization";
 import { model, responseDataValues, updateDataValues } from "./handlers/model";
-import { productDataModel } from "./handlers/product.data.model";
+import { productDataModel } from "./handlers/product-data-model";
 import {
   responseView,
   uniqueProductIdentifierId,
-} from "./handlers/unique.product.identifiers";
+} from "./handlers/unique-product-identifiers";
 import { item1, item2 } from "./handlers/item";
 import {
   dataFieldDraft,
   draftsOfOrganization,
   productDataModelDraft,
   sectionDraft,
-} from "./handlers/product.data.model.draft";
+} from "./handlers/product-data-model-draft";
 
 describe("ApiClient", () => {
   beforeAll(() => server.listen());

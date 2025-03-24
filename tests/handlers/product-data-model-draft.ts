@@ -10,7 +10,7 @@ import {
 } from "../../src";
 import { randomUUID } from "node:crypto";
 import { activeOrganization } from "./organization";
-import { productDataModel } from "./product.data.model";
+import { productDataModel } from "./product-data-model";
 
 export const productDataModelDraft: ProductDataModelDraftDto = {
   id: randomUUID(),

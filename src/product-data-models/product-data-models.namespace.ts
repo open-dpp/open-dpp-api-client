@@ -2,7 +2,7 @@ import { AxiosInstance } from "axios";
 import {
   ProductDataModelDto,
   ProductDataModelGetAllDto,
-} from "./product.data.model.dtos";
+} from "./product-data-model.dtos";
 
 export class ProductDataModelsNamespace {
   constructor(

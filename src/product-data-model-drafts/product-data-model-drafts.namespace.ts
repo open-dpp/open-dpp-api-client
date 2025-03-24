@@ -9,7 +9,7 @@ import {
   PublicationCreateDto,
   SectionDraftCreateDto,
   SectionDraftUpdateDto,
-} from "./product.data.model.draft.dtos";
+} from "./product-data-model-draft.dtos";
 
 export class ProductDataModelDraftsNamespace {
   private readonly draftsEndpoint;
