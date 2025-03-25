@@ -2,7 +2,7 @@ import { http, HttpResponse } from "msw";
 import { baseURL } from "./index";
 import { randomUUID } from "node:crypto";
 import { DataValueDto, DataValuePatchDto } from "../../src";
-import { productDataModel } from "./product.data.model";
+import { productDataModel } from "./product-data-model";
 import { activeOrganization } from "./organization";
 
 export const updateDataValues: DataValuePatchDto[] = [

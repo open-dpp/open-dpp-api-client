@@ -2,26 +2,17 @@ import { AxiosInstance } from "axios";
 import {
   ProductDataModelDto,
   ProductDataModelGetAllDto,
-} from "./product.data.model.dtos";
-import { ModelCreateDto, ModelDto } from "../models/model.dtos";
+} from "./product-data-model.dtos";
 
 export class ProductDataModelsNamespace {
-  constructor(private readonly axiosInstance: AxiosInstance) {}
+  constructor(
+    private readonly axiosInstance: AxiosInstance,
+    private readonly organizationId?: string,
+  ) {}
 
-  public async postModel(data: ModelCreateDto) {
-    return this.axiosInstance.post<ModelDto>("/models", data);
-  }
-
-  public async createProductDataModel(data: ProductDataModelDto) {
-    return this.axiosInstance.post<ProductDataModelDto>(
-      "/product-data-models",
-      data,
-    );
-  }
-
-  public async getProductDataModels() {
+  public async getAll() {
     return this.axiosInstance.get<ProductDataModelGetAllDto[]>(
-      "/product-data-models",
+      `/product-data-models?organization=${this.organizationId}`,
     );
   }
 

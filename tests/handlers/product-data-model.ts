@@ -1,11 +1,18 @@
 import { http, HttpResponse } from "msw";
 import { baseURL } from "./index";
-import { ProductDataModelDto, SectionType } from "../../src";
+import {
+  DataFieldType,
+  ProductDataModelDto,
+  SectionType,
+  VisibilityLevel,
+} from "../../src";
 import { randomUUID } from "node:crypto";
+import { activeOrganization } from "./organization";
 
 export const productDataModel: ProductDataModelDto = {
   id: randomUUID(),
   name: "Laptop neu",
+  visibility: VisibilityLevel.PRIVATE,
   version: "1.0",
   sections: [
     {
@@ -19,17 +26,25 @@ export const productDataModel: ProductDataModelDto = {
             min: 24,
           },
           name: "Prozessor",
-          type: "TextField",
+          type: DataFieldType.TEXT_FIELD,
         },
       ],
     },
   ],
 };
 export const productDataModelHandlers = [
-  http.post(`${baseURL}/product-data-models`, async ({ request }) => {
-    return HttpResponse.json(await request.json(), { status: 201 });
-  }),
-  http.get(`${baseURL}/product-data-models`, async () => {
+  http.get(`${baseURL}/product-data-models`, async ({ request }) => {
+    const url = new URL(request.url);
+
+    // Read the "id" URL query parameter using the "URLSearchParams" API.
+    // Given "/product?id=1", "organization" will equal "1".
+    const organizationId = url.searchParams.get("organization");
+
+    // Note that query parameters are potentially undefined.
+    // Make sure to account for that in your handlers.
+    if (organizationId !== activeOrganization.id) {
+      return new HttpResponse(null, { status: 404 });
+    }
     return HttpResponse.json(
       [{ id: productDataModel.id, name: productDataModel.name }],
       { status: 200 },

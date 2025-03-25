@@ -1,5 +1,5 @@
 import { AxiosInstance } from "axios";
-import { ViewDto } from "./unique.product.identifiers.dtos";
+import { ViewDto } from "./unique-product-identifiers.dtos";
 
 export class UniqueProductIdentifiersNamespace {
   constructor(private readonly axiosInstance: AxiosInstance) {}

@@ -1,9 +1,10 @@
 import axios, { AxiosInstance, AxiosRequestConfig } from "axios";
 import { OrganizationsNamespace } from "./organizations/organizations.namespace";
 import { ModelsNamespace } from "./models/models.namespace";
-import { ProductDataModelsNamespace } from "./product-data-models/product-data-models.namespace";
-import { UniqueProductIdentifiersNamespace } from "./unique-product-identifiers/unique.product.identifiers.namespace";
+import { ProductDataModelDraftsNamespace } from "./product-data-model-drafts/product-data-model-drafts.namespace";
+import { UniqueProductIdentifiersNamespace } from "./unique-product-identifiers/unique-product-identifiers.namespace";
 import { ItemsNamespace } from "./items/items.namespace";
+import { ProductDataModelsNamespace } from "./product-data-models/product-data-models.namespace";
 
 export interface ApiClientOptions extends AxiosRequestConfig {
   apiKey?: string;
@@ -14,6 +15,7 @@ export class OpenDppApiClient {
   public organizations!: OrganizationsNamespace;
   public models!: ModelsNamespace;
   public items!: ItemsNamespace;
+  public productDataModelDrafts!: ProductDataModelDraftsNamespace;
   public productDataModels!: ProductDataModelsNamespace;
   public uniqueProductIdentifiers!: UniqueProductIdentifiersNamespace;
   private axiosInstance!: AxiosInstance;
@@ -54,7 +56,14 @@ export class OpenDppApiClient {
       this.axiosInstance,
       this.options.activeOrganizationId,
     );
-    this.productDataModels = new ProductDataModelsNamespace(this.axiosInstance);
+    this.productDataModels = new ProductDataModelsNamespace(
+      this.axiosInstance,
+      this.options.activeOrganizationId,
+    );
+    this.productDataModelDrafts = new ProductDataModelDraftsNamespace(
+      this.axiosInstance,
+      this.options.activeOrganizationId,
+    );
     this.uniqueProductIdentifiers = new UniqueProductIdentifiersNamespace(
       this.axiosInstance,
     );
