@@ -31,6 +31,8 @@ export const productDataModel: ProductDataModelDto = {
       ],
     },
   ],
+  ownedByOrganizationId: activeOrganization.id,
+  createdByUserId: randomUUID(),
 };
 export const productDataModelHandlers = [
   http.get(`${baseURL}/product-data-models`, async ({ request }) => {

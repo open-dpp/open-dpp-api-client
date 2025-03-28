@@ -28,8 +28,8 @@ export interface ProductDataModelDto
   id: string;
   sections: SectionDto[];
   visibility: VisibilityLevel;
-  createdByUserId?: string;
-  ownedByOrganizationId?: string;
+  createdByUserId: string;
+  ownedByOrganizationId: string;
 }
 
 export interface ProductDataModelGetAllDto {
