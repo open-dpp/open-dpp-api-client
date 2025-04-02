@@ -29,6 +29,7 @@ export const productDataModel: ProductDataModelDto = {
           type: DataFieldType.TEXT_FIELD,
         },
       ],
+      subSections: [],
     },
   ],
   ownedByOrganizationId: activeOrganization.id,

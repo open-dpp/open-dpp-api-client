@@ -34,6 +34,7 @@ export const productDataModelDraft: ProductDataModelDraftDto = {
           type: DataFieldType.TEXT_FIELD,
         },
       ],
+      subSections: [],
     },
   ],
 };
@@ -48,6 +49,7 @@ export const sectionDraft: SectionDraftDto = {
   name: "sect",
   type: SectionType.GROUP,
   dataFields: [],
+  subSections: [],
 };
 
 export const dataFieldDraft: DataFieldDraftDto = {

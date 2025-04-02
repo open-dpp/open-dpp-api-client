@@ -21,6 +21,8 @@ export interface SectionDto {
   name: string;
   type: SectionType;
   dataFields: DataFieldDto[];
+  parentId?: string;
+  subSections: string[];
 }
 
 export interface ProductDataModelDto

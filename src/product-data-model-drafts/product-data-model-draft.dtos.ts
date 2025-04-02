@@ -16,6 +16,8 @@ export interface SectionDraftDto {
   name: string;
   type: SectionType;
   dataFields: DataFieldDraftDto[];
+  parentId?: string;
+  subSections: string[];
 }
 
 export interface PublicationDto {
