@@ -171,7 +171,11 @@ describe("ApiClient", () => {
     it("should add section to draft", async () => {
       const response = await client.productDataModelDrafts.addSection(
         productDataModelDraft.id,
-        { name: sectionDraft.name, type: sectionDraft.type },
+        {
+          name: sectionDraft.name,
+          type: sectionDraft.type,
+          parentSectionId: randomUUID(),
+        },
       );
       expect(response.data).toEqual({
         ...productDataModelDraft,

@@ -51,6 +51,7 @@ export interface DataFieldDraftCreateDto {
 export interface SectionDraftCreateDto {
   name: string;
   type: SectionType;
+  parentSectionId?: string;
 }
 
 export interface ProductDataModelDraftCreateDto {
