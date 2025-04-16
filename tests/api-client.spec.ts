@@ -308,7 +308,7 @@ describe("ApiClient", () => {
         type: NodeType.GRID_CONTAINER,
         cols: 2,
       };
-      const response = await client.views.addNode({
+      const response = await client.views.addNode(view1.id, {
         node: gridContainer,
         parentId: randomUUID(),
       });

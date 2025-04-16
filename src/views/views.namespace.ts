@@ -15,7 +15,10 @@ export class ViewsNamespace {
     return this.axiosInstance.post<ViewDto>(this.viewsEndpoint, data);
   }
 
-  public async addNode(data: AddNodeDto) {
-    return this.axiosInstance.post<ViewDto>(this.viewsEndpoint, data);
+  public async addNode(viewId: string, data: AddNodeDto) {
+    return this.axiosInstance.post<ViewDto>(
+      `${this.viewsEndpoint}/${viewId}/nodes`,
+      data,
+    );
   }
 }
