@@ -1,11 +1,11 @@
 import { AxiosInstance } from "axios";
-import { ViewDto } from "./unique-product-identifiers.dtos";
+import { QRCodeViewDto } from "./unique-product-identifiers.dtos";
 
 export class UniqueProductIdentifiersNamespace {
   constructor(private readonly axiosInstance: AxiosInstance) {}
 
   public async getView(uuid: string) {
-    return this.axiosInstance.get<ViewDto>(
+    return this.axiosInstance.get<QRCodeViewDto>(
       `/unique-product-identifiers/${uuid}/view`,
     );
   }

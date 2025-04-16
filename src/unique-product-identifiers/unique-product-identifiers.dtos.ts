@@ -7,7 +7,7 @@ export interface SectionViewDto {
   rows: RowViewDto[];
 }
 
-export interface ViewDto {
+export interface QRCodeViewDto {
   name: string;
   sections: SectionViewDto[];
 }

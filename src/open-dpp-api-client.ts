@@ -5,6 +5,7 @@ import { ProductDataModelDraftsNamespace } from "./product-data-model-drafts/pro
 import { UniqueProductIdentifiersNamespace } from "./unique-product-identifiers/unique-product-identifiers.namespace";
 import { ItemsNamespace } from "./items/items.namespace";
 import { ProductDataModelsNamespace } from "./product-data-models/product-data-models.namespace";
+import { ViewsNamespace } from "./views/views.namespace";
 
 export interface ApiClientOptions extends AxiosRequestConfig {
   apiKey?: string;
@@ -18,6 +19,7 @@ export class OpenDppApiClient {
   public productDataModelDrafts!: ProductDataModelDraftsNamespace;
   public productDataModels!: ProductDataModelsNamespace;
   public uniqueProductIdentifiers!: UniqueProductIdentifiersNamespace;
+  public views!: ViewsNamespace;
   private axiosInstance!: AxiosInstance;
   private options: ApiClientOptions;
 
@@ -61,6 +63,10 @@ export class OpenDppApiClient {
       this.options.activeOrganizationId,
     );
     this.productDataModelDrafts = new ProductDataModelDraftsNamespace(
+      this.axiosInstance,
+      this.options.activeOrganizationId,
+    );
+    this.views = new ViewsNamespace(
       this.axiosInstance,
       this.options.activeOrganizationId,
     );

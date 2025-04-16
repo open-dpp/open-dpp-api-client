@@ -9,4 +9,6 @@ export * from "./product-data-models/product-data-model.dtos";
 export * from "./product-data-models/product-data-models.namespace";
 export * from "./unique-product-identifiers/unique-product-identifiers.dtos";
 export * from "./unique-product-identifiers/unique-product-identifiers.namespace";
+export * from "./views/view.dtos";
+export * from "./views/views.namespace";
 export * from "./users/user.dtos";

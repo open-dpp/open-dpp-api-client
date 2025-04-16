@@ -1,5 +1,10 @@
 import { server } from "./msw.server";
-import { OpenDppApiClient, VisibilityLevel } from "../src";
+import {
+  GridContainerCreateDto,
+  NodeType,
+  OpenDppApiClient,
+  VisibilityLevel,
+} from "../src";
 import { randomUUID } from "node:crypto";
 import { activeOrganization, organizations } from "./handlers/organization";
 import { model, responseDataValues, updateDataValues } from "./handlers/model";
@@ -15,6 +20,7 @@ import {
   productDataModelDraft,
   sectionDraft,
 } from "./handlers/product-data-model-draft";
+import { view1 } from "./handlers/view";
 
 describe("ApiClient", () => {
   beforeAll(() => server.listen());
@@ -280,6 +286,35 @@ describe("ApiClient", () => {
     );
     expect(response.data).toEqual({
       ...responseView,
+    });
+  });
+
+  describe("views", () => {
+    const client = new OpenDppApiClient({
+      baseURL,
+    });
+    client.setActiveOrganizationId(activeOrganization.id);
+    it("should be created", async () => {
+      const response = await client.views.create({
+        name: view1.name,
+      });
+      expect(response.data).toEqual({
+        ...view1,
+      });
+    });
+
+    it("should create nodes for view", async () => {
+      const gridContainer: GridContainerCreateDto = {
+        type: NodeType.GRID_CONTAINER,
+        cols: 2,
+      };
+      const response = await client.views.addNode({
+        node: gridContainer,
+        parentId: randomUUID(),
+      });
+      expect(response.data).toEqual({
+        ...view1,
+      });
     });
   });
 });
