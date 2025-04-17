@@ -60,6 +60,7 @@ export interface GritItemDto extends NodeDto {
 
 export interface GridContainerDto extends NodeDto {
   readonly children: GritItemDto[];
+  readonly cols: number;
 }
 
 export interface SectionGridDto extends GridContainerDto {
