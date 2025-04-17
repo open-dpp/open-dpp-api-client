@@ -54,7 +54,7 @@ export interface NodeDto {
 }
 
 export interface GritItemDto extends NodeDto {
-  sizes: SizeDto;
+  sizes: SizeDto[];
   content: NodeDto;
 }
 
