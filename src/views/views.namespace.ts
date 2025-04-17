@@ -21,4 +21,10 @@ export class ViewsNamespace {
       data,
     );
   }
+
+  public async getByDataModelId(dataModelId: string) {
+    return this.axiosInstance.get<ViewDto>(
+      `${this.viewsEndpoint}?dataModelId=${dataModelId}`,
+    );
+  }
 }

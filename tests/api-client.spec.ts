@@ -317,5 +317,12 @@ describe("ApiClient", () => {
         ...view1,
       });
     });
+
+    it("should get view by data model id", async () => {
+      const response = await client.views.getByDataModelId(view1.dataModelId);
+      expect(response.data).toEqual({
+        ...view1,
+      });
+    });
   });
 });

@@ -24,4 +24,21 @@ export const viewHandlers = [
       return HttpResponse.json(view1);
     },
   ),
+  http.get(
+    `${baseURL}/organizations/${activeOrganization.id}/views`,
+    async ({ request }) => {
+      const url = new URL(request.url);
+
+      // Read the "id" URL query parameter using the "URLSearchParams" API.
+      // Given "/product?id=1", "organization" will equal "1".
+      const dataModelId = url.searchParams.get("dataModelId");
+
+      // Note that query parameters are potentially undefined.
+      // Make sure to account for that in your handlers.
+      if (dataModelId !== view1.dataModelId) {
+        return new HttpResponse(null, { status: 404 });
+      }
+      return HttpResponse.json(view1);
+    },
+  ),
 ];
