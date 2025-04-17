@@ -45,6 +45,7 @@ export interface AddNodeDto {
 }
 export interface ViewCreateDto {
   name: string;
+  dataModelId: string;
 }
 
 // --------------

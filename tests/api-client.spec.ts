@@ -297,6 +297,7 @@ describe("ApiClient", () => {
     it("should be created", async () => {
       const response = await client.views.create({
         name: view1.name,
+        dataModelId: randomUUID(),
       });
       expect(response.data).toEqual({
         ...view1,
