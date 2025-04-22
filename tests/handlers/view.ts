@@ -1,7 +1,7 @@
 import { http, HttpResponse } from "msw";
 import { baseURL } from "./index";
 import { activeOrganization } from "./organization";
-import { ViewDto } from "../../src";
+import { NodeType, ViewDto } from "../../src";
 import { randomUUID } from "node:crypto";
 
 export const view1: ViewDto = {
@@ -10,7 +10,7 @@ export const view1: ViewDto = {
   version: "1.0.0",
   ownedByOrganizationId: randomUUID(),
   createdByUserId: randomUUID(),
-  nodes: [{ id: randomUUID() }],
+  nodes: [{ id: randomUUID(), type: NodeType.GRID_CONTAINER }],
   dataModelId: randomUUID(),
 };
 
@@ -20,6 +20,18 @@ export const viewHandlers = [
   }),
   http.post(
     `${baseURL}/organizations/${activeOrganization.id}/views/${view1.id}/nodes`,
+    () => {
+      return HttpResponse.json(view1);
+    },
+  ),
+  http.delete(
+    `${baseURL}/organizations/${activeOrganization.id}/views/${view1.id}/nodes/${view1.nodes[0].id}`,
+    () => {
+      return HttpResponse.json(view1);
+    },
+  ),
+  http.patch(
+    `${baseURL}/organizations/${activeOrganization.id}/views/${view1.id}/nodes/${view1.nodes[0].id}`,
     () => {
       return HttpResponse.json(view1);
     },

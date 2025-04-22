@@ -5,12 +5,12 @@ export enum NodeType {
   DATA_FIELD_REF = "DataFieldRef",
 }
 
-export enum Breakpoints {
-  xs = "xs",
-  sm = "sm",
-  md = "md",
-  lg = "lg",
-  xl = "xl",
+export interface ResponsiveConfigDto {
+  xs?: number;
+  sm?: number;
+  md?: number;
+  lg?: number;
+  xl?: number;
 }
 
 export interface NodeCreateDto {
@@ -18,16 +18,12 @@ export interface NodeCreateDto {
 }
 
 export interface GridContainerCreateDto extends NodeCreateDto {
-  cols: number;
+  cols: ResponsiveConfigDto;
+  initNumberOfChildren?: number;
 }
 
 export interface SectionGridContainerCreateDto extends GridContainerCreateDto {
   sectionId: string;
-}
-
-export interface SizeDto {
-  colSpan: number;
-  breakpoint: Breakpoints;
 }
 
 export interface DataFieldRefCreateDto extends NodeCreateDto {
@@ -35,7 +31,10 @@ export interface DataFieldRefCreateDto extends NodeCreateDto {
 }
 
 export interface GridItemCreateDto extends NodeCreateDto {
-  sizes: SizeDto[];
+  colSpan: ResponsiveConfigDto;
+  colStart?: ResponsiveConfigDto;
+  rowSpan?: ResponsiveConfigDto;
+  rowStart?: ResponsiveConfigDto;
   content?: NodeCreateDto;
 }
 
@@ -49,18 +48,35 @@ export interface ViewCreateDto {
 }
 
 // --------------
-export interface NodeDto {
-  id: string;
+
+export interface GridContainerUpdateDto {
+  cols: ResponsiveConfigDto;
 }
 
-export interface GritItemDto extends NodeDto {
-  sizes: SizeDto[];
+export interface GridItemUpdateDto {
+  colSpan: ResponsiveConfigDto;
+  colStart?: ResponsiveConfigDto;
+  rowSpan?: ResponsiveConfigDto;
+  rowStart?: ResponsiveConfigDto;
+}
+
+// --------------
+export interface NodeDto {
+  id: string;
+  type: NodeType;
+}
+
+export interface GridItemDto extends NodeDto {
+  colSpan: ResponsiveConfigDto;
+  colStart?: ResponsiveConfigDto;
+  rowSpan?: ResponsiveConfigDto;
+  rowStart?: ResponsiveConfigDto;
   content: NodeDto;
 }
 
 export interface GridContainerDto extends NodeDto {
-  readonly children: GritItemDto[];
-  readonly cols: number;
+  readonly children: GridItemDto[];
+  readonly cols: ResponsiveConfigDto;
 }
 
 export interface SectionGridDto extends GridContainerDto {
@@ -69,6 +85,14 @@ export interface SectionGridDto extends GridContainerDto {
 
 export interface DataFieldRefDto extends NodeDto {
   readonly fieldId: string;
+}
+
+export function isGridContainer(node: NodeDto): node is GridContainerDto {
+  return node.type === NodeType.GRID_CONTAINER;
+}
+
+export function isGridItem(node: NodeDto): node is GridItemDto {
+  return node.type === NodeType.GRID_ITEM;
 }
 
 export interface ViewDto {

@@ -1,6 +1,7 @@
 import { server } from "./msw.server";
 import {
   GridContainerCreateDto,
+  GridItemUpdateDto,
   NodeType,
   OpenDppApiClient,
   VisibilityLevel,
@@ -307,7 +308,7 @@ describe("ApiClient", () => {
     it("should create nodes for view", async () => {
       const gridContainer: GridContainerCreateDto = {
         type: NodeType.GRID_CONTAINER,
-        cols: 2,
+        cols: { md: 2 },
       };
       const response = await client.views.addNode(view1.id, {
         node: gridContainer,
@@ -320,6 +321,26 @@ describe("ApiClient", () => {
 
     it("should get view by data model id", async () => {
       const response = await client.views.getByDataModelId(view1.dataModelId);
+      expect(response.data).toEqual({
+        ...view1,
+      });
+    });
+
+    it("should delete nodes for view", async () => {
+      const nodeId = view1.nodes[0].id;
+      const response = await client.views.deleteNode(view1.id, nodeId);
+      expect(response.data).toEqual({
+        ...view1,
+      });
+    });
+
+    it("should modify nodes for view", async () => {
+      const nodeId = view1.nodes[0].id;
+      const update: GridItemUpdateDto = {
+        colSpan: { sm: 9 },
+        rowSpan: { md: 7 },
+      };
+      const response = await client.views.modifyNode(view1.id, nodeId, update);
       expect(response.data).toEqual({
         ...view1,
       });

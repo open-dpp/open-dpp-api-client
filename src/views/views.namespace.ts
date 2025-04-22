@@ -1,5 +1,11 @@
 import { AxiosInstance } from "axios";
-import { AddNodeDto, ViewCreateDto, ViewDto } from "./view.dtos";
+import {
+  AddNodeDto,
+  GridContainerUpdateDto,
+  GridItemUpdateDto,
+  ViewCreateDto,
+  ViewDto,
+} from "./view.dtos";
 
 export class ViewsNamespace {
   private readonly viewsEndpoint;
@@ -18,6 +24,23 @@ export class ViewsNamespace {
   public async addNode(viewId: string, data: AddNodeDto) {
     return this.axiosInstance.post<ViewDto>(
       `${this.viewsEndpoint}/${viewId}/nodes`,
+      data,
+    );
+  }
+
+  public async deleteNode(viewId: string, nodeId: string) {
+    return this.axiosInstance.delete<ViewDto>(
+      `${this.viewsEndpoint}/${viewId}/nodes/${nodeId}`,
+    );
+  }
+
+  public async modifyNode(
+    viewId: string,
+    nodeId: string,
+    data: GridContainerUpdateDto | GridItemUpdateDto,
+  ) {
+    return this.axiosInstance.patch<ViewDto>(
+      `${this.viewsEndpoint}/${viewId}/nodes/${nodeId}`,
       data,
     );
   }
