@@ -71,7 +71,7 @@ export interface GridItemDto extends NodeDto {
   colStart?: ResponsiveConfigDto;
   rowSpan?: ResponsiveConfigDto;
   rowStart?: ResponsiveConfigDto;
-  content: NodeDto;
+  content?: NodeDto;
 }
 
 export interface GridContainerDto extends NodeDto {
@@ -87,8 +87,12 @@ export interface DataFieldRefDto extends NodeDto {
   readonly fieldId: string;
 }
 
-export function isGridContainer(node: NodeDto): node is GridContainerDto {
-  return node.type === NodeType.GRID_CONTAINER;
+export function isGridContainerOrSubclass(
+  node: NodeDto,
+): node is GridContainerDto {
+  return (
+    node.type === NodeType.GRID_CONTAINER || node.type === NodeType.SECTION_GRID
+  );
 }
 
 export function isGridItem(node: NodeDto): node is GridItemDto {
