@@ -95,8 +95,16 @@ export function isGridContainerOrSubclass(
   );
 }
 
+export function isSectionGrid(node: NodeDto): node is SectionGridDto {
+  return node.type === NodeType.SECTION_GRID;
+}
+
 export function isGridItem(node: NodeDto): node is GridItemDto {
   return node.type === NodeType.GRID_ITEM;
+}
+
+export function isDataFieldRef(node: NodeDto): node is DataFieldRefDto {
+  return node.type === NodeType.DATA_FIELD_REF;
 }
 
 export interface ViewDto {
