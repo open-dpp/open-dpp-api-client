@@ -7,40 +7,52 @@ import {
   ProductDataModelDraftGetAllDto,
   SectionDraftDto,
   SectionType,
+  TargetGroup,
 } from "../../src";
 import { randomUUID } from "node:crypto";
 import { activeOrganization } from "./organization";
 import { productDataModel } from "./product-data-model";
 
+const dataModelId = randomUUID();
+
 export const productDataModelDraft: ProductDataModelDraftDto = {
-  id: randomUUID(),
-  name: "Laptop neu",
-  version: "1.0.0",
-  publications: [],
-  createdByUserId: randomUUID(),
-  ownedByOrganizationId: randomUUID(),
-  sections: [
-    {
-      id: randomUUID(),
-      type: SectionType.GROUP,
-      name: "section name",
-      dataFields: [
-        {
-          id: randomUUID(),
-          options: {
-            min: 24,
+  data: {
+    id: dataModelId,
+    name: "Laptop neu",
+    version: "1.0.0",
+    publications: [],
+    createdByUserId: randomUUID(),
+    ownedByOrganizationId: randomUUID(),
+    sections: [
+      {
+        id: randomUUID(),
+        type: SectionType.GROUP,
+        name: "section name",
+        dataFields: [
+          {
+            id: randomUUID(),
+            options: {
+              min: 24,
+            },
+            name: "Prozessor",
+            type: DataFieldType.TEXT_FIELD,
           },
-          name: "Prozessor",
-          type: DataFieldType.TEXT_FIELD,
-        },
-      ],
-      subSections: [],
-    },
-  ],
+        ],
+        subSections: [],
+      },
+    ],
+  },
+  view: {
+    id: randomUUID(),
+    dataModelId,
+    targetGroup: TargetGroup.ALL,
+    version: randomUUID(),
+    nodes: [],
+  },
 };
 
 export const draftsOfOrganization: ProductDataModelDraftGetAllDto[] = [
-  { id: productDataModelDraft.id, name: productDataModelDraft.name },
+  { id: productDataModelDraft.data.id, name: productDataModelDraft.data.name },
   { id: randomUUID(), name: "Other draft" },
 ];
 
@@ -67,7 +79,7 @@ export const productDataModelDraftsHandlers = [
     });
   }),
   http.post(
-    `${draftEndpointUrl}/${productDataModelDraft.id}/sections`,
+    `${draftEndpointUrl}/${productDataModelDraft.data.id}/sections`,
     async () => {
       return HttpResponse.json(productDataModelDraft, {
         status: 200,
@@ -75,7 +87,7 @@ export const productDataModelDraftsHandlers = [
     },
   ),
   http.post(
-    `${draftEndpointUrl}/${productDataModelDraft.id}/sections/${sectionDraft.id}`,
+    `${draftEndpointUrl}/${productDataModelDraft.data.id}/sections/${sectionDraft.id}`,
     async () => {
       return HttpResponse.json(productDataModelDraft, {
         status: 200,
@@ -83,7 +95,7 @@ export const productDataModelDraftsHandlers = [
     },
   ),
   http.post(
-    `${draftEndpointUrl}/${productDataModelDraft.id}/sections/${sectionDraft.id}/data-fields`,
+    `${draftEndpointUrl}/${productDataModelDraft.data.id}/sections/${sectionDraft.id}/data-fields`,
     async () => {
       return HttpResponse.json(productDataModelDraft, {
         status: 200,
@@ -91,7 +103,7 @@ export const productDataModelDraftsHandlers = [
     },
   ),
   http.patch(
-    `${draftEndpointUrl}/${productDataModelDraft.id}/sections/${sectionDraft.id}/data-fields/${dataFieldDraft.id}`,
+    `${draftEndpointUrl}/${productDataModelDraft.data.id}/sections/${sectionDraft.id}/data-fields/${dataFieldDraft.id}`,
     async () => {
       return HttpResponse.json(productDataModelDraft, {
         status: 200,
@@ -100,7 +112,7 @@ export const productDataModelDraftsHandlers = [
   ),
 
   http.delete(
-    `${draftEndpointUrl}/${productDataModelDraft.id}/sections/${sectionDraft.id}/data-fields/${dataFieldDraft.id}`,
+    `${draftEndpointUrl}/${productDataModelDraft.data.id}/sections/${sectionDraft.id}/data-fields/${dataFieldDraft.id}`,
     async () => {
       return HttpResponse.json(productDataModelDraft, {
         status: 200,
@@ -109,7 +121,7 @@ export const productDataModelDraftsHandlers = [
   ),
 
   http.delete(
-    `${draftEndpointUrl}/${productDataModelDraft.id}/sections/${sectionDraft.id}`,
+    `${draftEndpointUrl}/${productDataModelDraft.data.id}/sections/${sectionDraft.id}`,
     async () => {
       return HttpResponse.json(productDataModelDraft, {
         status: 200,
@@ -118,7 +130,7 @@ export const productDataModelDraftsHandlers = [
   ),
 
   http.patch(
-    `${draftEndpointUrl}/${productDataModelDraft.id}/sections/${sectionDraft.id}`,
+    `${draftEndpointUrl}/${productDataModelDraft.data.id}/sections/${sectionDraft.id}`,
     async () => {
       return HttpResponse.json(productDataModelDraft, {
         status: 200,
@@ -131,20 +143,23 @@ export const productDataModelDraftsHandlers = [
     });
   }),
 
-  http.get(`${draftEndpointUrl}/${productDataModelDraft.id}`, async () => {
+  http.get(`${draftEndpointUrl}/${productDataModelDraft.data.id}`, async () => {
     return HttpResponse.json(productDataModelDraft, {
       status: 200,
     });
   }),
 
-  http.patch(`${draftEndpointUrl}/${productDataModelDraft.id}`, async () => {
-    return HttpResponse.json(productDataModelDraft, {
-      status: 200,
-    });
-  }),
+  http.patch(
+    `${draftEndpointUrl}/${productDataModelDraft.data.id}`,
+    async () => {
+      return HttpResponse.json(productDataModelDraft, {
+        status: 200,
+      });
+    },
+  ),
 
   http.post(
-    `${draftEndpointUrl}/${productDataModelDraft.id}/publish`,
+    `${draftEndpointUrl}/${productDataModelDraft.data.id}/publish`,
     async () => {
       return HttpResponse.json(productDataModel, {
         status: 200,

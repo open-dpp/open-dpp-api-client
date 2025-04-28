@@ -84,10 +84,10 @@ export const modelHandlers = [
     },
   ),
   http.post(
-    `${baseURL}/organizations/${activeOrganization.id}/models/${model.id}/product-data-models/${productDataModel.id}`,
+    `${baseURL}/organizations/${activeOrganization.id}/models/${model.id}/product-data-models/${productDataModel.data.id}`,
     async () => {
       return HttpResponse.json(
-        { ...model, productDataModelId: productDataModel.id },
+        { ...model, productDataModelId: productDataModel.data.id },
         { status: 201 },
       );
     },

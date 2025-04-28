@@ -4,36 +4,48 @@ import {
   DataFieldType,
   ProductDataModelDto,
   SectionType,
+  TargetGroup,
   VisibilityLevel,
 } from "../../src";
 import { randomUUID } from "node:crypto";
 import { activeOrganization } from "./organization";
 
+const dataModelId = randomUUID();
+
 export const productDataModel: ProductDataModelDto = {
-  id: randomUUID(),
-  name: "Laptop neu",
-  visibility: VisibilityLevel.PRIVATE,
-  version: "1.0",
-  sections: [
-    {
-      id: randomUUID(),
-      type: SectionType.GROUP,
-      name: "section name",
-      dataFields: [
-        {
-          id: randomUUID(),
-          options: {
-            min: 24,
+  data: {
+    id: dataModelId,
+    name: "Laptop neu",
+    visibility: VisibilityLevel.PRIVATE,
+    version: "1.0",
+    sections: [
+      {
+        id: randomUUID(),
+        type: SectionType.GROUP,
+        name: "section name",
+        dataFields: [
+          {
+            id: randomUUID(),
+            options: {
+              min: 24,
+            },
+            name: "Prozessor",
+            type: DataFieldType.TEXT_FIELD,
           },
-          name: "Prozessor",
-          type: DataFieldType.TEXT_FIELD,
-        },
-      ],
-      subSections: [],
-    },
-  ],
-  ownedByOrganizationId: activeOrganization.id,
-  createdByUserId: randomUUID(),
+        ],
+        subSections: [],
+      },
+    ],
+    ownedByOrganizationId: activeOrganization.id,
+    createdByUserId: randomUUID(),
+  },
+  view: {
+    id: randomUUID(),
+    dataModelId,
+    targetGroup: TargetGroup.ALL,
+    version: randomUUID(),
+    nodes: [],
+  },
 };
 export const productDataModelHandlers = [
   http.get(`${baseURL}/product-data-models`, async ({ request }) => {
@@ -49,12 +61,12 @@ export const productDataModelHandlers = [
       return new HttpResponse(null, { status: 404 });
     }
     return HttpResponse.json(
-      [{ id: productDataModel.id, name: productDataModel.name }],
+      [{ id: productDataModel.data.id, name: productDataModel.data.name }],
       { status: 200 },
     );
   }),
   http.get(
-    `${baseURL}/product-data-models/${productDataModel.id}`,
+    `${baseURL}/product-data-models/${productDataModel.data.id}`,
     async () => {
       return HttpResponse.json(productDataModel, { status: 200 });
     },

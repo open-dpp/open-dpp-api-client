@@ -1,3 +1,5 @@
+import { ViewDto } from "../views/view.dtos";
+
 export interface DataFieldDto extends DataFieldCreateDto {
   id: string;
 }
@@ -25,8 +27,7 @@ export interface SectionDto {
   subSections: string[];
 }
 
-export interface ProductDataModelDto
-  extends Omit<ProductDataModelCreateDto, "sections"> {
+interface DataDto extends Omit<ProductDataModelCreateDto, "sections"> {
   id: string;
   sections: SectionDto[];
   visibility: VisibilityLevel;
@@ -39,6 +40,13 @@ export interface ProductDataModelGetAllDto {
   name: string;
   version: string;
 }
+
+export interface ProductDataModelDto {
+  data: DataDto;
+  view: ViewDto;
+}
+
+// Create DTOs -------
 
 export interface DataFieldCreateDto {
   type: DataFieldType;
