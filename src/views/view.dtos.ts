@@ -12,6 +12,7 @@ export interface ResponsiveConfigDto {
 }
 
 export interface NodeDto {
+  id: string;
   type: NodeType;
   colSpan: ResponsiveConfigDto;
   colStart: ResponsiveConfigDto;
