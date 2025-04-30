@@ -9,6 +9,7 @@ export enum SectionType {
 
 export enum DataFieldType {
   TEXT_FIELD = "TextField",
+  NUMERIC_FIELD = "NumericField",
 }
 
 export enum VisibilityLevel {
