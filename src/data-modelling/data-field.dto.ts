@@ -2,6 +2,7 @@ import { LayoutDto } from "./layout.dto";
 
 export enum DataFieldType {
   TEXT_FIELD = "TextField",
+  NUMERIC_FIELD = "NumericField",
 }
 
 export interface DataFieldDto {
