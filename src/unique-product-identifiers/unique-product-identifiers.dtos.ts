@@ -35,3 +35,21 @@ export interface UniqueProductIdentifiers {
   view: string;
   referenceId: string;
 }
+
+export function isRepeaterView(
+  view: RepeaterViewDto | SectionViewDto,
+): view is RepeaterViewDto {
+  return (view as RepeaterViewDto).rows !== undefined;
+}
+
+export function isSectionView(
+  view: RepeaterViewDto | SectionViewDto,
+): view is SectionViewDto {
+  return (view as SectionViewDto).children !== undefined;
+}
+
+export function isDataFieldView(
+  field: FieldViewDto | SectionViewDto,
+): field is FieldViewDto {
+  return (field as FieldViewDto).value !== undefined;
+}
