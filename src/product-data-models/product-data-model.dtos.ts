@@ -1,38 +1,8 @@
-import { ViewDto } from "../views/view.dtos";
-
-export interface DataFieldDto extends DataFieldCreateDto {
-  id: string;
-}
-
-export enum SectionType {
-  GROUP = "Group",
-  REPEATABLE = "Repeatable",
-}
-
-export enum DataFieldType {
-  TEXT_FIELD = "TextField",
-}
+import { SectionDto } from "../data-modelling/section.dto";
 
 export enum VisibilityLevel {
   PRIVATE = "Private",
   PUBLIC = "Public",
-}
-
-export interface SectionDto {
-  id: string;
-  name: string;
-  type: SectionType;
-  dataFields: DataFieldDto[];
-  parentId?: string;
-  subSections: string[];
-}
-
-interface DataDto extends Omit<ProductDataModelCreateDto, "sections"> {
-  id: string;
-  sections: SectionDto[];
-  visibility: VisibilityLevel;
-  createdByUserId: string;
-  ownedByOrganizationId: string;
 }
 
 export interface ProductDataModelGetAllDto {
@@ -42,24 +12,11 @@ export interface ProductDataModelGetAllDto {
 }
 
 export interface ProductDataModelDto {
-  data: DataDto;
-  view: ViewDto;
-}
-
-// Create DTOs -------
-
-export interface DataFieldCreateDto {
-  type: DataFieldType;
-  name: string;
-  options: Record<string, unknown>;
-}
-
-export interface SectionCreateDto {
-  dataFields: DataFieldCreateDto[];
-}
-
-export interface ProductDataModelCreateDto {
+  id: string;
   name: string;
   version: string;
-  sections: SectionCreateDto[];
+  sections: SectionDto[];
+  visibility: VisibilityLevel;
+  createdByUserId: string;
+  ownedByOrganizationId: string;
 }

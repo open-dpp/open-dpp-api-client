@@ -40,7 +40,7 @@ describe("ApiClient", () => {
       client.setActiveOrganizationId(activeOrganization.id);
       const response = await client.productDataModels.getAll();
       expect(response.data).toEqual([
-        { id: productDataModel.data.id, name: productDataModel.data.name },
+        { id: productDataModel.id, name: productDataModel.name },
       ]);
     });
 
@@ -49,7 +49,7 @@ describe("ApiClient", () => {
         baseURL,
       });
       const response = await client.productDataModels.getProductDataModelById(
-        productDataModel.data.id,
+        productDataModel.id,
       );
       expect(response.data).toEqual(productDataModel);
     });
@@ -113,12 +113,12 @@ describe("ApiClient", () => {
       client.setActiveOrganizationId(activeOrganization.id);
 
       const response = await client.models.assignProductDataModelToModel(
-        productDataModel.data.id,
+        productDataModel.id,
         model.id,
       );
       expect(response.data).toEqual({
         ...model,
-        productDataModelId: productDataModel.data.id,
+        productDataModelId: productDataModel.id,
       });
     });
   });
@@ -162,7 +162,7 @@ describe("ApiClient", () => {
     client.setActiveOrganizationId(activeOrganization.id);
     it("should be created", async () => {
       const response = await client.productDataModelDrafts.create({
-        name: productDataModelDraft.data.name,
+        name: productDataModelDraft.name,
       });
       expect(response.data).toEqual({
         ...productDataModelDraft,
@@ -170,15 +170,16 @@ describe("ApiClient", () => {
     });
     it("should add section to draft", async () => {
       const response = await client.productDataModelDrafts.addSection(
-        productDataModelDraft.data.id,
+        productDataModelDraft.id,
         {
           name: sectionDraft.name,
           type: sectionDraft.type,
           parentSectionId: randomUUID(),
-          view: {
-            cols: { sm: 1 },
+          layout: {
             colSpan: { sm: 1 },
             colStart: { sm: 1 },
+            rowSpan: { sm: 1 },
+            rowStart: { sm: 1 },
           },
         },
       );
@@ -188,15 +189,17 @@ describe("ApiClient", () => {
     });
     it("should add data field to section of draft", async () => {
       const response = await client.productDataModelDrafts.addDataField(
-        productDataModelDraft.data.id,
+        productDataModelDraft.id,
         sectionDraft.id,
         {
           name: dataFieldDraft.name,
           type: dataFieldDraft.type,
           options: { max: 2 },
-          view: {
+          layout: {
             colSpan: { sm: 1 },
             colStart: { sm: 1 },
+            rowSpan: { sm: 1 },
+            rowStart: { sm: 1 },
           },
         },
       );
@@ -207,13 +210,18 @@ describe("ApiClient", () => {
 
     it("should modify data field", async () => {
       const response = await client.productDataModelDrafts.modifyDataField(
-        productDataModelDraft.data.id,
+        productDataModelDraft.id,
         sectionDraft.id,
         dataFieldDraft.id,
         {
           name: "new name",
           options: { min: 2 },
-          view: { colSpan: { sm: 1 }, colStart: { sm: 1 } },
+          layout: {
+            colSpan: { sm: 2 },
+            colStart: { sm: 2 },
+            rowSpan: { sm: 2 },
+            rowStart: { sm: 2 },
+          },
         },
       );
       expect(response.data).toEqual({
@@ -223,7 +231,7 @@ describe("ApiClient", () => {
 
     it("should delete data field", async () => {
       const response = await client.productDataModelDrafts.deleteDataField(
-        productDataModelDraft.data.id,
+        productDataModelDraft.id,
         sectionDraft.id,
         dataFieldDraft.id,
       );
@@ -234,7 +242,7 @@ describe("ApiClient", () => {
 
     it("should delete section", async () => {
       const response = await client.productDataModelDrafts.deleteSection(
-        productDataModelDraft.data.id,
+        productDataModelDraft.id,
         sectionDraft.id,
       );
       expect(response.data).toEqual({
@@ -244,11 +252,16 @@ describe("ApiClient", () => {
 
     it("should modify section", async () => {
       const response = await client.productDataModelDrafts.modifySection(
-        productDataModelDraft.data.id,
+        productDataModelDraft.id,
         sectionDraft.id,
         {
           name: "new name",
-          view: { colSpan: { sm: 1 }, colStart: { sm: 1 }, cols: { sm: 4 } },
+          layout: {
+            colSpan: { sm: 2 },
+            colStart: { sm: 2 },
+            rowSpan: { sm: 2 },
+            rowStart: { sm: 2 },
+          },
         },
       );
       expect(response.data).toEqual({
@@ -263,14 +276,14 @@ describe("ApiClient", () => {
 
     it("should get product data model draft", async () => {
       const response = await client.productDataModelDrafts.getById(
-        productDataModelDraft.data.id,
+        productDataModelDraft.id,
       );
       expect(response.data).toEqual({ ...productDataModelDraft });
     });
 
     it("should modify product data model draft", async () => {
       const response = await client.productDataModelDrafts.modify(
-        productDataModelDraft.data.id,
+        productDataModelDraft.id,
         { name: "new Name" },
       );
       expect(response.data).toEqual({ ...productDataModelDraft });
@@ -278,7 +291,7 @@ describe("ApiClient", () => {
 
     it("should be published", async () => {
       const response = await client.productDataModelDrafts.publish(
-        productDataModelDraft.data.id,
+        productDataModelDraft.id,
         { visibility: VisibilityLevel.PRIVATE },
       );
       expect(response.data).toEqual({ ...productDataModel });

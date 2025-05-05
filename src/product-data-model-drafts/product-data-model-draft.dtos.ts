@@ -1,30 +1,7 @@
-import {
-  DataFieldType,
-  SectionType,
-  VisibilityLevel,
-} from "../product-data-models/product-data-model.dtos";
-import {
-  CreateNodeDto,
-  CreateSectionGridDto,
-  UpdateSectionGridDto,
-  ViewDto,
-} from "../views/view.dtos";
-
-export interface DataFieldDraftDto {
-  id: string;
-  name: string;
-  type: DataFieldType;
-  options?: Record<string, unknown>;
-}
-
-export interface SectionDraftDto {
-  id: string;
-  name: string;
-  type: SectionType;
-  dataFields: DataFieldDraftDto[];
-  parentId?: string;
-  subSections: string[];
-}
+import { VisibilityLevel } from "../product-data-models/product-data-model.dtos";
+import { SectionDto, SectionType } from "../data-modelling/section.dto";
+import { DataFieldType } from "../data-modelling/data-field.dto";
+import { LayoutDto } from "../data-modelling/layout.dto";
 
 export interface PublicationDto {
   id: string;
@@ -35,19 +12,14 @@ export interface PublicationCreateDto {
   visibility: VisibilityLevel;
 }
 
-interface DataDto {
+export interface ProductDataModelDraftDto {
   id: string;
   name: string;
   version: string;
   publications: PublicationDto[];
-  sections: SectionDraftDto[];
+  sections: SectionDto[];
   createdByUserId: string;
   ownedByOrganizationId: string;
-}
-
-export interface ProductDataModelDraftDto {
-  data: DataDto;
-  view: ViewDto;
 }
 
 export interface ProductDataModelDraftGetAllDto {
@@ -55,33 +27,37 @@ export interface ProductDataModelDraftGetAllDto {
   name: string;
 }
 
+// Create dtos
+
 export interface DataFieldDraftCreateDto {
   type: DataFieldType;
   name: string;
   options?: Record<string, unknown>;
-  view: CreateNodeDto;
+  layout: LayoutDto;
 }
 
 export interface SectionDraftCreateDto {
   name: string;
   type: SectionType;
   parentSectionId?: string;
-  view: CreateSectionGridDto;
+  layout: LayoutDto;
 }
 
 export interface ProductDataModelDraftCreateDto {
   name: string;
 }
 
+// Update dtos
+
 export interface DataFieldDraftUpdateDto {
   name: string;
   options?: Record<string, unknown>;
-  view: CreateNodeDto;
+  layout: LayoutDto;
 }
 
 export interface SectionDraftUpdateDto {
   name: string;
-  view: UpdateSectionGridDto;
+  layout: LayoutDto;
 }
 
 export interface ProductDataModelDraftUpdateDto {
