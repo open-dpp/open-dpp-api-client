@@ -176,6 +176,7 @@ describe("ApiClient", () => {
           type: sectionDraft.type,
           parentSectionId: randomUUID(),
           layout: {
+            cols: { sm: 3 },
             colSpan: { sm: 1 },
             colStart: { sm: 1 },
             rowSpan: { sm: 1 },
@@ -257,6 +258,7 @@ describe("ApiClient", () => {
         {
           name: "new name",
           layout: {
+            cols: { sm: 3 },
             colSpan: { sm: 2 },
             colStart: { sm: 2 },
             rowSpan: { sm: 2 },

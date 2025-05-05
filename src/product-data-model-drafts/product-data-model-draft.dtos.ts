@@ -1,7 +1,7 @@
 import { VisibilityLevel } from "../product-data-models/product-data-model.dtos";
 import { SectionDto, SectionType } from "../data-modelling/section.dto";
 import { DataFieldType } from "../data-modelling/data-field.dto";
-import { LayoutDto } from "../data-modelling/layout.dto";
+import { LayoutDto, SectionLayout } from "../data-modelling/layout.dto";
 
 export interface PublicationDto {
   id: string;
@@ -40,7 +40,7 @@ export interface SectionDraftCreateDto {
   name: string;
   type: SectionType;
   parentSectionId?: string;
-  layout: LayoutDto;
+  layout: SectionLayout;
 }
 
 export interface ProductDataModelDraftCreateDto {
@@ -57,7 +57,7 @@ export interface DataFieldDraftUpdateDto {
 
 export interface SectionDraftUpdateDto {
   name: string;
-  layout: LayoutDto;
+  layout: SectionLayout;
 }
 
 export interface ProductDataModelDraftUpdateDto {
