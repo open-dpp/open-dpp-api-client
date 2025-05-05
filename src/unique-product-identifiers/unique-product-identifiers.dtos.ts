@@ -1,4 +1,4 @@
-import { LayoutDto } from "../data-modelling/layout.dto";
+import { LayoutDto, SectionLayout } from "../data-modelling/layout.dto";
 import { DataFieldType } from "../data-modelling/data-field.dto";
 
 export interface RepeaterViewDto {
@@ -7,7 +7,7 @@ export interface RepeaterViewDto {
 }
 
 export interface RowViewDto {
-  layout: LayoutDto;
+  layout: SectionLayout;
   children: (FieldViewDto | SectionViewDto)[];
 }
 
@@ -19,7 +19,7 @@ export interface ViewDto {
 
 export interface SectionViewDto {
   name: string;
-  layout: LayoutDto;
+  layout: SectionLayout;
   children: FieldViewDto[];
 }
 

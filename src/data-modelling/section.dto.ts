@@ -1,4 +1,4 @@
-import { LayoutDto } from "./layout.dto";
+import { SectionLayout } from "./layout.dto";
 import { DataFieldDto } from "./data-field.dto";
 
 export enum SectionType {
@@ -12,6 +12,6 @@ export interface SectionDto {
   type: SectionType;
   parentId?: string;
   subSections: string[];
-  layout: LayoutDto;
+  layout: SectionLayout;
   dataFields: DataFieldDto[];
 }

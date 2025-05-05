@@ -7,9 +7,12 @@ export interface ResponsiveConfigDto {
 }
 
 export interface LayoutDto {
-  cols?: ResponsiveConfigDto;
   colSpan: ResponsiveConfigDto;
   colStart: ResponsiveConfigDto;
   rowSpan: ResponsiveConfigDto;
   rowStart: ResponsiveConfigDto;
+}
+
+export interface SectionLayout extends LayoutDto {
+  cols: ResponsiveConfigDto;
 }
