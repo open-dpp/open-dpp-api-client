@@ -16,3 +16,9 @@ export interface LayoutDto {
 export interface SectionLayout extends LayoutDto {
   cols: ResponsiveConfigDto;
 }
+
+export function isSectionLayout(
+  layout: LayoutDto | SectionLayout,
+): layout is SectionLayout {
+  return (layout as SectionLayout).cols !== undefined;
+}
