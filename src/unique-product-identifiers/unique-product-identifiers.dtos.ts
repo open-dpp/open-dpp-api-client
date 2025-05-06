@@ -20,7 +20,7 @@ export interface ViewDto {
 export interface SectionViewDto {
   name: string;
   layout: SectionLayout;
-  children: FieldViewDto[];
+  children: (FieldViewDto | SectionViewDto)[];
 }
 
 export interface FieldViewDto {
@@ -43,7 +43,7 @@ export function isRepeaterView(
 }
 
 export function isSectionView(
-  view: RepeaterViewDto | SectionViewDto,
+  view: RepeaterViewDto | SectionViewDto | FieldViewDto,
 ): view is SectionViewDto {
   return (view as SectionViewDto).children !== undefined;
 }
