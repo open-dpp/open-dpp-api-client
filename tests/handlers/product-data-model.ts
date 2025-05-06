@@ -1,16 +1,15 @@
 import { http, HttpResponse } from "msw";
 import { baseURL } from "./index";
-import {
-  DataFieldType,
-  ProductDataModelDto,
-  SectionType,
-  VisibilityLevel,
-} from "../../src";
+import { ProductDataModelDto, VisibilityLevel } from "../../src";
 import { randomUUID } from "node:crypto";
 import { activeOrganization } from "./organization";
+import { SectionType } from "../../src";
+import { DataFieldType } from "../../src";
+
+const dataModelId = randomUUID();
 
 export const productDataModel: ProductDataModelDto = {
-  id: randomUUID(),
+  id: dataModelId,
   name: "Laptop neu",
   visibility: VisibilityLevel.PRIVATE,
   version: "1.0",
@@ -19,6 +18,13 @@ export const productDataModel: ProductDataModelDto = {
       id: randomUUID(),
       type: SectionType.GROUP,
       name: "section name",
+      layout: {
+        cols: { sm: 3 },
+        colStart: { sm: 1 },
+        colSpan: { sm: 1 },
+        rowStart: { sm: 1 },
+        rowSpan: { sm: 1 },
+      },
       dataFields: [
         {
           id: randomUUID(),
@@ -27,13 +33,21 @@ export const productDataModel: ProductDataModelDto = {
           },
           name: "Prozessor",
           type: DataFieldType.TEXT_FIELD,
+          layout: {
+            colStart: { sm: 1 },
+            colSpan: { sm: 1 },
+            rowStart: { sm: 1 },
+            rowSpan: { sm: 1 },
+          },
         },
       ],
+      subSections: [],
     },
   ],
   ownedByOrganizationId: activeOrganization.id,
   createdByUserId: randomUUID(),
 };
+
 export const productDataModelHandlers = [
   http.get(`${baseURL}/product-data-models`, async ({ request }) => {
     const url = new URL(request.url);

@@ -1,22 +1,7 @@
-import {
-  DataFieldType,
-  SectionType,
-  VisibilityLevel,
-} from "../product-data-models/product-data-model.dtos";
-
-export interface DataFieldDraftDto {
-  id: string;
-  name: string;
-  type: DataFieldType;
-  options?: Record<string, unknown>;
-}
-
-export interface SectionDraftDto {
-  id: string;
-  name: string;
-  type: SectionType;
-  dataFields: DataFieldDraftDto[];
-}
+import { VisibilityLevel } from "../product-data-models/product-data-model.dtos";
+import { SectionDto, SectionType } from "../data-modelling/section.dto";
+import { DataFieldType } from "../data-modelling/data-field.dto";
+import { LayoutDto, SectionLayout } from "../data-modelling/layout.dto";
 
 export interface PublicationDto {
   id: string;
@@ -32,7 +17,7 @@ export interface ProductDataModelDraftDto {
   name: string;
   version: string;
   publications: PublicationDto[];
-  sections: SectionDraftDto[];
+  sections: SectionDto[];
   createdByUserId: string;
   ownedByOrganizationId: string;
 }
@@ -42,28 +27,37 @@ export interface ProductDataModelDraftGetAllDto {
   name: string;
 }
 
+// Create dtos
+
 export interface DataFieldDraftCreateDto {
   type: DataFieldType;
   name: string;
   options?: Record<string, unknown>;
+  layout: LayoutDto;
 }
 
 export interface SectionDraftCreateDto {
   name: string;
   type: SectionType;
+  parentSectionId?: string;
+  layout: SectionLayout;
 }
 
 export interface ProductDataModelDraftCreateDto {
   name: string;
 }
 
+// Update dtos
+
 export interface DataFieldDraftUpdateDto {
   name: string;
   options?: Record<string, unknown>;
+  layout: LayoutDto;
 }
 
 export interface SectionDraftUpdateDto {
   name: string;
+  layout: SectionLayout;
 }
 
 export interface ProductDataModelDraftUpdateDto {

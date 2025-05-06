@@ -64,6 +64,7 @@ export class OpenDppApiClient {
       this.axiosInstance,
       this.options.activeOrganizationId,
     );
+
     this.uniqueProductIdentifiers = new UniqueProductIdentifiersNamespace(
       this.axiosInstance,
     );

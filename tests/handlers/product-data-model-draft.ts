@@ -1,19 +1,19 @@
 import { http, HttpResponse } from "msw";
 import { baseURL } from "./index";
 import {
-  DataFieldDraftDto,
-  DataFieldType,
   ProductDataModelDraftDto,
   ProductDataModelDraftGetAllDto,
-  SectionDraftDto,
-  SectionType,
 } from "../../src";
 import { randomUUID } from "node:crypto";
 import { activeOrganization } from "./organization";
 import { productDataModel } from "./product-data-model";
+import { SectionDto, SectionType } from "../../src";
+import { DataFieldDto, DataFieldType } from "../../src";
+
+const dataModelId = randomUUID();
 
 export const productDataModelDraft: ProductDataModelDraftDto = {
-  id: randomUUID(),
+  id: dataModelId,
   name: "Laptop neu",
   version: "1.0.0",
   publications: [],
@@ -24,6 +24,13 @@ export const productDataModelDraft: ProductDataModelDraftDto = {
       id: randomUUID(),
       type: SectionType.GROUP,
       name: "section name",
+      layout: {
+        cols: { sm: 3 },
+        colStart: { sm: 1 },
+        colSpan: { sm: 1 },
+        rowStart: { sm: 1 },
+        rowSpan: { sm: 1 },
+      },
       dataFields: [
         {
           id: randomUUID(),
@@ -32,8 +39,15 @@ export const productDataModelDraft: ProductDataModelDraftDto = {
           },
           name: "Prozessor",
           type: DataFieldType.TEXT_FIELD,
+          layout: {
+            colStart: { sm: 1 },
+            colSpan: { sm: 1 },
+            rowStart: { sm: 1 },
+            rowSpan: { sm: 1 },
+          },
         },
       ],
+      subSections: [],
     },
   ],
 };
@@ -43,17 +57,32 @@ export const draftsOfOrganization: ProductDataModelDraftGetAllDto[] = [
   { id: randomUUID(), name: "Other draft" },
 ];
 
-export const sectionDraft: SectionDraftDto = {
+export const sectionDraft: SectionDto = {
   id: randomUUID(),
   name: "sect",
   type: SectionType.GROUP,
   dataFields: [],
+  subSections: [],
+  layout: {
+    cols: { sm: 3 },
+    colStart: { sm: 1 },
+    colSpan: { sm: 1 },
+    rowStart: { sm: 1 },
+    rowSpan: { sm: 1 },
+  },
 };
 
-export const dataFieldDraft: DataFieldDraftDto = {
+export const dataFieldDraft: DataFieldDto = {
   id: randomUUID(),
   name: "sect",
   type: DataFieldType.TEXT_FIELD,
+  options: {},
+  layout: {
+    colStart: { sm: 1 },
+    colSpan: { sm: 1 },
+    rowStart: { sm: 1 },
+    rowSpan: { sm: 1 },
+  },
 };
 
 const draftEndpointUrl = `${baseURL}/organizations/${activeOrganization.id}/product-data-model-drafts`;

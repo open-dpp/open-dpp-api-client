@@ -10,3 +10,6 @@ export * from "./product-data-models/product-data-models.namespace";
 export * from "./unique-product-identifiers/unique-product-identifiers.dtos";
 export * from "./unique-product-identifiers/unique-product-identifiers.namespace";
 export * from "./users/user.dtos";
+export * from "./data-modelling/data-field.dto";
+export * from "./data-modelling/section.dto";
+export * from "./data-modelling/layout.dto";
