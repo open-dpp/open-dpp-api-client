@@ -3,18 +3,20 @@ import { baseURL } from "./index";
 import { randomUUID } from "node:crypto";
 import { productDataModel } from "./product-data-model";
 import { activeOrganization } from "./organization";
-import { DataValueDto } from "../../src/passport/data-value.dto";
+import { DataValueDto } from "../../src";
 
 export const updateDataValues: DataValueDto[] = [
   {
     dataFieldId: randomUUID(),
     dataSectionId: randomUUID(),
     value: "value 1",
+    row: 0,
   },
   {
     dataFieldId: randomUUID(),
     dataSectionId: randomUUID(),
     value: "value 2",
+    row: 0,
   },
 ];
 export const dataSectionId = randomUUID();

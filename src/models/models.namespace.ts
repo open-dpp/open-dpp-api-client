@@ -1,6 +1,6 @@
 import { AxiosInstance } from "axios";
 import { ModelCreateDto, ModelDto } from "./model.dtos";
-import { DataValueCreateDto, DataValueDto } from "../passport/data-value.dto";
+import { DataValueDto } from "../passport/data-value.dto";
 
 export class ModelsNamespace {
   private readonly modelsEndpoint: string;
@@ -15,7 +15,7 @@ export class ModelsNamespace {
     return this.axiosInstance.post<ModelDto>(this.modelsEndpoint, data);
   }
 
-  public async addModelData(modelId: string, data: DataValueCreateDto[]) {
+  public async addModelData(modelId: string, data: DataValueDto[]) {
     return this.axiosInstance.post<ModelDto>(
       `${this.modelsEndpoint}/${modelId}/data-values`,
       data,

@@ -1,6 +1,6 @@
 import { AxiosInstance } from "axios";
 import { ItemDto } from "./item.dtos";
-import { DataValueCreateDto, DataValueDto } from "../passport/data-value.dto";
+import { DataValueDto } from "../passport/data-value.dto";
 import { ModelDto } from "../models/model.dtos";
 
 export class ItemsNamespace {
@@ -32,7 +32,7 @@ export class ItemsNamespace {
   public async addItemData(
     modelId: string,
     itemId: string,
-    data: DataValueCreateDto[],
+    data: DataValueDto[],
   ) {
     return this.axiosInstance.post<ModelDto>(
       `${this.modelsEndpoint}/${modelId}/items/${itemId}/data-values`,
