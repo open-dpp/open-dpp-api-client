@@ -1,17 +1,19 @@
 import { http, HttpResponse } from "msw";
 import { baseURL } from "./index";
 import { randomUUID } from "node:crypto";
-import { DataValueDto, DataValuePatchDto } from "../../src";
 import { productDataModel } from "./product-data-model";
 import { activeOrganization } from "./organization";
+import { DataValueDto } from "../../src/passport/data-value.dto";
 
-export const updateDataValues: DataValuePatchDto[] = [
+export const updateDataValues: DataValueDto[] = [
   {
-    id: randomUUID(),
+    dataFieldId: randomUUID(),
+    dataSectionId: randomUUID(),
     value: "value 1",
   },
   {
-    id: randomUUID(),
+    dataFieldId: randomUUID(),
+    dataSectionId: randomUUID(),
     value: "value 2",
   },
 ];
@@ -75,7 +77,6 @@ export const modelHandlers = [
           ...model,
           // eslint-disable-next-line @typescript-eslint/no-explicit-any
           dataValues: body.map((b: any) => ({
-            id: randomUUID(),
             ...b,
           })),
         },

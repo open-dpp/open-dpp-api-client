@@ -3,16 +3,20 @@ import { baseURL } from "./index";
 import { randomUUID } from "node:crypto";
 import { activeOrganization } from "./organization";
 import { ItemDto } from "../../src/items/item.dtos";
-import { model } from "./model";
+import { dataFieldId, dataSectionId, model } from "./model";
 
 export const item1: ItemDto = {
   id: randomUUID(),
   uniqueProductIdentifiers: [],
+  dataValues: [],
+  productDataModelId: randomUUID(),
 };
 
 export const item2: ItemDto = {
   id: randomUUID(),
   uniqueProductIdentifiers: [],
+  dataValues: [],
+  productDataModelId: randomUUID(),
 };
 
 export const itemHandlers = [
@@ -32,6 +36,42 @@ export const itemHandlers = [
     `${baseURL}/organizations/${activeOrganization.id}/models/${model.id}/items/${item1.id}`,
     () => {
       return HttpResponse.json(item1);
+    },
+  ),
+  http.patch(
+    `${baseURL}/organizations/${activeOrganization.id}/models/${model.id}/items/${item1.id}/data-values`,
+    async ({ request }) => {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const body: any = await request.json();
+      return HttpResponse.json(
+        {
+          ...model,
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          dataValues: body.map((b: any) => ({
+            ...b,
+            dataSectionId,
+            dataFieldId,
+          })),
+        },
+        { status: 200 },
+      );
+    },
+  ),
+  http.post(
+    `${baseURL}/organizations/${activeOrganization.id}/models/${model.id}/items/${item1.id}/data-values`,
+    async ({ request }) => {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const body: any = await request.json();
+      return HttpResponse.json(
+        {
+          ...model,
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          dataValues: body.map((b: any) => ({
+            ...b,
+          })),
+        },
+        { status: 201 },
+      );
     },
   ),
 ];

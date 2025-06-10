@@ -1,10 +1,6 @@
 import { AxiosInstance } from "axios";
-import {
-  DataValueCreateDto,
-  DataValuePatchDto,
-  ModelCreateDto,
-  ModelDto,
-} from "./model.dtos";
+import { ModelCreateDto, ModelDto } from "./model.dtos";
+import { DataValueCreateDto, DataValueDto } from "../passport/data-value.dto";
 
 export class ModelsNamespace {
   private readonly modelsEndpoint: string;
@@ -26,7 +22,7 @@ export class ModelsNamespace {
     );
   }
 
-  public async updateModelData(modelId: string, data: DataValuePatchDto[]) {
+  public async updateModelData(modelId: string, data: DataValueDto[]) {
     return this.axiosInstance.patch<ModelDto>(
       `${this.modelsEndpoint}/${modelId}/data-values`,
       data,
