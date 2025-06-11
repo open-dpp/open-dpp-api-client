@@ -2,6 +2,7 @@ import { VisibilityLevel } from "../product-data-models/product-data-model.dtos"
 import { SectionDto, SectionType } from "../data-modelling/section.dto";
 import { DataFieldType } from "../data-modelling/data-field.dto";
 import { LayoutDto, SectionLayout } from "../data-modelling/layout.dto";
+import { GranularityLevel } from "../data-modelling/granularity-level";
 
 export interface PublicationDto {
   id: string;
@@ -34,6 +35,7 @@ export interface DataFieldDraftCreateDto {
   name: string;
   options?: Record<string, unknown>;
   layout: LayoutDto;
+  granularityLevel: GranularityLevel;
 }
 
 export interface SectionDraftCreateDto {
@@ -41,6 +43,7 @@ export interface SectionDraftCreateDto {
   type: SectionType;
   parentSectionId?: string;
   layout: SectionLayout;
+  granularityLevel?: GranularityLevel;
 }
 
 export interface ProductDataModelDraftCreateDto {

@@ -1,5 +1,5 @@
 import { server } from "./msw.server";
-import { OpenDppApiClient, VisibilityLevel } from "../src";
+import { GranularityLevel, OpenDppApiClient, VisibilityLevel } from "../src";
 import { randomUUID } from "node:crypto";
 import { activeOrganization, organizations } from "./handlers/organization";
 import { model, responseDataValues, updateDataValues } from "./handlers/model";
@@ -246,6 +246,7 @@ describe("ApiClient", () => {
             rowSpan: { sm: 1 },
             rowStart: { sm: 1 },
           },
+          granularityLevel: GranularityLevel.MODEL,
         },
       );
       expect(response.data).toEqual({
