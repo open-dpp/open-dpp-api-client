@@ -1,5 +1,6 @@
 import { SectionLayout } from "./layout.dto";
 import { DataFieldDto } from "./data-field.dto";
+import { GranularityLevel } from "./granularity-level";
 
 export enum SectionType {
   GROUP = "Group",
@@ -14,4 +15,5 @@ export interface SectionDto {
   subSections: string[];
   layout: SectionLayout;
   dataFields: DataFieldDto[];
+  granularityLevel?: GranularityLevel;
 }

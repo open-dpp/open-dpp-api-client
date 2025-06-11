@@ -1,6 +1,7 @@
 import { http, HttpResponse } from "msw";
 import { baseURL } from "./index";
 import {
+  GranularityLevel,
   ProductDataModelDraftDto,
   ProductDataModelDraftGetAllDto,
 } from "../../src";
@@ -45,6 +46,7 @@ export const productDataModelDraft: ProductDataModelDraftDto = {
             rowStart: { sm: 1 },
             rowSpan: { sm: 1 },
           },
+          granularityLevel: GranularityLevel.MODEL,
         },
       ],
       subSections: [],
@@ -83,6 +85,7 @@ export const dataFieldDraft: DataFieldDto = {
     rowStart: { sm: 1 },
     rowSpan: { sm: 1 },
   },
+  granularityLevel: GranularityLevel.MODEL,
 };
 
 const draftEndpointUrl = `${baseURL}/organizations/${activeOrganization.id}/product-data-model-drafts`;

@@ -1,6 +1,10 @@
 import { http, HttpResponse } from "msw";
 import { baseURL } from "./index";
-import { ProductDataModelDto, VisibilityLevel } from "../../src";
+import {
+  GranularityLevel,
+  ProductDataModelDto,
+  VisibilityLevel,
+} from "../../src";
 import { randomUUID } from "node:crypto";
 import { activeOrganization } from "./organization";
 import { SectionType } from "../../src";
@@ -39,6 +43,7 @@ export const productDataModel: ProductDataModelDto = {
             rowStart: { sm: 1 },
             rowSpan: { sm: 1 },
           },
+          granularityLevel: GranularityLevel.MODEL,
         },
       ],
       subSections: [],
