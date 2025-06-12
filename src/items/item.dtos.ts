@@ -1,9 +1,4 @@
-import { UniqueProductIdentifiers } from "../unique-product-identifiers/unique-product-identifiers.dtos";
-import { DataValueDto } from "../passport/data-value.dto";
+import { PassportDto } from "../passport/data-value.dto";
 
-export interface ItemDto {
-  id: string;
-  uniqueProductIdentifiers: UniqueProductIdentifiers[];
-  productDataModelId?: string;
-  dataValues: DataValueDto[];
-}
+// eslint-disable-next-line @typescript-eslint/no-empty-object-type
+export interface ItemDto extends PassportDto {}

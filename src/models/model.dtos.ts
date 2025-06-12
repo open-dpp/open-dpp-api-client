@@ -1,13 +1,8 @@
-import { UniqueProductIdentifiers } from "../unique-product-identifiers/unique-product-identifiers.dtos";
-import { DataValueDto } from "../passport/data-value.dto";
+import { PassportDto } from "../passport/data-value.dto";
 
-export interface ModelDto {
-  id: string;
+export interface ModelDto extends PassportDto {
   name: string;
   description?: string;
-  uniqueProductIdentifiers: UniqueProductIdentifiers[];
-  productDataModelId: string;
-  dataValues: DataValueDto[];
   owner: string;
 }
 
