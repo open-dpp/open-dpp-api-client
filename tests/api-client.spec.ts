@@ -1,5 +1,5 @@
 import { server } from "./msw.server";
-import { OpenDppApiClient, VisibilityLevel } from "../src";
+import { GranularityLevel, OpenDppApiClient, VisibilityLevel } from "../src";
 import { randomUUID } from "node:crypto";
 import { activeOrganization, organizations } from "./handlers/organization";
 import { model, responseDataValues, updateDataValues } from "./handlers/model";
@@ -103,7 +103,7 @@ describe("ApiClient", () => {
         addDataValues,
       );
       expect(response.data.dataValues).toEqual(
-        addDataValues.map((v) => ({ ...v, id: expect.any(String) })),
+        addDataValues.map((v) => ({ ...v })),
       );
     });
     it("should assign product data model to model", async () => {
@@ -152,6 +152,50 @@ describe("ApiClient", () => {
 
       const response = await client.items.getItem(model.id, item1.id);
       expect(response.data).toEqual(item1);
+    });
+
+    it("should update item data", async () => {
+      const client = new OpenDppApiClient({
+        baseURL,
+      });
+      client.setActiveOrganizationId(activeOrganization.id);
+
+      const response = await client.items.updateItemData(
+        model.id,
+        item1.id,
+        updateDataValues,
+      );
+      expect(response.data.dataValues).toEqual(responseDataValues);
+    });
+
+    it("should add item data", async () => {
+      const client = new OpenDppApiClient({
+        baseURL,
+      });
+      client.setActiveOrganizationId(activeOrganization.id);
+
+      const addDataValues = [
+        {
+          dataFieldId: randomUUID(),
+          dataSectionId: randomUUID(),
+          row: 0,
+          value: "A",
+        },
+        {
+          dataFieldId: randomUUID(),
+          dataSectionId: randomUUID(),
+          row: 0,
+          value: "B",
+        },
+      ];
+      const response = await client.items.addItemData(
+        model.id,
+        item1.id,
+        addDataValues,
+      );
+      expect(response.data.dataValues).toEqual(
+        addDataValues.map((v) => ({ ...v })),
+      );
     });
   });
 
@@ -202,6 +246,7 @@ describe("ApiClient", () => {
             rowSpan: { sm: 1 },
             rowStart: { sm: 1 },
           },
+          granularityLevel: GranularityLevel.MODEL,
         },
       );
       expect(response.data).toEqual({

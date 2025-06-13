@@ -1,4 +1,5 @@
 import { LayoutDto } from "./layout.dto";
+import { GranularityLevel } from "./granularity-level";
 
 export enum DataFieldType {
   TEXT_FIELD = "TextField",
@@ -11,4 +12,5 @@ export interface DataFieldDto {
   type: DataFieldType;
   options?: Record<string, unknown>;
   layout: LayoutDto;
+  granularityLevel: GranularityLevel;
 }

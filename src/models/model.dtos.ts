@@ -1,29 +1,8 @@
-import { UniqueProductIdentifiers } from "../unique-product-identifiers/unique-product-identifiers.dtos";
+import { PassportDto } from "../passport/data-value.dto";
 
-export interface DataValuePatchDto {
-  id: string;
-  value: unknown;
-}
-
-export interface DataValueCreateDto extends Omit<DataValueDto, "id" | "row"> {
-  row: number;
-}
-
-export interface DataValueDto {
-  id: string;
-  row?: number;
-  value: unknown;
-  dataSectionId: string;
-  dataFieldId: string;
-}
-
-export interface ModelDto {
-  id: string;
+export interface ModelDto extends PassportDto {
   name: string;
-  description: string;
-  uniqueProductIdentifiers: UniqueProductIdentifiers[];
-  productDataModelId: string;
-  dataValues: DataValueDto[];
+  description?: string;
   owner: string;
 }
 

@@ -1,6 +1,8 @@
 export * from "./open-dpp-api-client";
 export * from "./models/models.namespace";
 export * from "./models/model.dtos";
+export * from "./items/items.namespace";
+export * from "./items/item.dtos";
 export * from "./organizations/organization.dtos";
 export * from "./organizations/organizations.namespace";
 export * from "./product-data-model-drafts/product-data-model-draft.dtos";
@@ -13,3 +15,5 @@ export * from "./users/user.dtos";
 export * from "./data-modelling/data-field.dto";
 export * from "./data-modelling/section.dto";
 export * from "./data-modelling/layout.dto";
+export * from "./data-modelling/granularity-level";
+export * from "./passport/data-value.dto";
