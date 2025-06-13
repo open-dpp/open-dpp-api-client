@@ -2,7 +2,7 @@ import { http, HttpResponse } from "msw";
 import { baseURL } from "./index";
 import { randomUUID } from "node:crypto";
 import { activeOrganization } from "./organization";
-import { ItemDto } from "../../src/items/item.dtos";
+import { ItemDto } from "../../src";
 import { dataFieldId, dataSectionId, model } from "./model";
 
 export const item1: ItemDto = {
@@ -45,7 +45,7 @@ export const itemHandlers = [
       const body: any = await request.json();
       return HttpResponse.json(
         {
-          ...model,
+          ...item1,
           // eslint-disable-next-line @typescript-eslint/no-explicit-any
           dataValues: body.map((b: any) => ({
             ...b,
@@ -64,7 +64,7 @@ export const itemHandlers = [
       const body: any = await request.json();
       return HttpResponse.json(
         {
-          ...model,
+          ...item1,
           // eslint-disable-next-line @typescript-eslint/no-explicit-any
           dataValues: body.map((b: any) => ({
             ...b,
