@@ -1,7 +1,6 @@
 import { AxiosInstance } from "axios";
 import { ItemDto } from "./item.dtos";
 import { DataValueDto } from "../passport/data-value.dto";
-import { ModelDto } from "../models/model.dtos";
 
 export class ItemsNamespace {
   private readonly modelsEndpoint: string;
@@ -34,7 +33,7 @@ export class ItemsNamespace {
     itemId: string,
     data: DataValueDto[],
   ) {
-    return this.axiosInstance.post<ModelDto>(
+    return this.axiosInstance.post<ItemDto>(
       `${this.modelsEndpoint}/${modelId}/items/${itemId}/data-values`,
       data,
     );
@@ -45,7 +44,7 @@ export class ItemsNamespace {
     itemId: string,
     data: DataValueDto[],
   ) {
-    return this.axiosInstance.patch<ModelDto>(
+    return this.axiosInstance.patch<ItemDto>(
       `${this.modelsEndpoint}/${modelId}/items/${itemId}/data-values`,
       data,
     );
