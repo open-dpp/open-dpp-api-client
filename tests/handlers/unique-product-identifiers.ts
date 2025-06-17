@@ -1,13 +1,20 @@
 import { http, HttpResponse } from "msw";
 import { randomUUID } from "node:crypto";
 import { baseURL } from "./index";
-import { DataFieldType, ViewDto } from "../../src";
+import {
+  DataFieldType,
+  GranularityLevel,
+  UniqueProductIdentifierWithGranularityDto,
+  ViewDto,
+} from "../../src";
 
 export const uniqueProductIdentifierId = randomUUID();
-export const uniqueProductIdentifier = {
-  uuid: uniqueProductIdentifierId,
-  referenceId: randomUUID(),
-};
+export const uniqueProductIdentifier: UniqueProductIdentifierWithGranularityDto =
+  {
+    uuid: uniqueProductIdentifierId,
+    referenceId: randomUUID(),
+    granularityLevel: GranularityLevel.MODEL,
+  };
 export const responseView: ViewDto = {
   name: "My model",
   description: "Description",

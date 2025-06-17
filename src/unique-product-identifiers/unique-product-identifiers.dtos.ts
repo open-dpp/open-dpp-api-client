@@ -1,5 +1,6 @@
 import { LayoutDto, SectionLayout } from "../data-modelling/layout.dto";
 import { DataFieldType } from "../data-modelling/data-field.dto";
+import { GranularityLevel } from "../data-modelling/granularity-level";
 
 export interface RepeaterViewDto {
   name: string;
@@ -33,6 +34,11 @@ export interface FieldViewDto {
 export interface UniqueProductIdentifierDto {
   uuid: string;
   referenceId: string;
+}
+
+export interface UniqueProductIdentifierWithGranularityDto
+  extends UniqueProductIdentifierDto {
+  granularityLevel: GranularityLevel;
 }
 
 export function isRepeaterView(

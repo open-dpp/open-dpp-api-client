@@ -1,6 +1,6 @@
 import { AxiosInstance } from "axios";
 import {
-  UniqueProductIdentifierDto,
+  UniqueProductIdentifierWithGranularityDto,
   ViewDto,
 } from "./unique-product-identifiers.dtos";
 
@@ -14,7 +14,7 @@ export class UniqueProductIdentifiersNamespace {
   }
 
   public async getUniqueProductIdentifier(uuid: string) {
-    return this.axiosInstance.get<UniqueProductIdentifierDto>(
+    return this.axiosInstance.get<UniqueProductIdentifierWithGranularityDto>(
       `/unique-product-identifiers/${uuid}`,
     );
   }
