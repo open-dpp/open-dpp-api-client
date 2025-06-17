@@ -4,6 +4,10 @@ import { baseURL } from "./index";
 import { DataFieldType, ViewDto } from "../../src";
 
 export const uniqueProductIdentifierId = randomUUID();
+export const uniqueProductIdentifier = {
+  uuid: uniqueProductIdentifierId,
+  referenceId: randomUUID(),
+};
 export const responseView: ViewDto = {
   name: "My model",
   description: "Description",
@@ -88,6 +92,12 @@ export const uniqueProductIdentifierHandlers = [
     `${baseURL}/unique-product-identifiers/${uniqueProductIdentifierId}/view`,
     () => {
       return HttpResponse.json({ ...responseView });
+    },
+  ),
+  http.get(
+    `${baseURL}/unique-product-identifiers/${uniqueProductIdentifierId}`,
+    () => {
+      return HttpResponse.json({ ...uniqueProductIdentifier });
     },
   ),
 ];

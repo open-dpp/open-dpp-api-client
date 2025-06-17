@@ -30,7 +30,7 @@ export interface FieldViewDto {
   layout: LayoutDto;
 }
 
-export interface UniqueProductIdentifiers {
+export interface UniqueProductIdentifierDto {
   uuid: string;
   referenceId: string;
 }
