@@ -36,8 +36,10 @@ export interface UniqueProductIdentifierDto {
   referenceId: string;
 }
 
-export interface UniqueProductIdentifierWithGranularityDto
-  extends UniqueProductIdentifierDto {
+export interface UniqueProductIdentifierReferenceDto {
+  id: string;
+  organizationId: string;
+  modelId?: string;
   granularityLevel: GranularityLevel;
 }
 

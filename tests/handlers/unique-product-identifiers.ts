@@ -4,15 +4,17 @@ import { baseURL } from "./index";
 import {
   DataFieldType,
   GranularityLevel,
-  UniqueProductIdentifierWithGranularityDto,
+  UniqueProductIdentifierReferenceDto,
   ViewDto,
 } from "../../src";
+import { activeOrganization } from "./organization";
 
 export const uniqueProductIdentifierId = randomUUID();
-export const uniqueProductIdentifier: UniqueProductIdentifierWithGranularityDto =
+export const uniqueProductIdentifierReference: UniqueProductIdentifierReferenceDto =
   {
-    uuid: uniqueProductIdentifierId,
-    referenceId: randomUUID(),
+    id: randomUUID(),
+    organizationId: randomUUID(),
+    modelId: randomUUID(),
     granularityLevel: GranularityLevel.MODEL,
   };
 export const responseView: ViewDto = {
@@ -102,9 +104,9 @@ export const uniqueProductIdentifierHandlers = [
     },
   ),
   http.get(
-    `${baseURL}/unique-product-identifiers/${uniqueProductIdentifierId}`,
+    `${baseURL}/organizations/${activeOrganization.id}/unique-product-identifiers/${uniqueProductIdentifierId}/reference`,
     () => {
-      return HttpResponse.json({ ...uniqueProductIdentifier });
+      return HttpResponse.json({ ...uniqueProductIdentifierReference });
     },
   ),
 ];
