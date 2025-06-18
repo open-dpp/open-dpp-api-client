@@ -21,7 +21,11 @@ import {
   productDataModelDraft,
   sectionDraft,
 } from "./handlers/product-data-model-draft";
-import { connection, connectionList } from "./handlers/aas-integration";
+import {
+  aasPropertiesWithParent,
+  connection,
+  connectionList,
+} from "./handlers/aas-integration";
 
 describe("ApiClient", () => {
   beforeAll(() => server.listen());
@@ -435,6 +439,15 @@ describe("ApiClient", () => {
       );
       expect(response.data).toEqual({
         ...connection,
+      });
+    });
+
+    it("should return aas properties with parent for given aas type", async () => {
+      const response = await client.aasIntegration.getPropertiesOfAas(
+        AssetAdministrationShellType.Truck,
+      );
+      expect(response.data).toEqual({
+        ...aasPropertiesWithParent,
       });
     });
   });

@@ -4,6 +4,7 @@ import { baseURL } from "./index";
 import {
   AasConnectionDto,
   AasConnectionGetAllDto,
+  AasPropertyWithParentDto,
   AssetAdministrationShellType,
 } from "../../src";
 import { activeOrganization } from "./organization";
@@ -28,6 +29,18 @@ export const connectionList: AasConnectionGetAllDto[] = [
   { id: randomUUID(), name: "Connection 1" },
   { id: randomUUID(), name: "Connection 2" },
 ];
+
+export const aasPropertiesWithParent: AasPropertyWithParentDto[] = [
+  {
+    parentIdShort: randomUUID(),
+    property: {
+      idShort: randomUUID(),
+      valueType: "xs:double",
+      modelType: "Property",
+    },
+  },
+];
+
 export const aasIntegrationHandlers = [
   http.get(
     `${baseURL}/organizations/${activeOrganization.id}/integration/aas/connections/${connection.id}`,
@@ -51,6 +64,12 @@ export const aasIntegrationHandlers = [
     `${baseURL}/organizations/${activeOrganization.id}/integration/aas/connections/${connection.id}`,
     () => {
       return HttpResponse.json({ ...connection });
+    },
+  ),
+  http.get(
+    `${baseURL}/organizations/${activeOrganization.id}/integration/aas/Truck/properties`,
+    () => {
+      return HttpResponse.json({ ...aasPropertiesWithParent });
     },
   ),
 ];

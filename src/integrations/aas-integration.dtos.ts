@@ -38,3 +38,14 @@ export interface UpdateAasConnectionDto {
   modelId: string | null;
   fieldAssignments: AasFieldAssignmentDto[];
 }
+
+export interface AasPropertyDto {
+  idShort: string;
+  valueType: string;
+  modelType: string;
+}
+
+export interface AasPropertyWithParentDto {
+  parentIdShort: string;
+  property: AasPropertyDto;
+}

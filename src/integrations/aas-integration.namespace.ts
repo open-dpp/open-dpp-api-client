@@ -2,6 +2,8 @@ import { AxiosInstance } from "axios";
 import {
   AasConnectionDto,
   AasConnectionGetAllDto,
+  AasPropertyWithParentDto,
+  AssetAdministrationShellType,
   CreateAasConnectionDto,
   UpdateAasConnectionDto,
 } from "./aas-integration.dtos";
@@ -43,6 +45,12 @@ export class AasIntegrationNamespace {
     return this.axiosInstance.patch<AasConnectionDto>(
       `${this.aasConnectionsEndpoint}/${connectionId}`,
       data,
+    );
+  }
+
+  public async getPropertiesOfAas(aasType: AssetAdministrationShellType) {
+    return this.axiosInstance.get<AasPropertyWithParentDto[]>(
+      `${this.aasBaseEndpoint}/${aasType}/properties`,
     );
   }
 }
