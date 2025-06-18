@@ -6,6 +6,7 @@ import { model, responseDataValues, updateDataValues } from "./handlers/model";
 import { productDataModel } from "./handlers/product-data-model";
 import {
   responseView,
+  uniqueProductIdentifierReference,
   uniqueProductIdentifierId,
 } from "./handlers/unique-product-identifiers";
 import { item1, item2 } from "./handlers/item";
@@ -345,15 +346,29 @@ describe("ApiClient", () => {
     });
   });
 
-  it("should return view by unique product identifier", async () => {
-    const client = new OpenDppApiClient({
-      baseURL,
+  describe("unique-product-identifiers", () => {
+    it("should return view by unique product identifier", async () => {
+      const client = new OpenDppApiClient({
+        baseURL,
+      });
+      const response = await client.uniqueProductIdentifiers.getView(
+        uniqueProductIdentifierId,
+      );
+      expect(response.data).toEqual({
+        ...responseView,
+      });
     });
-    const response = await client.uniqueProductIdentifiers.getView(
-      uniqueProductIdentifierId,
-    );
-    expect(response.data).toEqual({
-      ...responseView,
+
+    it("should return reference of unique product identifier", async () => {
+      const client = new OpenDppApiClient({
+        baseURL,
+      });
+      client.setActiveOrganizationId(activeOrganization.id);
+      const response =
+        await client.uniqueProductIdentifiers.getUniqueProductIdentifierReference(
+          uniqueProductIdentifierId,
+        );
+      expect(response.data).toEqual(uniqueProductIdentifierReference);
     });
   });
 });
