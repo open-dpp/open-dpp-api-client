@@ -20,6 +20,11 @@ export interface AasConnectionDto {
   fieldAssignments: AasFieldAssignmentDto[];
 }
 
+export interface AasConnectionGetAllDto {
+  id: string;
+  name: string;
+}
+
 export interface CreateAasConnectionDto {
   name: string;
   aasType: AssetAdministrationShellType;

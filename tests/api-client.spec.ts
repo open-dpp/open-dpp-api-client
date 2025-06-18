@@ -21,7 +21,7 @@ import {
   productDataModelDraft,
   sectionDraft,
 } from "./handlers/product-data-model-draft";
-import { connection } from "./handlers/aas-integration";
+import { connection, connectionList } from "./handlers/aas-integration";
 
 describe("ApiClient", () => {
   beforeAll(() => server.listen());
@@ -383,14 +383,21 @@ describe("ApiClient", () => {
       baseURL,
     });
     client.setActiveOrganizationId(activeOrganization.id);
-    it("should return aas integration", async () => {
+    it("should return aas connection", async () => {
       const response = await client.aasIntegration.getConnection(connection.id);
       expect(response.data).toEqual({
         ...connection,
       });
     });
 
-    it("should create aas integration", async () => {
+    it("should return all aas connections of organization", async () => {
+      const response = await client.aasIntegration.getAllConnections();
+      expect(response.data).toEqual({
+        ...connectionList,
+      });
+    });
+
+    it("should create aas connection", async () => {
       const response = await client.aasIntegration.createConnection({
         name: "Connection 1",
         aasType: AssetAdministrationShellType.Truck,
@@ -410,7 +417,7 @@ describe("ApiClient", () => {
       });
     });
 
-    it("should patch aas integration", async () => {
+    it("should patch aas connection", async () => {
       const response = await client.aasIntegration.modifyConnection(
         connection.id,
         {

@@ -1,6 +1,7 @@
 import { AxiosInstance } from "axios";
 import {
   AasConnectionDto,
+  AasConnectionGetAllDto,
   CreateAasConnectionDto,
   UpdateAasConnectionDto,
 } from "./aas-integration.dtos";
@@ -19,6 +20,12 @@ export class AasIntegrationNamespace {
   public async getConnection(connectionId: string) {
     return this.axiosInstance.get<AasConnectionDto>(
       `${this.aasConnectionsEndpoint}/${connectionId}`,
+    );
+  }
+
+  public async getAllConnections() {
+    return this.axiosInstance.get<AasConnectionGetAllDto>(
+      this.aasConnectionsEndpoint,
     );
   }
 
