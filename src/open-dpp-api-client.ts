@@ -5,7 +5,7 @@ import { ProductDataModelDraftsNamespace } from "./product-data-model-drafts/pro
 import { UniqueProductIdentifiersNamespace } from "./unique-product-identifiers/unique-product-identifiers.namespace";
 import { ItemsNamespace } from "./items/items.namespace";
 import { ProductDataModelsNamespace } from "./product-data-models/product-data-models.namespace";
-import { AasMappingNamespace } from "./integrations/aas-mapping.namespace";
+import { AasIntegrationNamespace } from "./integrations/aas-integration.namespace";
 
 export interface ApiClientOptions extends AxiosRequestConfig {
   apiKey?: string;
@@ -19,7 +19,7 @@ export class OpenDppApiClient {
   public productDataModelDrafts!: ProductDataModelDraftsNamespace;
   public productDataModels!: ProductDataModelsNamespace;
   public uniqueProductIdentifiers!: UniqueProductIdentifiersNamespace;
-  public aasMappings!: AasMappingNamespace;
+  public aasIntegration!: AasIntegrationNamespace;
   private axiosInstance!: AxiosInstance;
   private options: ApiClientOptions;
 
@@ -66,7 +66,7 @@ export class OpenDppApiClient {
       this.axiosInstance,
       this.options.activeOrganizationId,
     );
-    this.aasMappings = new AasMappingNamespace(
+    this.aasIntegration = new AasIntegrationNamespace(
       this.axiosInstance,
       this.options.activeOrganizationId,
     );

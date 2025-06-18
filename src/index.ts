@@ -17,5 +17,5 @@ export * from "./data-modelling/section.dto";
 export * from "./data-modelling/layout.dto";
 export * from "./data-modelling/granularity-level";
 export * from "./passport/data-value.dto";
-export * from "./integrations/aas-mapping.dtos";
-export * from "./integrations/aas-mapping.namespace";
+export * from "./integrations/aas-integration.dtos";
+export * from "./integrations/aas-integration.namespace";
