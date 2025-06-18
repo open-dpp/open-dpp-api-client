@@ -1,4 +1,4 @@
-import { UniqueProductIdentifiers } from "../unique-product-identifiers/unique-product-identifiers.dtos";
+import { UniqueProductIdentifierDto } from "../unique-product-identifiers/unique-product-identifiers.dtos";
 
 export interface DataValueDto {
   row: number;
@@ -9,7 +9,7 @@ export interface DataValueDto {
 
 export interface PassportDto {
   id: string;
-  uniqueProductIdentifiers: UniqueProductIdentifiers[];
+  uniqueProductIdentifiers: UniqueProductIdentifierDto[];
   productDataModelId?: string;
   dataValues: DataValueDto[];
 }
