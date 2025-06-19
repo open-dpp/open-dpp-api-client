@@ -26,7 +26,7 @@ export class AasIntegrationNamespace {
   }
 
   public async getAllConnections() {
-    return this.axiosInstance.get<AasConnectionGetAllDto>(
+    return this.axiosInstance.get<AasConnectionGetAllDto[]>(
       this.aasConnectionsEndpoint,
     );
   }
