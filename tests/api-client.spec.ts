@@ -396,9 +396,7 @@ describe("ApiClient", () => {
 
     it("should return all aas connections of organization", async () => {
       const response = await client.aasIntegration.getAllConnections();
-      expect(response.data).toEqual({
-        ...connectionList,
-      });
+      expect(response.data).toEqual(connectionList);
     });
 
     it("should create aas connection", async () => {
@@ -446,9 +444,7 @@ describe("ApiClient", () => {
       const response = await client.aasIntegration.getPropertiesOfAas(
         AssetAdministrationShellType.Truck,
       );
-      expect(response.data).toEqual({
-        ...aasPropertiesWithParent,
-      });
+      expect(response.data).toEqual(aasPropertiesWithParent);
     });
   });
 });

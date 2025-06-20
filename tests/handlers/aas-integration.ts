@@ -19,8 +19,8 @@ export const connection: AasConnectionDto = {
     {
       dataFieldId: randomUUID(),
       sectionId: randomUUID(),
-      idShortParent: randomUUID(),
-      idShort: randomUUID(),
+      idShortParent: "Parent",
+      idShort: "Child",
     },
   ],
 };
@@ -51,7 +51,7 @@ export const aasIntegrationHandlers = [
   http.get(
     `${baseURL}/organizations/${activeOrganization.id}/integration/aas/connections`,
     () => {
-      return HttpResponse.json({ ...connectionList });
+      return HttpResponse.json(connectionList);
     },
   ),
   http.post(
@@ -69,7 +69,7 @@ export const aasIntegrationHandlers = [
   http.get(
     `${baseURL}/organizations/${activeOrganization.id}/integration/aas/Truck/properties`,
     () => {
-      return HttpResponse.json({ ...aasPropertiesWithParent });
+      return HttpResponse.json(aasPropertiesWithParent);
     },
   ),
 ];
