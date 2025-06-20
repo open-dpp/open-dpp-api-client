@@ -1,13 +1,18 @@
 import { server } from "./msw.server";
-import { GranularityLevel, OpenDppApiClient, VisibilityLevel } from "../src";
+import {
+  AssetAdministrationShellType,
+  GranularityLevel,
+  OpenDppApiClient,
+  VisibilityLevel,
+} from "../src";
 import { randomUUID } from "node:crypto";
 import { activeOrganization, organizations } from "./handlers/organization";
 import { model, responseDataValues, updateDataValues } from "./handlers/model";
 import { productDataModel } from "./handlers/product-data-model";
 import {
   responseView,
-  uniqueProductIdentifierReference,
   uniqueProductIdentifierId,
+  uniqueProductIdentifierReference,
 } from "./handlers/unique-product-identifiers";
 import { item1, item2 } from "./handlers/item";
 import {
@@ -16,6 +21,11 @@ import {
   productDataModelDraft,
   sectionDraft,
 } from "./handlers/product-data-model-draft";
+import {
+  aasPropertiesWithParent,
+  connection,
+  connectionList,
+} from "./handlers/aas-integration";
 
 describe("ApiClient", () => {
   beforeAll(() => server.listen());
@@ -369,6 +379,72 @@ describe("ApiClient", () => {
           uniqueProductIdentifierId,
         );
       expect(response.data).toEqual(uniqueProductIdentifierReference);
+    });
+  });
+
+  describe("aas-integration", () => {
+    const client = new OpenDppApiClient({
+      baseURL,
+    });
+    client.setActiveOrganizationId(activeOrganization.id);
+    it("should return aas connection", async () => {
+      const response = await client.aasIntegration.getConnection(connection.id);
+      expect(response.data).toEqual({
+        ...connection,
+      });
+    });
+
+    it("should return all aas connections of organization", async () => {
+      const response = await client.aasIntegration.getAllConnections();
+      expect(response.data).toEqual(connectionList);
+    });
+
+    it("should create aas connection", async () => {
+      const response = await client.aasIntegration.createConnection({
+        name: "Connection 1",
+        aasType: AssetAdministrationShellType.Truck,
+        dataModelId: randomUUID(),
+        modelId: randomUUID(),
+        fieldAssignments: [
+          {
+            dataFieldId: randomUUID(),
+            sectionId: randomUUID(),
+            idShortParent: "Parent",
+            idShort: "Child",
+          },
+        ],
+      });
+      expect(response.data).toEqual({
+        ...connection,
+      });
+    });
+
+    it("should patch aas connection", async () => {
+      const response = await client.aasIntegration.modifyConnection(
+        connection.id,
+        {
+          name: "Connection 2",
+          modelId: randomUUID(),
+          fieldAssignments: [
+            {
+              dataFieldId: randomUUID(),
+              sectionId: randomUUID(),
+              idShortParent: "Parent",
+              idShort: "Child",
+            },
+          ],
+        },
+      );
+      expect(response.data).toEqual({
+        ...connection,
+      });
+    });
+
+    it("should return aas properties with parent for given aas type", async () => {
+      const response = await client.aasIntegration.getPropertiesOfAas(
+        AssetAdministrationShellType.Truck,
+      );
+      expect(response.data).toEqual(aasPropertiesWithParent);
     });
   });
 });

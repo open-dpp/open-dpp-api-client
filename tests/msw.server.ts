@@ -5,6 +5,7 @@ import { uniqueProductIdentifierHandlers } from "./handlers/unique-product-ident
 import { organizationHandlers } from "./handlers/organization";
 import { itemHandlers } from "./handlers/item";
 import { productDataModelDraftsHandlers } from "./handlers/product-data-model-draft";
+import { aasIntegrationHandlers } from "./handlers/aas-integration";
 
 const handlers = [
   ...modelHandlers,
@@ -13,6 +14,7 @@ const handlers = [
   ...productDataModelDraftsHandlers,
   ...uniqueProductIdentifierHandlers,
   ...organizationHandlers,
+  ...aasIntegrationHandlers,
 ];
 
 export const server = setupServer(...handlers);
