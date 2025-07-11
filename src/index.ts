@@ -20,3 +20,5 @@ export * from "./dpp/passport/data-value.dto";
 export * from "./dpp/integrations/aas-integration.dtos";
 export * from "./dpp/integrations/aas-integration.namespace";
 export * from "./marketplace/passport-templates/passport-templates.namespace";
+export * from "./marketplace/marketplace-api-client";
+export * from "./dpp/dpp-api-client";
