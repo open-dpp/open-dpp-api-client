@@ -11,35 +11,31 @@ export class ItemsNamespace {
     this.modelsEndpoint = `/organizations/${this.organizationId}/models`;
   }
 
-  public async createItem(modelId: string) {
+  public async create(modelId: string) {
     return this.axiosInstance.post<ItemDto>(
       `${this.modelsEndpoint}/${modelId}/items`,
     );
   }
 
-  public async getItems(modelId: string) {
+  public async getAll(modelId: string) {
     return this.axiosInstance.get<ItemDto[]>(
       `${this.modelsEndpoint}/${modelId}/items`,
     );
   }
 
-  public async getItem(modelId: string, itemId: string) {
+  public async getById(modelId: string, itemId: string) {
     return this.axiosInstance.get<ItemDto>(
       `${this.modelsEndpoint}/${modelId}/items/${itemId}`,
     );
   }
-  public async addItemData(
-    modelId: string,
-    itemId: string,
-    data: DataValueDto[],
-  ) {
+  public async addData(modelId: string, itemId: string, data: DataValueDto[]) {
     return this.axiosInstance.post<ItemDto>(
       `${this.modelsEndpoint}/${modelId}/items/${itemId}/data-values`,
       data,
     );
   }
 
-  public async updateItemData(
+  public async modifyData(
     modelId: string,
     itemId: string,
     data: DataValueDto[],

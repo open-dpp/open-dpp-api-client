@@ -11,25 +11,25 @@ export class ModelsNamespace {
     this.modelsEndpoint = `/organizations/${this.organizationId}/models`;
   }
 
-  public async postModel(data: ModelCreateDto) {
+  public async create(data: ModelCreateDto) {
     return this.axiosInstance.post<ModelDto>(this.modelsEndpoint, data);
   }
 
-  public async addModelData(modelId: string, data: DataValueDto[]) {
+  public async addData(modelId: string, data: DataValueDto[]) {
     return this.axiosInstance.post<ModelDto>(
       `${this.modelsEndpoint}/${modelId}/data-values`,
       data,
     );
   }
 
-  public async updateModelData(modelId: string, data: DataValueDto[]) {
+  public async modifyData(modelId: string, data: DataValueDto[]) {
     return this.axiosInstance.patch<ModelDto>(
       `${this.modelsEndpoint}/${modelId}/data-values`,
       data,
     );
   }
 
-  public async assignProductDataModelToModel(
+  public async assignProductDataModel(
     productDataModelId: string,
     modelId: string,
   ) {
@@ -38,11 +38,11 @@ export class ModelsNamespace {
     );
   }
 
-  public async getModels() {
+  public async getAll() {
     return this.axiosInstance.get<ModelDto[]>(this.modelsEndpoint);
   }
 
-  public async getModelById(id: string) {
+  public async getById(id: string) {
     return this.axiosInstance.get<ModelDto>(`${this.modelsEndpoint}/${id}`);
   }
 }

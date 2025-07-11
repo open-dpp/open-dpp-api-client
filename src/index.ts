@@ -1,4 +1,4 @@
-export * from "./open-dpp-api-client";
+export * from "./open-dpp-sdk";
 export * from "./models/models.namespace";
 export * from "./models/model.dtos";
 export * from "./items/items.namespace";

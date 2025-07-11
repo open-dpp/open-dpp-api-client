@@ -16,7 +16,7 @@ export class UniqueProductIdentifiersNamespace {
     );
   }
 
-  public async getUniqueProductIdentifierReference(uuid: string) {
+  public async getReference(uuid: string) {
     return this.axiosInstance.get<UniqueProductIdentifierReferenceDto>(
       `/organizations/${this.organizationId}/unique-product-identifiers/${uuid}/reference`,
     );
