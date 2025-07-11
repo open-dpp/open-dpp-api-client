@@ -6,9 +6,9 @@ import { ProductDataModelsNamespace } from "./product-data-models/product-data-m
 import { UniqueProductIdentifiersNamespace } from "./unique-product-identifiers/unique-product-identifiers.namespace";
 import { AasIntegrationNamespace } from "./integrations/aas-integration.namespace";
 import axios, { AxiosInstance } from "axios";
-import { SdkOptions } from "./open-dpp-client";
+import { IApiClient, ApiClientOptions } from "../api-client";
 
-export class DppApiClient {
+export class DppApiClient implements IApiClient {
   public organizations!: OrganizationsNamespace;
   public models!: ModelsNamespace;
   public items!: ItemsNamespace;
@@ -17,9 +17,9 @@ export class DppApiClient {
   public uniqueProductIdentifiers!: UniqueProductIdentifiersNamespace;
   public aasIntegration!: AasIntegrationNamespace;
   private axiosInstance!: AxiosInstance;
-  private options: SdkOptions;
+  private options: ApiClientOptions;
 
-  constructor(options: SdkOptions = {}) {
+  constructor(options: ApiClientOptions = {}) {
     this.options = options;
     this.createNewAxiosInstance();
   }
