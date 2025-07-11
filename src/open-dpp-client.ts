@@ -6,7 +6,7 @@ export interface SdkOptions extends AxiosRequestConfig {
   activeOrganizationId?: string;
 }
 
-export class OpenDppSdk {
+export class OpenDppClient {
   public readonly dpp: DppApiClient;
   constructor(options: SdkOptions = {}) {
     this.dpp = new DppApiClient(options);

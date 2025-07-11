@@ -6,7 +6,7 @@ import { ProductDataModelsNamespace } from "./product-data-models/product-data-m
 import { UniqueProductIdentifiersNamespace } from "./unique-product-identifiers/unique-product-identifiers.namespace";
 import { AasIntegrationNamespace } from "./integrations/aas-integration.namespace";
 import axios, { AxiosInstance } from "axios";
-import { SdkOptions } from "./open-dpp-sdk";
+import { SdkOptions } from "./open-dpp-client";
 
 export class DppApiClient {
   public organizations!: OrganizationsNamespace;

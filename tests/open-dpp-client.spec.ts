@@ -2,7 +2,7 @@ import { server } from "./msw.server";
 import {
   AssetAdministrationShellType,
   GranularityLevel,
-  OpenDppSdk,
+  OpenDppClient,
   VisibilityLevel,
 } from "../src";
 import { randomUUID } from "node:crypto";
@@ -35,7 +35,7 @@ describe("ApiClient", () => {
 
   describe("organizations", () => {
     it("should return organizations", async () => {
-      const sdk = new OpenDppSdk({
+      const sdk = new OpenDppClient({
         baseURL,
       });
       const response = await sdk.dpp.organizations.getAll();
@@ -45,7 +45,7 @@ describe("ApiClient", () => {
 
   describe("product-data-models", () => {
     it("should get all product data models", async () => {
-      const sdk = new OpenDppSdk({
+      const sdk = new OpenDppClient({
         baseURL,
       });
       sdk.setActiveOrganizationId(activeOrganization.id);
@@ -56,7 +56,7 @@ describe("ApiClient", () => {
     });
 
     it("should get product data model by id", async () => {
-      const sdk = new OpenDppSdk({
+      const sdk = new OpenDppClient({
         baseURL,
       });
       const response = await sdk.dpp.productDataModels.getById(
@@ -68,7 +68,7 @@ describe("ApiClient", () => {
 
   describe("model", () => {
     it("should return model", async () => {
-      const sdk = new OpenDppSdk({
+      const sdk = new OpenDppClient({
         baseURL,
       });
       sdk.setActiveOrganizationId(activeOrganization.id);
@@ -77,7 +77,7 @@ describe("ApiClient", () => {
     });
 
     it("should update model data", async () => {
-      const sdk = new OpenDppSdk({
+      const sdk = new OpenDppClient({
         baseURL,
       });
       sdk.setActiveOrganizationId(activeOrganization.id);
@@ -90,7 +90,7 @@ describe("ApiClient", () => {
     });
 
     it("should add model data", async () => {
-      const sdk = new OpenDppSdk({
+      const sdk = new OpenDppClient({
         baseURL,
       });
       sdk.setActiveOrganizationId(activeOrganization.id);
@@ -115,7 +115,7 @@ describe("ApiClient", () => {
       );
     });
     it("should assign product data model to model", async () => {
-      const sdk = new OpenDppSdk({
+      const sdk = new OpenDppClient({
         baseURL,
       });
       sdk.setActiveOrganizationId(activeOrganization.id);
@@ -133,7 +133,7 @@ describe("ApiClient", () => {
 
   describe("items", () => {
     it("should create item", async () => {
-      const sdk = new OpenDppSdk({
+      const sdk = new OpenDppClient({
         baseURL,
       });
       sdk.setActiveOrganizationId(activeOrganization.id);
@@ -143,7 +143,7 @@ describe("ApiClient", () => {
     });
 
     it("should get items", async () => {
-      const sdk = new OpenDppSdk({
+      const sdk = new OpenDppClient({
         baseURL,
       });
       sdk.setActiveOrganizationId(activeOrganization.id);
@@ -153,7 +153,7 @@ describe("ApiClient", () => {
     });
 
     it("should get single item", async () => {
-      const sdk = new OpenDppSdk({
+      const sdk = new OpenDppClient({
         baseURL,
       });
       sdk.setActiveOrganizationId(activeOrganization.id);
@@ -163,7 +163,7 @@ describe("ApiClient", () => {
     });
 
     it("should update item data", async () => {
-      const sdk = new OpenDppSdk({
+      const sdk = new OpenDppClient({
         baseURL,
       });
       sdk.setActiveOrganizationId(activeOrganization.id);
@@ -177,7 +177,7 @@ describe("ApiClient", () => {
     });
 
     it("should add item data", async () => {
-      const sdk = new OpenDppSdk({
+      const sdk = new OpenDppClient({
         baseURL,
       });
       sdk.setActiveOrganizationId(activeOrganization.id);
@@ -208,7 +208,7 @@ describe("ApiClient", () => {
   });
 
   describe("product-data-model-drafts", () => {
-    const sdk = new OpenDppSdk({
+    const sdk = new OpenDppClient({
       baseURL,
     });
     sdk.setActiveOrganizationId(activeOrganization.id);
@@ -355,7 +355,7 @@ describe("ApiClient", () => {
 
   describe("unique-product-identifiers", () => {
     it("should return view by unique product identifier", async () => {
-      const sdk = new OpenDppSdk({
+      const sdk = new OpenDppClient({
         baseURL,
       });
       const response = await sdk.dpp.uniqueProductIdentifiers.getView(
@@ -367,7 +367,7 @@ describe("ApiClient", () => {
     });
 
     it("should return reference of unique product identifier", async () => {
-      const sdk = new OpenDppSdk({
+      const sdk = new OpenDppClient({
         baseURL,
       });
       sdk.setActiveOrganizationId(activeOrganization.id);
@@ -379,7 +379,7 @@ describe("ApiClient", () => {
   });
 
   describe("aas-integration", () => {
-    const sdk = new OpenDppSdk({
+    const sdk = new OpenDppClient({
       baseURL,
     });
     sdk.setActiveOrganizationId(activeOrganization.id);
