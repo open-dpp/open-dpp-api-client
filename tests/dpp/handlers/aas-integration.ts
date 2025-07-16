@@ -6,7 +6,7 @@ import {
   AasConnectionGetAllDto,
   AasPropertyWithParentDto,
   AssetAdministrationShellType,
-} from "../../src";
+} from "../../../src";
 import { activeOrganization } from "./organization";
 
 export const connection: AasConnectionDto = {

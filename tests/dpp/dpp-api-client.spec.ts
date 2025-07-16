@@ -4,7 +4,7 @@ import {
   GranularityLevel,
   OpenDppClient,
   VisibilityLevel,
-} from "../src";
+} from "../../src";
 import { randomUUID } from "node:crypto";
 import { activeOrganization, organizations } from "./handlers/organization";
 import { model, responseDataValues, updateDataValues } from "./handlers/model";

@@ -3,7 +3,7 @@ import { baseURL } from "./index";
 import { randomUUID } from "node:crypto";
 import { productDataModel } from "./product-data-model";
 import { activeOrganization } from "./organization";
-import { DataValueDto } from "../../src";
+import { DataValueDto } from "../../../src";
 
 export const updateDataValues: DataValueDto[] = [
   {

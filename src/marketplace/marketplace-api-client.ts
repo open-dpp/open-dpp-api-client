@@ -3,7 +3,7 @@ import { ApiClientOptions, IApiClient } from "../api-client";
 import { PassportTemplatesNamespace } from "./passport-templates/passport-templates.namespace";
 
 export class MarketplaceApiClient implements IApiClient {
-  public passportTemplatesNamespace!: PassportTemplatesNamespace;
+  public passportTemplates!: PassportTemplatesNamespace;
   private axiosInstance!: AxiosInstance;
   private options: ApiClientOptions;
 
@@ -33,9 +33,6 @@ export class MarketplaceApiClient implements IApiClient {
       },
       ...this.options,
     });
-    this.passportTemplatesNamespace = new PassportTemplatesNamespace(
-      this.axiosInstance,
-      this.options.activeOrganizationId,
-    );
+    this.passportTemplates = new PassportTemplatesNamespace(this.axiosInstance);
   }
 }
