@@ -1,12 +1,23 @@
 import { AxiosInstance } from "axios";
 import {
+  PassportTemplateCreateDto,
   PassportTemplateDto,
   PassportTemplateGetAllDto,
 } from "./passport-templates.dtos";
 
 export class PassportTemplatesNamespace {
   private readonly templatesEndpoint: string = "/templates/passports";
-  constructor(public readonly axiosInstance: AxiosInstance) {}
+  constructor(
+    public readonly axiosInstance: AxiosInstance,
+    private readonly organizationId?: string,
+  ) {}
+
+  public async create(data: PassportTemplateCreateDto) {
+    return this.axiosInstance.post<PassportTemplateDto>(
+      `/organizations/${this.organizationId}${this.templatesEndpoint}`,
+      data,
+    );
+  }
 
   public async getAll() {
     return this.axiosInstance.get<PassportTemplateGetAllDto>(

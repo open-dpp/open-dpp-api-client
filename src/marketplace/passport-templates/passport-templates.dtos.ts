@@ -9,7 +9,6 @@ export interface PassportTemplateCreateDto {
   description: string;
   sectors: Sector[];
   website?: string | null;
-  contactEmail: string;
   organizationName: string;
   templateData: Record<string, unknown>;
 }
@@ -18,6 +17,7 @@ export interface PassportTemplateDto extends PassportTemplateCreateDto {
   id: string;
   ownedByOrganizationId: string;
   createdByUserId: string;
+  contactEmail: string;
   isOfficial: boolean;
   createdAt: string; // ISO datetime string
   updatedAt: string; // ISO datetime string

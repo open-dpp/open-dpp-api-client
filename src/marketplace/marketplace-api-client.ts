@@ -33,6 +33,9 @@ export class MarketplaceApiClient implements IApiClient {
       },
       ...this.options,
     });
-    this.passportTemplates = new PassportTemplatesNamespace(this.axiosInstance);
+    this.passportTemplates = new PassportTemplatesNamespace(
+      this.axiosInstance,
+      this.options.activeOrganizationId,
+    );
   }
 }
