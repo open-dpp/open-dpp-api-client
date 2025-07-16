@@ -20,7 +20,7 @@ export class PassportTemplatesNamespace {
   }
 
   public async getAll() {
-    return this.axiosInstance.get<PassportTemplateGetAllDto>(
+    return this.axiosInstance.get<PassportTemplateGetAllDto[]>(
       this.templatesEndpoint,
     );
   }

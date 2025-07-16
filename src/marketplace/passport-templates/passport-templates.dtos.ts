@@ -25,4 +25,4 @@ export interface PassportTemplateDto extends PassportTemplateCreateDto {
 
 // eslint-disable-next-line @typescript-eslint/no-empty-object-type
 export interface PassportTemplateGetAllDto
-  extends Omit<PassportTemplateCreateDto, "templateData"> {}
+  extends Omit<PassportTemplateDto, "templateData"> {}
