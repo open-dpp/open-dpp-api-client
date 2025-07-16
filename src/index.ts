@@ -19,6 +19,8 @@ export * from "./dpp/data-modelling/granularity-level";
 export * from "./dpp/passport/data-value.dto";
 export * from "./dpp/integrations/aas-integration.dtos";
 export * from "./dpp/integrations/aas-integration.namespace";
+export * from "./dpp/dpp-api-client";
+
 export * from "./marketplace/passport-templates/passport-templates.namespace";
 export * from "./marketplace/marketplace-api-client";
-export * from "./dpp/dpp-api-client";
+export * from "./marketplace/passport-templates/passport-templates.dtos";

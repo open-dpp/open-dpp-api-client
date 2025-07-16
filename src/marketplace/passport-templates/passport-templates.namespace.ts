@@ -13,6 +13,9 @@ export class PassportTemplatesNamespace {
   ) {}
 
   public async create(data: PassportTemplateCreateDto) {
+    console.log(
+      `/organizations/${this.organizationId}${this.templatesEndpoint}`,
+    );
     return this.axiosInstance.post<PassportTemplateDto>(
       `/organizations/${this.organizationId}${this.templatesEndpoint}`,
       data,
