@@ -3,6 +3,7 @@ import { SectionDto, SectionType } from "../data-modelling/section.dto";
 import { DataFieldType } from "../data-modelling/data-field.dto";
 import { LayoutDto, SectionLayout } from "../data-modelling/layout.dto";
 import { GranularityLevel } from "../data-modelling/granularity-level";
+import { Sector } from "../../marketplace/passport-templates/passport-templates.dtos";
 
 export interface PublicationDto {
   id: string;
@@ -11,6 +12,7 @@ export interface PublicationDto {
 
 export interface PublicationCreateDto {
   visibility: VisibilityLevel;
+  sectors?: Sector[];
 }
 
 export interface ProductDataModelDraftDto {
