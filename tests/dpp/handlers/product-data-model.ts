@@ -4,11 +4,11 @@ import {
   GranularityLevel,
   ProductDataModelDto,
   VisibilityLevel,
-} from "../../src";
+} from "../../../src";
 import { randomUUID } from "node:crypto";
 import { activeOrganization } from "./organization";
-import { SectionType } from "../../src";
-import { DataFieldType } from "../../src";
+import { SectionType } from "../../../src";
+import { DataFieldType } from "../../../src";
 
 const dataModelId = randomUUID();
 

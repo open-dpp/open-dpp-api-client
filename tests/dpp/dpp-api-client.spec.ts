@@ -2,9 +2,9 @@ import { server } from "./msw.server";
 import {
   AssetAdministrationShellType,
   GranularityLevel,
-  OpenDppApiClient,
+  OpenDppClient,
   VisibilityLevel,
-} from "../src";
+} from "../../src";
 import { randomUUID } from "node:crypto";
 import { activeOrganization, organizations } from "./handlers/organization";
 import { model, responseDataValues, updateDataValues } from "./handlers/model";
@@ -35,31 +35,31 @@ describe("ApiClient", () => {
 
   describe("organizations", () => {
     it("should return organizations", async () => {
-      const client = new OpenDppApiClient({
-        baseURL,
+      const sdk = new OpenDppClient({
+        dpp: { baseURL },
       });
-      const response = await client.organizations.getAll();
+      const response = await sdk.dpp.organizations.getAll();
       expect(response.data).toEqual(organizations);
     });
   });
 
   describe("product-data-models", () => {
     it("should get all product data models", async () => {
-      const client = new OpenDppApiClient({
-        baseURL,
+      const sdk = new OpenDppClient({
+        dpp: { baseURL },
       });
-      client.setActiveOrganizationId(activeOrganization.id);
-      const response = await client.productDataModels.getAll();
+      sdk.setActiveOrganizationId(activeOrganization.id);
+      const response = await sdk.dpp.productDataModels.getAll();
       expect(response.data).toEqual([
         { id: productDataModel.id, name: productDataModel.name },
       ]);
     });
 
     it("should get product data model by id", async () => {
-      const client = new OpenDppApiClient({
-        baseURL,
+      const sdk = new OpenDppClient({
+        dpp: { baseURL },
       });
-      const response = await client.productDataModels.getProductDataModelById(
+      const response = await sdk.dpp.productDataModels.getById(
         productDataModel.id,
       );
       expect(response.data).toEqual(productDataModel);
@@ -68,21 +68,21 @@ describe("ApiClient", () => {
 
   describe("model", () => {
     it("should return model", async () => {
-      const client = new OpenDppApiClient({
-        baseURL,
+      const sdk = new OpenDppClient({
+        dpp: { baseURL },
       });
-      client.setActiveOrganizationId(activeOrganization.id);
-      const response = await client.models.getModelById(model.id);
+      sdk.setActiveOrganizationId(activeOrganization.id);
+      const response = await sdk.dpp.models.getById(model.id);
       expect(response.data).toEqual(model);
     });
 
     it("should update model data", async () => {
-      const client = new OpenDppApiClient({
-        baseURL,
+      const sdk = new OpenDppClient({
+        dpp: { baseURL },
       });
-      client.setActiveOrganizationId(activeOrganization.id);
+      sdk.setActiveOrganizationId(activeOrganization.id);
 
-      const response = await client.models.updateModelData(
+      const response = await sdk.dpp.models.modifyData(
         model.id,
         updateDataValues,
       );
@@ -90,10 +90,10 @@ describe("ApiClient", () => {
     });
 
     it("should add model data", async () => {
-      const client = new OpenDppApiClient({
-        baseURL,
+      const sdk = new OpenDppClient({
+        dpp: { baseURL },
       });
-      client.setActiveOrganizationId(activeOrganization.id);
+      sdk.setActiveOrganizationId(activeOrganization.id);
 
       const addDataValues = [
         {
@@ -109,21 +109,18 @@ describe("ApiClient", () => {
           value: "B",
         },
       ];
-      const response = await client.models.addModelData(
-        model.id,
-        addDataValues,
-      );
+      const response = await sdk.dpp.models.addData(model.id, addDataValues);
       expect(response.data.dataValues).toEqual(
         addDataValues.map((v) => ({ ...v })),
       );
     });
     it("should assign product data model to model", async () => {
-      const client = new OpenDppApiClient({
-        baseURL,
+      const sdk = new OpenDppClient({
+        dpp: { baseURL },
       });
-      client.setActiveOrganizationId(activeOrganization.id);
+      sdk.setActiveOrganizationId(activeOrganization.id);
 
-      const response = await client.models.assignProductDataModelToModel(
+      const response = await sdk.dpp.models.assignProductDataModel(
         productDataModel.id,
         model.id,
       );
@@ -136,42 +133,42 @@ describe("ApiClient", () => {
 
   describe("items", () => {
     it("should create item", async () => {
-      const client = new OpenDppApiClient({
-        baseURL,
+      const sdk = new OpenDppClient({
+        dpp: { baseURL },
       });
-      client.setActiveOrganizationId(activeOrganization.id);
+      sdk.setActiveOrganizationId(activeOrganization.id);
 
-      const response = await client.items.createItem(model.id);
+      const response = await sdk.dpp.items.create(model.id);
       expect(response.data).toEqual(item1);
     });
 
     it("should get items", async () => {
-      const client = new OpenDppApiClient({
-        baseURL,
+      const sdk = new OpenDppClient({
+        dpp: { baseURL },
       });
-      client.setActiveOrganizationId(activeOrganization.id);
+      sdk.setActiveOrganizationId(activeOrganization.id);
 
-      const response = await client.items.getItems(model.id);
+      const response = await sdk.dpp.items.getAll(model.id);
       expect(response.data).toEqual([item1, item2]);
     });
 
     it("should get single item", async () => {
-      const client = new OpenDppApiClient({
-        baseURL,
+      const sdk = new OpenDppClient({
+        dpp: { baseURL },
       });
-      client.setActiveOrganizationId(activeOrganization.id);
+      sdk.setActiveOrganizationId(activeOrganization.id);
 
-      const response = await client.items.getItem(model.id, item1.id);
+      const response = await sdk.dpp.items.getById(model.id, item1.id);
       expect(response.data).toEqual(item1);
     });
 
     it("should update item data", async () => {
-      const client = new OpenDppApiClient({
-        baseURL,
+      const sdk = new OpenDppClient({
+        dpp: { baseURL },
       });
-      client.setActiveOrganizationId(activeOrganization.id);
+      sdk.setActiveOrganizationId(activeOrganization.id);
 
-      const response = await client.items.updateItemData(
+      const response = await sdk.dpp.items.modifyData(
         model.id,
         item1.id,
         updateDataValues,
@@ -180,10 +177,10 @@ describe("ApiClient", () => {
     });
 
     it("should add item data", async () => {
-      const client = new OpenDppApiClient({
-        baseURL,
+      const sdk = new OpenDppClient({
+        dpp: { baseURL },
       });
-      client.setActiveOrganizationId(activeOrganization.id);
+      sdk.setActiveOrganizationId(activeOrganization.id);
 
       const addDataValues = [
         {
@@ -199,7 +196,7 @@ describe("ApiClient", () => {
           value: "B",
         },
       ];
-      const response = await client.items.addItemData(
+      const response = await sdk.dpp.items.addData(
         model.id,
         item1.id,
         addDataValues,
@@ -211,12 +208,12 @@ describe("ApiClient", () => {
   });
 
   describe("product-data-model-drafts", () => {
-    const client = new OpenDppApiClient({
-      baseURL,
+    const sdk = new OpenDppClient({
+      dpp: { baseURL },
     });
-    client.setActiveOrganizationId(activeOrganization.id);
+    sdk.setActiveOrganizationId(activeOrganization.id);
     it("should be created", async () => {
-      const response = await client.productDataModelDrafts.create({
+      const response = await sdk.dpp.productDataModelDrafts.create({
         name: productDataModelDraft.name,
       });
       expect(response.data).toEqual({
@@ -224,7 +221,7 @@ describe("ApiClient", () => {
       });
     });
     it("should add section to draft", async () => {
-      const response = await client.productDataModelDrafts.addSection(
+      const response = await sdk.dpp.productDataModelDrafts.addSection(
         productDataModelDraft.id,
         {
           name: sectionDraft.name,
@@ -244,7 +241,7 @@ describe("ApiClient", () => {
       });
     });
     it("should add data field to section of draft", async () => {
-      const response = await client.productDataModelDrafts.addDataField(
+      const response = await sdk.dpp.productDataModelDrafts.addDataField(
         productDataModelDraft.id,
         sectionDraft.id,
         {
@@ -266,7 +263,7 @@ describe("ApiClient", () => {
     });
 
     it("should modify data field", async () => {
-      const response = await client.productDataModelDrafts.modifyDataField(
+      const response = await sdk.dpp.productDataModelDrafts.modifyDataField(
         productDataModelDraft.id,
         sectionDraft.id,
         dataFieldDraft.id,
@@ -287,7 +284,7 @@ describe("ApiClient", () => {
     });
 
     it("should delete data field", async () => {
-      const response = await client.productDataModelDrafts.deleteDataField(
+      const response = await sdk.dpp.productDataModelDrafts.deleteDataField(
         productDataModelDraft.id,
         sectionDraft.id,
         dataFieldDraft.id,
@@ -298,7 +295,7 @@ describe("ApiClient", () => {
     });
 
     it("should delete section", async () => {
-      const response = await client.productDataModelDrafts.deleteSection(
+      const response = await sdk.dpp.productDataModelDrafts.deleteSection(
         productDataModelDraft.id,
         sectionDraft.id,
       );
@@ -308,7 +305,7 @@ describe("ApiClient", () => {
     });
 
     it("should modify section", async () => {
-      const response = await client.productDataModelDrafts.modifySection(
+      const response = await sdk.dpp.productDataModelDrafts.modifySection(
         productDataModelDraft.id,
         sectionDraft.id,
         {
@@ -328,19 +325,19 @@ describe("ApiClient", () => {
     });
 
     it("should get all product data model drafts", async () => {
-      const response = await client.productDataModelDrafts.getAll();
+      const response = await sdk.dpp.productDataModelDrafts.getAll();
       expect(response.data).toEqual(draftsOfOrganization);
     });
 
     it("should get product data model draft", async () => {
-      const response = await client.productDataModelDrafts.getById(
+      const response = await sdk.dpp.productDataModelDrafts.getById(
         productDataModelDraft.id,
       );
       expect(response.data).toEqual({ ...productDataModelDraft });
     });
 
     it("should modify product data model draft", async () => {
-      const response = await client.productDataModelDrafts.modify(
+      const response = await sdk.dpp.productDataModelDrafts.modify(
         productDataModelDraft.id,
         { name: "new Name" },
       );
@@ -348,7 +345,7 @@ describe("ApiClient", () => {
     });
 
     it("should be published", async () => {
-      const response = await client.productDataModelDrafts.publish(
+      const response = await sdk.dpp.productDataModelDrafts.publish(
         productDataModelDraft.id,
         { visibility: VisibilityLevel.PRIVATE },
       );
@@ -358,10 +355,10 @@ describe("ApiClient", () => {
 
   describe("unique-product-identifiers", () => {
     it("should return view by unique product identifier", async () => {
-      const client = new OpenDppApiClient({
-        baseURL,
+      const sdk = new OpenDppClient({
+        dpp: { baseURL },
       });
-      const response = await client.uniqueProductIdentifiers.getView(
+      const response = await sdk.dpp.uniqueProductIdentifiers.getView(
         uniqueProductIdentifierId,
       );
       expect(response.data).toEqual({
@@ -370,37 +367,38 @@ describe("ApiClient", () => {
     });
 
     it("should return reference of unique product identifier", async () => {
-      const client = new OpenDppApiClient({
-        baseURL,
+      const sdk = new OpenDppClient({
+        dpp: { baseURL },
       });
-      client.setActiveOrganizationId(activeOrganization.id);
-      const response =
-        await client.uniqueProductIdentifiers.getUniqueProductIdentifierReference(
-          uniqueProductIdentifierId,
-        );
+      sdk.setActiveOrganizationId(activeOrganization.id);
+      const response = await sdk.dpp.uniqueProductIdentifiers.getReference(
+        uniqueProductIdentifierId,
+      );
       expect(response.data).toEqual(uniqueProductIdentifierReference);
     });
   });
 
   describe("aas-integration", () => {
-    const client = new OpenDppApiClient({
-      baseURL,
+    const sdk = new OpenDppClient({
+      dpp: { baseURL },
     });
-    client.setActiveOrganizationId(activeOrganization.id);
+    sdk.setActiveOrganizationId(activeOrganization.id);
     it("should return aas connection", async () => {
-      const response = await client.aasIntegration.getConnection(connection.id);
+      const response = await sdk.dpp.aasIntegration.getConnection(
+        connection.id,
+      );
       expect(response.data).toEqual({
         ...connection,
       });
     });
 
     it("should return all aas connections of organization", async () => {
-      const response = await client.aasIntegration.getAllConnections();
+      const response = await sdk.dpp.aasIntegration.getAllConnections();
       expect(response.data).toEqual(connectionList);
     });
 
     it("should create aas connection", async () => {
-      const response = await client.aasIntegration.createConnection({
+      const response = await sdk.dpp.aasIntegration.createConnection({
         name: "Connection 1",
         aasType: AssetAdministrationShellType.Truck,
         dataModelId: randomUUID(),
@@ -420,7 +418,7 @@ describe("ApiClient", () => {
     });
 
     it("should patch aas connection", async () => {
-      const response = await client.aasIntegration.modifyConnection(
+      const response = await sdk.dpp.aasIntegration.modifyConnection(
         connection.id,
         {
           name: "Connection 2",
@@ -441,7 +439,7 @@ describe("ApiClient", () => {
     });
 
     it("should return aas properties with parent for given aas type", async () => {
-      const response = await client.aasIntegration.getPropertiesOfAas(
+      const response = await sdk.dpp.aasIntegration.getPropertiesOfAas(
         AssetAdministrationShellType.Truck,
       );
       expect(response.data).toEqual(aasPropertiesWithParent);

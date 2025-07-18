@@ -6,7 +6,7 @@ import {
   GranularityLevel,
   UniqueProductIdentifierReferenceDto,
   ViewDto,
-} from "../../src";
+} from "../../../src";
 import { activeOrganization } from "./organization";
 
 export const uniqueProductIdentifierId = randomUUID();

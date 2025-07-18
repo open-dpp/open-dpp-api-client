@@ -16,7 +16,7 @@ export class ProductDataModelsNamespace {
     );
   }
 
-  public async getProductDataModelById(id: string) {
+  public async getById(id: string) {
     return this.axiosInstance.get<ProductDataModelDto>(
       `/product-data-models/${id}`,
     );
