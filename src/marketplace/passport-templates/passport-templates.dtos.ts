@@ -21,6 +21,7 @@ export interface PassportTemplateDto extends PassportTemplateCreateDto {
   isOfficial: boolean;
   createdAt: string; // ISO datetime string
   updatedAt: string; // ISO datetime string
+  marketplaceResourceId?: string;
 }
 
 // eslint-disable-next-line @typescript-eslint/no-empty-object-type
