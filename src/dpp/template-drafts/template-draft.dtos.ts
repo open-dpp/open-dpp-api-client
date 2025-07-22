@@ -15,7 +15,7 @@ export interface PublicationCreateDto {
   sectors?: Sector[];
 }
 
-export interface ProductDataModelDraftDto {
+export interface TemplateDraftDto {
   id: string;
   name: string;
   version: string;
@@ -25,7 +25,7 @@ export interface ProductDataModelDraftDto {
   ownedByOrganizationId: string;
 }
 
-export interface ProductDataModelDraftGetAllDto {
+export interface TemplateDraftGetAllDto {
   id: string;
   name: string;
 }
@@ -48,7 +48,7 @@ export interface SectionDraftCreateDto {
   granularityLevel?: GranularityLevel;
 }
 
-export interface ProductDataModelDraftCreateDto {
+export interface TemplateDraftCreateDto {
   name: string;
 }
 
@@ -65,6 +65,6 @@ export interface SectionDraftUpdateDto {
   layout: SectionLayout;
 }
 
-export interface ProductDataModelDraftUpdateDto {
+export interface TemplateDraftUpdateDto {
   name: string;
 }

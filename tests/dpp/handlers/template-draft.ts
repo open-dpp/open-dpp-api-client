@@ -2,8 +2,8 @@ import { http, HttpResponse } from "msw";
 import { baseURL } from "./index";
 import {
   GranularityLevel,
-  ProductDataModelDraftDto,
-  ProductDataModelDraftGetAllDto,
+  TemplateDraftDto,
+  TemplateDraftGetAllDto,
 } from "../../../src";
 import { randomUUID } from "node:crypto";
 import { activeOrganization } from "./organization";
@@ -13,7 +13,7 @@ import { DataFieldDto, DataFieldType } from "../../../src";
 
 const dataModelId = randomUUID();
 
-export const productDataModelDraft: ProductDataModelDraftDto = {
+export const templateDraft: TemplateDraftDto = {
   id: dataModelId,
   name: "Laptop neu",
   version: "1.0.0",
@@ -54,8 +54,8 @@ export const productDataModelDraft: ProductDataModelDraftDto = {
   ],
 };
 
-export const draftsOfOrganization: ProductDataModelDraftGetAllDto[] = [
-  { id: productDataModelDraft.id, name: productDataModelDraft.name },
+export const draftsOfOrganization: TemplateDraftGetAllDto[] = [
+  { id: templateDraft.id, name: templateDraft.name },
   { id: randomUUID(), name: "Other draft" },
 ];
 
@@ -88,69 +88,66 @@ export const dataFieldDraft: DataFieldDto = {
   granularityLevel: GranularityLevel.MODEL,
 };
 
-const draftEndpointUrl = `${baseURL}/organizations/${activeOrganization.id}/product-data-model-drafts`;
+const draftEndpointUrl = `${baseURL}/organizations/${activeOrganization.id}/template-drafts`;
 
-export const productDataModelDraftsHandlers = [
+export const templateDraftsHandlers = [
   http.post(`${draftEndpointUrl}`, async () => {
-    return HttpResponse.json(productDataModelDraft, {
+    return HttpResponse.json(templateDraft, {
       status: 201,
     });
   }),
+  http.post(`${draftEndpointUrl}/${templateDraft.id}/sections`, async () => {
+    return HttpResponse.json(templateDraft, {
+      status: 200,
+    });
+  }),
   http.post(
-    `${draftEndpointUrl}/${productDataModelDraft.id}/sections`,
+    `${draftEndpointUrl}/${templateDraft.id}/sections/${sectionDraft.id}`,
     async () => {
-      return HttpResponse.json(productDataModelDraft, {
+      return HttpResponse.json(templateDraft, {
         status: 200,
       });
     },
   ),
   http.post(
-    `${draftEndpointUrl}/${productDataModelDraft.id}/sections/${sectionDraft.id}`,
+    `${draftEndpointUrl}/${templateDraft.id}/sections/${sectionDraft.id}/data-fields`,
     async () => {
-      return HttpResponse.json(productDataModelDraft, {
-        status: 200,
-      });
-    },
-  ),
-  http.post(
-    `${draftEndpointUrl}/${productDataModelDraft.id}/sections/${sectionDraft.id}/data-fields`,
-    async () => {
-      return HttpResponse.json(productDataModelDraft, {
+      return HttpResponse.json(templateDraft, {
         status: 200,
       });
     },
   ),
   http.patch(
-    `${draftEndpointUrl}/${productDataModelDraft.id}/sections/${sectionDraft.id}/data-fields/${dataFieldDraft.id}`,
+    `${draftEndpointUrl}/${templateDraft.id}/sections/${sectionDraft.id}/data-fields/${dataFieldDraft.id}`,
     async () => {
-      return HttpResponse.json(productDataModelDraft, {
+      return HttpResponse.json(templateDraft, {
         status: 200,
       });
     },
   ),
 
   http.delete(
-    `${draftEndpointUrl}/${productDataModelDraft.id}/sections/${sectionDraft.id}/data-fields/${dataFieldDraft.id}`,
+    `${draftEndpointUrl}/${templateDraft.id}/sections/${sectionDraft.id}/data-fields/${dataFieldDraft.id}`,
     async () => {
-      return HttpResponse.json(productDataModelDraft, {
+      return HttpResponse.json(templateDraft, {
         status: 200,
       });
     },
   ),
 
   http.delete(
-    `${draftEndpointUrl}/${productDataModelDraft.id}/sections/${sectionDraft.id}`,
+    `${draftEndpointUrl}/${templateDraft.id}/sections/${sectionDraft.id}`,
     async () => {
-      return HttpResponse.json(productDataModelDraft, {
+      return HttpResponse.json(templateDraft, {
         status: 200,
       });
     },
   ),
 
   http.patch(
-    `${draftEndpointUrl}/${productDataModelDraft.id}/sections/${sectionDraft.id}`,
+    `${draftEndpointUrl}/${templateDraft.id}/sections/${sectionDraft.id}`,
     async () => {
-      return HttpResponse.json(productDataModelDraft, {
+      return HttpResponse.json(templateDraft, {
         status: 200,
       });
     },
@@ -161,24 +158,21 @@ export const productDataModelDraftsHandlers = [
     });
   }),
 
-  http.get(`${draftEndpointUrl}/${productDataModelDraft.id}`, async () => {
-    return HttpResponse.json(productDataModelDraft, {
+  http.get(`${draftEndpointUrl}/${templateDraft.id}`, async () => {
+    return HttpResponse.json(templateDraft, {
       status: 200,
     });
   }),
 
-  http.patch(`${draftEndpointUrl}/${productDataModelDraft.id}`, async () => {
-    return HttpResponse.json(productDataModelDraft, {
+  http.patch(`${draftEndpointUrl}/${templateDraft.id}`, async () => {
+    return HttpResponse.json(templateDraft, {
       status: 200,
     });
   }),
 
-  http.post(
-    `${draftEndpointUrl}/${productDataModelDraft.id}/publish`,
-    async () => {
-      return HttpResponse.json(productDataModel, {
-        status: 200,
-      });
-    },
-  ),
+  http.post(`${draftEndpointUrl}/${templateDraft.id}/publish`, async () => {
+    return HttpResponse.json(productDataModel, {
+      status: 200,
+    });
+  }),
 ];
