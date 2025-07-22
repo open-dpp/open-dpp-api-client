@@ -7,8 +7,8 @@ export * from "./dpp/organizations/organization.dtos";
 export * from "./dpp/organizations/organizations.namespace";
 export * from "./dpp/template-drafts/template-draft.dtos";
 export * from "./dpp/template-drafts/template-drafts.namespace";
-export * from "./dpp/product-data-models/product-data-model.dtos";
-export * from "./dpp/product-data-models/product-data-models.namespace";
+export * from "./dpp/templates/template.dtos";
+export * from "./dpp/templates/templates.namespace";
 export * from "./dpp/unique-product-identifiers/unique-product-identifiers.dtos";
 export * from "./dpp/unique-product-identifiers/unique-product-identifiers.namespace";
 export * from "./dpp/users/user.dtos";
@@ -24,3 +24,5 @@ export * from "./dpp/dpp-api-client";
 export * from "./marketplace/passport-templates/passport-templates.namespace";
 export * from "./marketplace/marketplace-api-client";
 export * from "./marketplace/passport-templates/passport-templates.dtos";
+
+export { VisibilityLevel } from "./dpp/template-drafts/template-draft.dtos";

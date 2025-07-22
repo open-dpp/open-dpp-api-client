@@ -29,12 +29,9 @@ export class ModelsNamespace {
     );
   }
 
-  public async assignProductDataModel(
-    productDataModelId: string,
-    modelId: string,
-  ) {
+  public async assignProductDataModel(templateId: string, modelId: string) {
     return this.axiosInstance.post<ModelDto>(
-      `${this.modelsEndpoint}/${modelId}/product-data-models/${productDataModelId}`,
+      `${this.modelsEndpoint}/${modelId}/templates/${templateId}`,
     );
   }
 

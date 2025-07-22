@@ -8,7 +8,7 @@ import {
 import { randomUUID } from "node:crypto";
 import { activeOrganization, organizations } from "./handlers/organization";
 import { model, responseDataValues, updateDataValues } from "./handlers/model";
-import { productDataModel } from "./handlers/product-data-model";
+import { template } from "./handlers/template";
 import {
   responseView,
   uniqueProductIdentifierId,
@@ -43,26 +43,19 @@ describe("ApiClient", () => {
     });
   });
 
-  describe("product-data-models", () => {
-    it("should get all product data models", async () => {
-      const sdk = new OpenDppClient({
-        dpp: { baseURL },
-      });
-      sdk.setActiveOrganizationId(activeOrganization.id);
-      const response = await sdk.dpp.productDataModels.getAll();
-      expect(response.data).toEqual([
-        { id: productDataModel.id, name: productDataModel.name },
-      ]);
+  describe("templates", () => {
+    const sdk = new OpenDppClient({
+      dpp: { baseURL },
+    });
+    sdk.setActiveOrganizationId(activeOrganization.id);
+    it("should get all templates", async () => {
+      const response = await sdk.dpp.templates.getAll();
+      expect(response.data).toEqual([{ id: template.id, name: template.name }]);
     });
 
-    it("should get product data model by id", async () => {
-      const sdk = new OpenDppClient({
-        dpp: { baseURL },
-      });
-      const response = await sdk.dpp.productDataModels.getById(
-        productDataModel.id,
-      );
-      expect(response.data).toEqual(productDataModel);
+    it("should get template by id", async () => {
+      const response = await sdk.dpp.templates.getById(template.id);
+      expect(response.data).toEqual(template);
     });
   });
 
@@ -121,12 +114,12 @@ describe("ApiClient", () => {
       sdk.setActiveOrganizationId(activeOrganization.id);
 
       const response = await sdk.dpp.models.assignProductDataModel(
-        productDataModel.id,
+        template.id,
         model.id,
       );
       expect(response.data).toEqual({
         ...model,
-        productDataModelId: productDataModel.id,
+        productDataModelId: template.id,
       });
     });
   });
@@ -213,7 +206,7 @@ describe("ApiClient", () => {
     });
     sdk.setActiveOrganizationId(activeOrganization.id);
     it("should be created", async () => {
-      const response = await sdk.dpp.productDataModelDrafts.create({
+      const response = await sdk.dpp.templateDrafts.create({
         name: templateDraft.name,
       });
       expect(response.data).toEqual({
@@ -221,7 +214,7 @@ describe("ApiClient", () => {
       });
     });
     it("should add section to draft", async () => {
-      const response = await sdk.dpp.productDataModelDrafts.addSection(
+      const response = await sdk.dpp.templateDrafts.addSection(
         templateDraft.id,
         {
           name: sectionDraft.name,
@@ -241,7 +234,7 @@ describe("ApiClient", () => {
       });
     });
     it("should add data field to section of draft", async () => {
-      const response = await sdk.dpp.productDataModelDrafts.addDataField(
+      const response = await sdk.dpp.templateDrafts.addDataField(
         templateDraft.id,
         sectionDraft.id,
         {
@@ -263,7 +256,7 @@ describe("ApiClient", () => {
     });
 
     it("should modify data field", async () => {
-      const response = await sdk.dpp.productDataModelDrafts.modifyDataField(
+      const response = await sdk.dpp.templateDrafts.modifyDataField(
         templateDraft.id,
         sectionDraft.id,
         dataFieldDraft.id,
@@ -284,7 +277,7 @@ describe("ApiClient", () => {
     });
 
     it("should delete data field", async () => {
-      const response = await sdk.dpp.productDataModelDrafts.deleteDataField(
+      const response = await sdk.dpp.templateDrafts.deleteDataField(
         templateDraft.id,
         sectionDraft.id,
         dataFieldDraft.id,
@@ -295,7 +288,7 @@ describe("ApiClient", () => {
     });
 
     it("should delete section", async () => {
-      const response = await sdk.dpp.productDataModelDrafts.deleteSection(
+      const response = await sdk.dpp.templateDrafts.deleteSection(
         templateDraft.id,
         sectionDraft.id,
       );
@@ -305,7 +298,7 @@ describe("ApiClient", () => {
     });
 
     it("should modify section", async () => {
-      const response = await sdk.dpp.productDataModelDrafts.modifySection(
+      const response = await sdk.dpp.templateDrafts.modifySection(
         templateDraft.id,
         sectionDraft.id,
         {
@@ -325,31 +318,27 @@ describe("ApiClient", () => {
     });
 
     it("should get all product data model drafts", async () => {
-      const response = await sdk.dpp.productDataModelDrafts.getAll();
+      const response = await sdk.dpp.templateDrafts.getAll();
       expect(response.data).toEqual(draftsOfOrganization);
     });
 
     it("should get product data model draft", async () => {
-      const response = await sdk.dpp.productDataModelDrafts.getById(
-        templateDraft.id,
-      );
+      const response = await sdk.dpp.templateDrafts.getById(templateDraft.id);
       expect(response.data).toEqual({ ...templateDraft });
     });
 
     it("should modify product data model draft", async () => {
-      const response = await sdk.dpp.productDataModelDrafts.modify(
-        templateDraft.id,
-        { name: "new Name" },
-      );
+      const response = await sdk.dpp.templateDrafts.modify(templateDraft.id, {
+        name: "new Name",
+      });
       expect(response.data).toEqual({ ...templateDraft });
     });
 
     it("should be published", async () => {
-      const response = await sdk.dpp.productDataModelDrafts.publish(
-        templateDraft.id,
-        { visibility: VisibilityLevel.PRIVATE },
-      );
-      expect(response.data).toEqual({ ...productDataModel });
+      const response = await sdk.dpp.templateDrafts.publish(templateDraft.id, {
+        visibility: VisibilityLevel.PRIVATE,
+      });
+      expect(response.data).toEqual({ ...template });
     });
   });
 

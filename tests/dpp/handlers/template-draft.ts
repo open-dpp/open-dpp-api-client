@@ -7,7 +7,7 @@ import {
 } from "../../../src";
 import { randomUUID } from "node:crypto";
 import { activeOrganization } from "./organization";
-import { productDataModel } from "./product-data-model";
+import { template } from "./template";
 import { SectionDto, SectionType } from "../../../src";
 import { DataFieldDto, DataFieldType } from "../../../src";
 
@@ -171,7 +171,7 @@ export const templateDraftsHandlers = [
   }),
 
   http.post(`${draftEndpointUrl}/${templateDraft.id}/publish`, async () => {
-    return HttpResponse.json(productDataModel, {
+    return HttpResponse.json(template, {
       status: 200,
     });
   }),
