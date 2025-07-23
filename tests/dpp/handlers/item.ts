@@ -9,14 +9,14 @@ export const item1: ItemDto = {
   id: randomUUID(),
   uniqueProductIdentifiers: [],
   dataValues: [],
-  productDataModelId: randomUUID(),
+  templateId: randomUUID(),
 };
 
 export const item2: ItemDto = {
   id: randomUUID(),
   uniqueProductIdentifiers: [],
   dataValues: [],
-  productDataModelId: randomUUID(),
+  templateId: randomUUID(),
 };
 
 export const itemHandlers = [

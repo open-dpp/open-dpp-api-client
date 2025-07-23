@@ -10,6 +10,6 @@ export interface DataValueDto {
 export interface PassportDto {
   id: string;
   uniqueProductIdentifiers: UniqueProductIdentifierDto[];
-  productDataModelId?: string;
+  templateId: string;
   dataValues: DataValueDto[];
 }
