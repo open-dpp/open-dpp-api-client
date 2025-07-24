@@ -60,6 +60,18 @@ describe("ApiClient", () => {
   });
 
   describe("model", () => {
+    it("should create model", async () => {
+      const sdk = new OpenDppClient({
+        dpp: { baseURL },
+      });
+      sdk.setActiveOrganizationId(activeOrganization.id);
+      const response = await sdk.dpp.models.create({
+        name: "model test",
+        description: "description test",
+        templateId: randomUUID(),
+      });
+      expect(response.data).toEqual(model);
+    });
     it("should return model", async () => {
       const sdk = new OpenDppClient({
         dpp: { baseURL },
@@ -106,21 +118,6 @@ describe("ApiClient", () => {
       expect(response.data.dataValues).toEqual(
         addDataValues.map((v) => ({ ...v })),
       );
-    });
-    it("should assign product data model to model", async () => {
-      const sdk = new OpenDppClient({
-        dpp: { baseURL },
-      });
-      sdk.setActiveOrganizationId(activeOrganization.id);
-
-      const response = await sdk.dpp.models.assignProductDataModel(
-        template.id,
-        model.id,
-      );
-      expect(response.data).toEqual({
-        ...model,
-        productDataModelId: template.id,
-      });
     });
   });
 
@@ -200,7 +197,7 @@ describe("ApiClient", () => {
     });
   });
 
-  describe("product-data-model-drafts", () => {
+  describe("template-drafts", () => {
     const sdk = new OpenDppClient({
       dpp: { baseURL },
     });

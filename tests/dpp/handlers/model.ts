@@ -50,6 +50,9 @@ export const modelHandlers = [
       return HttpResponse.json(model);
     },
   ),
+  http.post(`${baseURL}/organizations/${activeOrganization.id}/models`, () => {
+    return HttpResponse.json(model);
+  }),
   http.patch(
     `${baseURL}/organizations/${activeOrganization.id}/models/${model.id}/data-values`,
     async ({ request }) => {

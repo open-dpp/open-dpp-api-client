@@ -8,4 +8,7 @@ export interface ModelDto extends PassportDto {
 
 export interface ModelCreateDto {
   name: string;
+  description?: string;
+  templateId?: string;
+  marketplaceResourceId?: string;
 }
