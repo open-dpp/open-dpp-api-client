@@ -53,7 +53,7 @@ export const template: TemplateDto = {
 
 const templatesEndpointUrl = `${baseURL}/organizations/${activeOrganization.id}/templates`;
 
-export const productDataModelHandlers = [
+export const templateHandlers = [
   http.get(templatesEndpointUrl, async () => {
     return HttpResponse.json([{ id: template.id, name: template.name }], {
       status: 200,

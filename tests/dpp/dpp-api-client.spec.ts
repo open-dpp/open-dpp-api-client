@@ -18,8 +18,8 @@ import { item1, item2 } from "./handlers/item";
 import {
   dataFieldDraft,
   draftsOfOrganization,
-  templateDraft,
   sectionDraft,
+  templateDraft,
 } from "./handlers/template-draft";
 import {
   aasPropertiesWithParent,
@@ -314,17 +314,17 @@ describe("ApiClient", () => {
       });
     });
 
-    it("should get all product data model drafts", async () => {
+    it("should get all template drafts", async () => {
       const response = await sdk.dpp.templateDrafts.getAll();
       expect(response.data).toEqual(draftsOfOrganization);
     });
 
-    it("should get product data model draft", async () => {
+    it("should get template draft", async () => {
       const response = await sdk.dpp.templateDrafts.getById(templateDraft.id);
       expect(response.data).toEqual({ ...templateDraft });
     });
 
-    it("should modify product data model draft", async () => {
+    it("should modify template draft", async () => {
       const response = await sdk.dpp.templateDrafts.modify(templateDraft.id, {
         name: "new Name",
       });
