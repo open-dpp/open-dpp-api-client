@@ -1,4 +1,3 @@
-import { VisibilityLevel } from "../product-data-models/product-data-model.dtos";
 import { SectionDto, SectionType } from "../data-modelling/section.dto";
 import { DataFieldType } from "../data-modelling/data-field.dto";
 import { LayoutDto, SectionLayout } from "../data-modelling/layout.dto";
@@ -10,12 +9,17 @@ export interface PublicationDto {
   version: string;
 }
 
+export enum VisibilityLevel {
+  PRIVATE = "Private",
+  PUBLIC = "Public",
+}
+
 export interface PublicationCreateDto {
   visibility: VisibilityLevel;
   sectors?: Sector[];
 }
 
-export interface ProductDataModelDraftDto {
+export interface TemplateDraftDto {
   id: string;
   name: string;
   version: string;
@@ -25,7 +29,7 @@ export interface ProductDataModelDraftDto {
   ownedByOrganizationId: string;
 }
 
-export interface ProductDataModelDraftGetAllDto {
+export interface TemplateDraftGetAllDto {
   id: string;
   name: string;
 }
@@ -48,7 +52,7 @@ export interface SectionDraftCreateDto {
   granularityLevel?: GranularityLevel;
 }
 
-export interface ProductDataModelDraftCreateDto {
+export interface TemplateDraftCreateDto {
   name: string;
 }
 
@@ -65,6 +69,6 @@ export interface SectionDraftUpdateDto {
   layout: SectionLayout;
 }
 
-export interface ProductDataModelDraftUpdateDto {
+export interface TemplateDraftUpdateDto {
   name: string;
 }

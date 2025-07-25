@@ -1,21 +1,19 @@
 import { http, HttpResponse } from "msw";
 import { baseURL } from "./index";
 import {
+  DataFieldType,
   GranularityLevel,
-  ProductDataModelDto,
-  VisibilityLevel,
+  SectionType,
+  TemplateDto,
 } from "../../../src";
 import { randomUUID } from "node:crypto";
 import { activeOrganization } from "./organization";
-import { SectionType } from "../../../src";
-import { DataFieldType } from "../../../src";
 
 const dataModelId = randomUUID();
 
-export const productDataModel: ProductDataModelDto = {
+export const template: TemplateDto = {
   id: dataModelId,
   name: "Laptop neu",
-  visibility: VisibilityLevel.PRIVATE,
   version: "1.0",
   sections: [
     {
@@ -53,28 +51,15 @@ export const productDataModel: ProductDataModelDto = {
   createdByUserId: randomUUID(),
 };
 
-export const productDataModelHandlers = [
-  http.get(`${baseURL}/product-data-models`, async ({ request }) => {
-    const url = new URL(request.url);
+const templatesEndpointUrl = `${baseURL}/organizations/${activeOrganization.id}/templates`;
 
-    // Read the "id" URL query parameter using the "URLSearchParams" API.
-    // Given "/product?id=1", "organization" will equal "1".
-    const organizationId = url.searchParams.get("organization");
-
-    // Note that query parameters are potentially undefined.
-    // Make sure to account for that in your handlers.
-    if (organizationId !== activeOrganization.id) {
-      return new HttpResponse(null, { status: 404 });
-    }
-    return HttpResponse.json(
-      [{ id: productDataModel.id, name: productDataModel.name }],
-      { status: 200 },
-    );
+export const templateHandlers = [
+  http.get(templatesEndpointUrl, async () => {
+    return HttpResponse.json([{ id: template.id, name: template.name }], {
+      status: 200,
+    });
   }),
-  http.get(
-    `${baseURL}/product-data-models/${productDataModel.id}`,
-    async () => {
-      return HttpResponse.json(productDataModel, { status: 200 });
-    },
-  ),
+  http.get(`${templatesEndpointUrl}/${template.id}`, async () => {
+    return HttpResponse.json(template, { status: 200 });
+  }),
 ];

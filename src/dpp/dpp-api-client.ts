@@ -1,8 +1,8 @@
 import { OrganizationsNamespace } from "./organizations/organizations.namespace";
 import { ModelsNamespace } from "./models/models.namespace";
 import { ItemsNamespace } from "./items/items.namespace";
-import { ProductDataModelDraftsNamespace } from "./product-data-model-drafts/product-data-model-drafts.namespace";
-import { ProductDataModelsNamespace } from "./product-data-models/product-data-models.namespace";
+import { TemplateDraftsNamespace } from "./template-drafts/template-drafts.namespace";
+import { TemplatesNamespace } from "./templates/templates.namespace";
 import { UniqueProductIdentifiersNamespace } from "./unique-product-identifiers/unique-product-identifiers.namespace";
 import { AasIntegrationNamespace } from "./integrations/aas-integration.namespace";
 import axios, { AxiosInstance } from "axios";
@@ -12,8 +12,8 @@ export class DppApiClient implements IApiClient {
   public organizations!: OrganizationsNamespace;
   public models!: ModelsNamespace;
   public items!: ItemsNamespace;
-  public productDataModelDrafts!: ProductDataModelDraftsNamespace;
-  public productDataModels!: ProductDataModelsNamespace;
+  public templateDrafts!: TemplateDraftsNamespace;
+  public templates!: TemplatesNamespace;
   public uniqueProductIdentifiers!: UniqueProductIdentifiersNamespace;
   public aasIntegration!: AasIntegrationNamespace;
   private axiosInstance!: AxiosInstance;
@@ -54,11 +54,11 @@ export class DppApiClient implements IApiClient {
       this.axiosInstance,
       this.options.activeOrganizationId,
     );
-    this.productDataModels = new ProductDataModelsNamespace(
+    this.templates = new TemplatesNamespace(
       this.axiosInstance,
       this.options.activeOrganizationId,
     );
-    this.productDataModelDrafts = new ProductDataModelDraftsNamespace(
+    this.templateDrafts = new TemplateDraftsNamespace(
       this.axiosInstance,
       this.options.activeOrganizationId,
     );

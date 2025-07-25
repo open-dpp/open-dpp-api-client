@@ -1,7 +1,7 @@
 import { http, HttpResponse } from "msw";
 import { baseURL } from "./index";
 import { randomUUID } from "node:crypto";
-import { productDataModel } from "./product-data-model";
+import { template } from "./template";
 import { activeOrganization } from "./organization";
 import { DataValueDto } from "../../../src";
 
@@ -50,6 +50,9 @@ export const modelHandlers = [
       return HttpResponse.json(model);
     },
   ),
+  http.post(`${baseURL}/organizations/${activeOrganization.id}/models`, () => {
+    return HttpResponse.json(model);
+  }),
   http.patch(
     `${baseURL}/organizations/${activeOrganization.id}/models/${model.id}/data-values`,
     async ({ request }) => {
@@ -87,10 +90,10 @@ export const modelHandlers = [
     },
   ),
   http.post(
-    `${baseURL}/organizations/${activeOrganization.id}/models/${model.id}/product-data-models/${productDataModel.id}`,
+    `${baseURL}/organizations/${activeOrganization.id}/models/${model.id}/templates/${template.id}`,
     async () => {
       return HttpResponse.json(
-        { ...model, productDataModelId: productDataModel.id },
+        { ...model, productDataModelId: template.id },
         { status: 201 },
       );
     },

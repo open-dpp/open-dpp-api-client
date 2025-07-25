@@ -2,51 +2,48 @@ import { AxiosInstance } from "axios";
 import {
   DataFieldDraftCreateDto,
   DataFieldDraftUpdateDto,
-  ProductDataModelDraftCreateDto,
-  ProductDataModelDraftDto,
-  ProductDataModelDraftGetAllDto,
-  ProductDataModelDraftUpdateDto,
+  TemplateDraftCreateDto,
+  TemplateDraftDto,
+  TemplateDraftGetAllDto,
+  TemplateDraftUpdateDto,
   PublicationCreateDto,
   SectionDraftCreateDto,
   SectionDraftUpdateDto,
-} from "./product-data-model-draft.dtos";
+} from "./template-draft.dtos";
 
-export class ProductDataModelDraftsNamespace {
+export class TemplateDraftsNamespace {
   private readonly draftsEndpoint;
   constructor(
     private readonly axiosInstance: AxiosInstance,
     private readonly organizationId?: string,
   ) {
-    this.draftsEndpoint = `/organizations/${this.organizationId}/product-data-model-drafts`;
+    this.draftsEndpoint = `/organizations/${this.organizationId}/template-drafts`;
   }
-  public async create(data: ProductDataModelDraftCreateDto) {
-    return this.axiosInstance.post<ProductDataModelDraftDto>(
-      this.draftsEndpoint,
-      data,
-    );
+  public async create(data: TemplateDraftCreateDto) {
+    return this.axiosInstance.post<TemplateDraftDto>(this.draftsEndpoint, data);
   }
 
   public async getAll() {
-    return this.axiosInstance.get<ProductDataModelDraftGetAllDto[]>(
+    return this.axiosInstance.get<TemplateDraftGetAllDto[]>(
       this.draftsEndpoint,
     );
   }
 
   public async getById(draftId: string) {
-    return this.axiosInstance.get<ProductDataModelDraftDto>(
+    return this.axiosInstance.get<TemplateDraftDto>(
       `${this.draftsEndpoint}/${draftId}`,
     );
   }
 
-  public async modify(draftId: string, data: ProductDataModelDraftUpdateDto) {
-    return this.axiosInstance.patch<ProductDataModelDraftDto>(
+  public async modify(draftId: string, data: TemplateDraftUpdateDto) {
+    return this.axiosInstance.patch<TemplateDraftDto>(
       `${this.draftsEndpoint}/${draftId}`,
       data,
     );
   }
 
   public async addSection(draftId: string, data: SectionDraftCreateDto) {
-    return this.axiosInstance.post<ProductDataModelDraftDto>(
+    return this.axiosInstance.post<TemplateDraftDto>(
       `${this.draftsEndpoint}/${draftId}/sections`,
       data,
     );
@@ -57,7 +54,7 @@ export class ProductDataModelDraftsNamespace {
     sectionId: string,
     data: DataFieldDraftCreateDto,
   ) {
-    return this.axiosInstance.post<ProductDataModelDraftDto>(
+    return this.axiosInstance.post<TemplateDraftDto>(
       `${this.draftsEndpoint}/${draftId}/sections/${sectionId}/data-fields`,
       data,
     );
@@ -69,7 +66,7 @@ export class ProductDataModelDraftsNamespace {
     fieldId: string,
     data: DataFieldDraftUpdateDto,
   ) {
-    return this.axiosInstance.patch<ProductDataModelDraftDto>(
+    return this.axiosInstance.patch<TemplateDraftDto>(
       `${this.draftsEndpoint}/${draftId}/sections/${sectionId}/data-fields/${fieldId}`,
       data,
     );
@@ -80,13 +77,13 @@ export class ProductDataModelDraftsNamespace {
     sectionId: string,
     fieldId: string,
   ) {
-    return this.axiosInstance.delete<ProductDataModelDraftDto>(
+    return this.axiosInstance.delete<TemplateDraftDto>(
       `${this.draftsEndpoint}/${draftId}/sections/${sectionId}/data-fields/${fieldId}`,
     );
   }
 
   public async deleteSection(draftId: string, sectionId: string) {
-    return this.axiosInstance.delete<ProductDataModelDraftDto>(
+    return this.axiosInstance.delete<TemplateDraftDto>(
       `${this.draftsEndpoint}/${draftId}/sections/${sectionId}`,
     );
   }
@@ -96,14 +93,14 @@ export class ProductDataModelDraftsNamespace {
     sectionId: string,
     data: SectionDraftUpdateDto,
   ) {
-    return this.axiosInstance.patch<ProductDataModelDraftDto>(
+    return this.axiosInstance.patch<TemplateDraftDto>(
       `${this.draftsEndpoint}/${draftId}/sections/${sectionId}`,
       data,
     );
   }
 
   public async publish(draftId: string, data: PublicationCreateDto) {
-    return this.axiosInstance.post<ProductDataModelDraftDto>(
+    return this.axiosInstance.post<TemplateDraftDto>(
       `${this.draftsEndpoint}/${draftId}/publish`,
       data,
     );

@@ -29,15 +29,6 @@ export class ModelsNamespace {
     );
   }
 
-  public async assignProductDataModel(
-    productDataModelId: string,
-    modelId: string,
-  ) {
-    return this.axiosInstance.post<ModelDto>(
-      `${this.modelsEndpoint}/${modelId}/product-data-models/${productDataModelId}`,
-    );
-  }
-
   public async getAll() {
     return this.axiosInstance.get<ModelDto[]>(this.modelsEndpoint);
   }

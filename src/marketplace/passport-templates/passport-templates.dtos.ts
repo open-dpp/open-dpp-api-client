@@ -1,6 +1,17 @@
 export enum Sector {
   BATTERY = "Battery",
   TEXTILE = "Textile",
+  ELECTRONICS = "Electronics",
+  MACHINERY = "Machinery",
+  AEROSPACE = "Aerospace",
+  CONSTRUCTION = "Construction",
+  MEDICAL = "Medical",
+  HEALTHCARE = "Healthcare",
+  EDUCATION = "Education",
+  TRADE = "Trade",
+  AGRICULTURE = "Agriculture",
+  MINING = "Mining",
+  OTHER = "Other",
 }
 
 export interface PassportTemplateCreateDto {
@@ -21,6 +32,7 @@ export interface PassportTemplateDto extends PassportTemplateCreateDto {
   isOfficial: boolean;
   createdAt: string; // ISO datetime string
   updatedAt: string; // ISO datetime string
+  marketplaceResourceId?: string;
 }
 
 // eslint-disable-next-line @typescript-eslint/no-empty-object-type
