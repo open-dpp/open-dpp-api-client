@@ -1,21 +1,26 @@
 import { http, HttpResponse } from "msw";
 import { baseURL } from "./index";
 import {
+  DataFieldDto,
+  DataFieldType,
   GranularityLevel,
+  SectionDto,
+  SectionType,
+  Sector,
   TemplateDraftDto,
   TemplateDraftGetAllDto,
 } from "../../../src";
 import { randomUUID } from "node:crypto";
 import { activeOrganization } from "./organization";
 import { template } from "./template";
-import { SectionDto, SectionType } from "../../../src";
-import { DataFieldDto, DataFieldType } from "../../../src";
 
 const dataModelId = randomUUID();
 
 export const templateDraft: TemplateDraftDto = {
   id: dataModelId,
   name: "Laptop neu",
+  description: "My desc",
+  sectors: [Sector.ELECTRONICS],
   version: "1.0.0",
   publications: [],
   createdByUserId: randomUUID(),

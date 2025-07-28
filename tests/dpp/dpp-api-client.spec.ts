@@ -205,6 +205,8 @@ describe("ApiClient", () => {
     it("should be created", async () => {
       const response = await sdk.dpp.templateDrafts.create({
         name: templateDraft.name,
+        description: templateDraft.description,
+        sectors: templateDraft.sectors,
       });
       expect(response.data).toEqual({
         ...templateDraft,

@@ -22,6 +22,8 @@ export interface PublicationCreateDto {
 export interface TemplateDraftDto {
   id: string;
   name: string;
+  description: string;
+  sectors: Sector[];
   version: string;
   publications: PublicationDto[];
   sections: SectionDto[];
@@ -54,6 +56,8 @@ export interface SectionDraftCreateDto {
 
 export interface TemplateDraftCreateDto {
   name: string;
+  description: string;
+  sectors: Sector[];
 }
 
 // Update dtos
