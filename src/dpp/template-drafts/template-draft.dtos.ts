@@ -75,4 +75,6 @@ export interface SectionDraftUpdateDto {
 
 export interface TemplateDraftUpdateDto {
   name: string;
+  description: string;
+  sectors: Sector[];
 }

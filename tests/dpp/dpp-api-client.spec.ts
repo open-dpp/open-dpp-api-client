@@ -3,6 +3,7 @@ import {
   AssetAdministrationShellType,
   GranularityLevel,
   OpenDppClient,
+  Sector,
   VisibilityLevel,
 } from "../../src";
 import { randomUUID } from "node:crypto";
@@ -329,6 +330,8 @@ describe("ApiClient", () => {
     it("should modify template draft", async () => {
       const response = await sdk.dpp.templateDrafts.modify(templateDraft.id, {
         name: "new Name",
+        description: "new Description",
+        sectors: [Sector.CONSTRUCTION],
       });
       expect(response.data).toEqual({ ...templateDraft });
     });
