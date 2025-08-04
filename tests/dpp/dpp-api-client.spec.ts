@@ -11,7 +11,6 @@ import { activeOrganization, organizations } from "./handlers/organization";
 import { model, responseDataValues, updateDataValues } from "./handlers/model";
 import { template } from "./handlers/template";
 import {
-  responseView,
   uniqueProductIdentifierId,
   uniqueProductIdentifierReference,
 } from "./handlers/unique-product-identifiers";
@@ -27,6 +26,7 @@ import {
   connection,
   connectionList,
 } from "./handlers/aas-integration";
+import { productPassport } from "./handlers/product-passport";
 
 describe("ApiClient", () => {
   beforeAll(() => server.listen());
@@ -345,18 +345,6 @@ describe("ApiClient", () => {
   });
 
   describe("unique-product-identifiers", () => {
-    it("should return view by unique product identifier", async () => {
-      const sdk = new OpenDppClient({
-        dpp: { baseURL },
-      });
-      const response = await sdk.dpp.uniqueProductIdentifiers.getView(
-        uniqueProductIdentifierId,
-      );
-      expect(response.data).toEqual({
-        ...responseView,
-      });
-    });
-
     it("should return reference of unique product identifier", async () => {
       const sdk = new OpenDppClient({
         dpp: { baseURL },
@@ -366,6 +354,21 @@ describe("ApiClient", () => {
         uniqueProductIdentifierId,
       );
       expect(response.data).toEqual(uniqueProductIdentifierReference);
+    });
+  });
+
+  describe("product-passports", () => {
+    const sdk = new OpenDppClient({
+      dpp: { baseURL },
+    });
+    sdk.setActiveOrganizationId(activeOrganization.id);
+    it("should returned", async () => {
+      const response = await sdk.dpp.productPassports.getById(
+        productPassport.id,
+      );
+      expect(response.data).toEqual({
+        ...productPassport,
+      });
     });
   });
 

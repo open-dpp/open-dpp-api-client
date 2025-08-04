@@ -1,6 +1,6 @@
 import { AxiosInstance } from "axios";
 import { ItemDto } from "./item.dtos";
-import { DataValueDto } from "../passport/data-value.dto";
+import { DataValueDto } from "../passport-data/data-value.dto";
 
 export class ItemsNamespace {
   private readonly modelsEndpoint: string;
