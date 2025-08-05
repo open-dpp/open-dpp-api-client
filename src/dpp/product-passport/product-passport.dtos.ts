@@ -9,7 +9,7 @@ export interface DataSectionDto {
   parentId?: string;
   subSections: string[];
   granularityLevel: GranularityLevel;
-  dataFields: Omit<DataFieldDto, "layout">[];
+  dataFields: DataFieldDto[];
   dataValues: Record<string, unknown>[];
 }
 

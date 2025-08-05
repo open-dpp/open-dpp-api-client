@@ -68,11 +68,11 @@ export class DppApiClient implements IApiClient {
       this.axiosInstance,
       this.options.activeOrganizationId,
     );
+    this.productPassports = new ProductPassportsNamespace(this.axiosInstance);
 
     this.uniqueProductIdentifiers = new UniqueProductIdentifiersNamespace(
       this.axiosInstance,
       this.options.activeOrganizationId,
     );
-    this.productPassports = new ProductPassportsNamespace(this.axiosInstance);
   }
 }

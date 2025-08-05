@@ -220,13 +220,6 @@ describe("ApiClient", () => {
           name: sectionDraft.name,
           type: sectionDraft.type,
           parentSectionId: randomUUID(),
-          layout: {
-            cols: { sm: 3 },
-            colSpan: { sm: 1 },
-            colStart: { sm: 1 },
-            rowSpan: { sm: 1 },
-            rowStart: { sm: 1 },
-          },
         },
       );
       expect(response.data).toEqual({
@@ -241,12 +234,6 @@ describe("ApiClient", () => {
           name: dataFieldDraft.name,
           type: dataFieldDraft.type,
           options: { max: 2 },
-          layout: {
-            colSpan: { sm: 1 },
-            colStart: { sm: 1 },
-            rowSpan: { sm: 1 },
-            rowStart: { sm: 1 },
-          },
           granularityLevel: GranularityLevel.MODEL,
         },
       );
@@ -263,12 +250,6 @@ describe("ApiClient", () => {
         {
           name: "new name",
           options: { min: 2 },
-          layout: {
-            colSpan: { sm: 2 },
-            colStart: { sm: 2 },
-            rowSpan: { sm: 2 },
-            rowStart: { sm: 2 },
-          },
         },
       );
       expect(response.data).toEqual({
@@ -303,13 +284,6 @@ describe("ApiClient", () => {
         sectionDraft.id,
         {
           name: "new name",
-          layout: {
-            cols: { sm: 3 },
-            colSpan: { sm: 2 },
-            colStart: { sm: 2 },
-            rowSpan: { sm: 2 },
-            rowStart: { sm: 2 },
-          },
         },
       );
       expect(response.data).toEqual({

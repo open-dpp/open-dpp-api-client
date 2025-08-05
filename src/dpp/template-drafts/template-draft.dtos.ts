@@ -1,6 +1,5 @@
 import { SectionDto, SectionType } from "../data-modelling/section.dto";
 import { DataFieldType } from "../data-modelling/data-field.dto";
-import { LayoutDto, SectionLayout } from "../data-modelling/layout.dto";
 import { GranularityLevel } from "../data-modelling/granularity-level";
 import { Sector } from "../../marketplace/passport-templates/passport-templates.dtos";
 
@@ -42,7 +41,6 @@ export interface DataFieldDraftCreateDto {
   type: DataFieldType;
   name: string;
   options?: Record<string, unknown>;
-  layout: LayoutDto;
   granularityLevel: GranularityLevel;
 }
 
@@ -50,7 +48,6 @@ export interface SectionDraftCreateDto {
   name: string;
   type: SectionType;
   parentSectionId?: string;
-  layout: SectionLayout;
   granularityLevel?: GranularityLevel;
 }
 
@@ -65,12 +62,10 @@ export interface TemplateDraftCreateDto {
 export interface DataFieldDraftUpdateDto {
   name: string;
   options?: Record<string, unknown>;
-  layout: LayoutDto;
 }
 
 export interface SectionDraftUpdateDto {
   name: string;
-  layout: SectionLayout;
 }
 
 export interface TemplateDraftUpdateDto {
