@@ -7,6 +7,7 @@ import { UniqueProductIdentifiersNamespace } from "./unique-product-identifiers/
 import { AasIntegrationNamespace } from "./integrations/aas-integration.namespace";
 import axios, { AxiosInstance } from "axios";
 import { IApiClient, ApiClientOptions } from "../api-client";
+import { ProductPassportsNamespace } from "./product-passport/product-passports.namespace";
 
 export class DppApiClient implements IApiClient {
   public organizations!: OrganizationsNamespace;
@@ -15,6 +16,7 @@ export class DppApiClient implements IApiClient {
   public templateDrafts!: TemplateDraftsNamespace;
   public templates!: TemplatesNamespace;
   public uniqueProductIdentifiers!: UniqueProductIdentifiersNamespace;
+  public productPassports!: ProductPassportsNamespace;
   public aasIntegration!: AasIntegrationNamespace;
   private axiosInstance!: AxiosInstance;
   private options: ApiClientOptions;
@@ -66,6 +68,7 @@ export class DppApiClient implements IApiClient {
       this.axiosInstance,
       this.options.activeOrganizationId,
     );
+    this.productPassports = new ProductPassportsNamespace(this.axiosInstance);
 
     this.uniqueProductIdentifiers = new UniqueProductIdentifiersNamespace(
       this.axiosInstance,

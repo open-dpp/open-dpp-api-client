@@ -20,13 +20,6 @@ export const template: TemplateDto = {
       id: randomUUID(),
       type: SectionType.GROUP,
       name: "section name",
-      layout: {
-        cols: { sm: 3 },
-        colStart: { sm: 1 },
-        colSpan: { sm: 1 },
-        rowStart: { sm: 1 },
-        rowSpan: { sm: 1 },
-      },
       dataFields: [
         {
           id: randomUUID(),
@@ -35,12 +28,6 @@ export const template: TemplateDto = {
           },
           name: "Prozessor",
           type: DataFieldType.TEXT_FIELD,
-          layout: {
-            colStart: { sm: 1 },
-            colSpan: { sm: 1 },
-            rowStart: { sm: 1 },
-            rowSpan: { sm: 1 },
-          },
           granularityLevel: GranularityLevel.MODEL,
         },
       ],

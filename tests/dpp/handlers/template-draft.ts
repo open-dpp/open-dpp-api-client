@@ -30,13 +30,6 @@ export const templateDraft: TemplateDraftDto = {
       id: randomUUID(),
       type: SectionType.GROUP,
       name: "section name",
-      layout: {
-        cols: { sm: 3 },
-        colStart: { sm: 1 },
-        colSpan: { sm: 1 },
-        rowStart: { sm: 1 },
-        rowSpan: { sm: 1 },
-      },
       dataFields: [
         {
           id: randomUUID(),
@@ -45,12 +38,6 @@ export const templateDraft: TemplateDraftDto = {
           },
           name: "Prozessor",
           type: DataFieldType.TEXT_FIELD,
-          layout: {
-            colStart: { sm: 1 },
-            colSpan: { sm: 1 },
-            rowStart: { sm: 1 },
-            rowSpan: { sm: 1 },
-          },
           granularityLevel: GranularityLevel.MODEL,
         },
       ],
@@ -70,13 +57,6 @@ export const sectionDraft: SectionDto = {
   type: SectionType.GROUP,
   dataFields: [],
   subSections: [],
-  layout: {
-    cols: { sm: 3 },
-    colStart: { sm: 1 },
-    colSpan: { sm: 1 },
-    rowStart: { sm: 1 },
-    rowSpan: { sm: 1 },
-  },
 };
 
 export const dataFieldDraft: DataFieldDto = {
@@ -84,12 +64,6 @@ export const dataFieldDraft: DataFieldDto = {
   name: "sect",
   type: DataFieldType.TEXT_FIELD,
   options: {},
-  layout: {
-    colStart: { sm: 1 },
-    colSpan: { sm: 1 },
-    rowStart: { sm: 1 },
-    rowSpan: { sm: 1 },
-  },
   granularityLevel: GranularityLevel.MODEL,
 };
 

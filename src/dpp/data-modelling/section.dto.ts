@@ -1,4 +1,3 @@
-import { SectionLayout } from "./layout.dto";
 import { DataFieldDto } from "./data-field.dto";
 import { GranularityLevel } from "./granularity-level";
 
@@ -13,7 +12,6 @@ export interface SectionDto {
   type: SectionType;
   parentId?: string;
   subSections: string[];
-  layout: SectionLayout;
   dataFields: DataFieldDto[];
   granularityLevel?: GranularityLevel;
 }

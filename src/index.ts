@@ -14,15 +14,16 @@ export * from "./dpp/unique-product-identifiers/unique-product-identifiers.names
 export * from "./dpp/users/user.dtos";
 export * from "./dpp/data-modelling/data-field.dto";
 export * from "./dpp/data-modelling/section.dto";
-export * from "./dpp/data-modelling/layout.dto";
 export * from "./dpp/data-modelling/granularity-level";
-export * from "./dpp/passport/data-value.dto";
+export * from "./dpp/passport-data/data-value.dto";
 export * from "./dpp/integrations/aas-integration.dtos";
 export * from "./dpp/integrations/aas-integration.namespace";
+export * from "./dpp/product-passport/product-passport.dtos";
+export * from "./dpp/product-passport/product-passports.namespace";
 export * from "./dpp/dpp-api-client";
 
 export * from "./marketplace/passport-templates/passport-templates.namespace";
-export * from "./marketplace/marketplace-api-client";
 export * from "./marketplace/passport-templates/passport-templates.dtos";
+export * from "./marketplace/marketplace-api-client";
 
 export { VisibilityLevel } from "./dpp/template-drafts/template-draft.dtos";

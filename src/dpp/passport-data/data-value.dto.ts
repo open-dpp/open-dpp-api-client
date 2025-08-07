@@ -7,7 +7,7 @@ export interface DataValueDto {
   dataFieldId: string;
 }
 
-export interface PassportDto {
+export interface ProductPassportDataDto {
   id: string;
   uniqueProductIdentifiers: UniqueProductIdentifierDto[];
   templateId: string;

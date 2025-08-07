@@ -1,6 +1,6 @@
-import { PassportDto } from "../passport/data-value.dto";
+import { ProductPassportDataDto } from "../passport-data/data-value.dto";
 
-export interface ModelDto extends PassportDto {
+export interface ModelDto extends ProductPassportDataDto {
   name: string;
   description?: string;
   owner: string;

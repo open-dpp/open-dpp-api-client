@@ -6,6 +6,7 @@ import { templateDraftsHandlers } from "./handlers/template-draft";
 import { uniqueProductIdentifierHandlers } from "./handlers/unique-product-identifiers";
 import { organizationHandlers } from "./handlers/organization";
 import { aasIntegrationHandlers } from "./handlers/aas-integration";
+import { productPassportHandlers } from "./handlers/product-passport";
 
 const handlers = [
   ...modelHandlers,
@@ -13,6 +14,7 @@ const handlers = [
   ...templateHandlers,
   ...templateDraftsHandlers,
   ...uniqueProductIdentifierHandlers,
+  ...productPassportHandlers,
   ...organizationHandlers,
   ...aasIntegrationHandlers,
 ];
