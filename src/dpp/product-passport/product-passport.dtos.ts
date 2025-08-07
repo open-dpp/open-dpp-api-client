@@ -1,15 +1,6 @@
-import { SectionType } from "../data-modelling/section.dto";
-import { GranularityLevel } from "../data-modelling/granularity-level";
-import { DataFieldDto } from "../data-modelling/data-field.dto";
+import { SectionDto } from "../data-modelling/section.dto";
 
-export interface DataSectionDto {
-  id: string;
-  name: string;
-  type: SectionType;
-  parentId?: string;
-  subSections: string[];
-  granularityLevel: GranularityLevel;
-  dataFields: DataFieldDto[];
+export interface DataSectionDto extends SectionDto {
   dataValues: Record<string, unknown>[];
 }
 
