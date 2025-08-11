@@ -2,13 +2,14 @@ import { AxiosInstance } from "axios";
 import {
   DataFieldDraftCreateDto,
   DataFieldDraftUpdateDto,
+  MoveSectionDraftDto,
+  PublicationCreateDto,
+  SectionDraftCreateDto,
+  SectionDraftUpdateDto,
   TemplateDraftCreateDto,
   TemplateDraftDto,
   TemplateDraftGetAllDto,
   TemplateDraftUpdateDto,
-  PublicationCreateDto,
-  SectionDraftCreateDto,
-  SectionDraftUpdateDto,
 } from "./template-draft.dtos";
 
 export class TemplateDraftsNamespace {
@@ -92,6 +93,17 @@ export class TemplateDraftsNamespace {
     draftId: string,
     sectionId: string,
     data: SectionDraftUpdateDto,
+  ) {
+    return this.axiosInstance.patch<TemplateDraftDto>(
+      `${this.draftsEndpoint}/${draftId}/sections/${sectionId}`,
+      data,
+    );
+  }
+
+  public async moveSection(
+    draftId: string,
+    sectionId: string,
+    data: MoveSectionDraftDto,
   ) {
     return this.axiosInstance.patch<TemplateDraftDto>(
       `${this.draftsEndpoint}/${draftId}/sections/${sectionId}`,

@@ -89,6 +89,14 @@ export const templateDraftsHandlers = [
     },
   ),
   http.post(
+    `${draftEndpointUrl}/${templateDraft.id}/sections/${sectionDraft.id}/move`,
+    async () => {
+      return HttpResponse.json(templateDraft, {
+        status: 200,
+      });
+    },
+  ),
+  http.post(
     `${draftEndpointUrl}/${templateDraft.id}/sections/${sectionDraft.id}/data-fields`,
     async () => {
       return HttpResponse.json(templateDraft, {
