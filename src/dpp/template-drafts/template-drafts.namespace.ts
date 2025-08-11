@@ -105,8 +105,8 @@ export class TemplateDraftsNamespace {
     sectionId: string,
     data: MoveSectionDraftDto,
   ) {
-    return this.axiosInstance.patch<TemplateDraftDto>(
-      `${this.draftsEndpoint}/${draftId}/sections/${sectionId}`,
+    return this.axiosInstance.post<TemplateDraftDto>(
+      `${this.draftsEndpoint}/${draftId}/sections/${sectionId}/move`,
       data,
     );
   }
