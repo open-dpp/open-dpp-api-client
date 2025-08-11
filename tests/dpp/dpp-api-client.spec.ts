@@ -2,6 +2,8 @@ import { server } from "./msw.server";
 import {
   AssetAdministrationShellType,
   GranularityLevel,
+  MoveDirection,
+  MoveType,
   OpenDppClient,
   Sector,
   VisibilityLevel,
@@ -284,6 +286,20 @@ describe("ApiClient", () => {
         sectionDraft.id,
         {
           name: "new name",
+        },
+      );
+      expect(response.data).toEqual({
+        ...templateDraft,
+      });
+    });
+
+    it("should move section", async () => {
+      const response = await sdk.dpp.templateDrafts.moveSection(
+        templateDraft.id,
+        sectionDraft.id,
+        {
+          type: MoveType.POSITION,
+          direction: MoveDirection.DOWN,
         },
       );
       expect(response.data).toEqual({

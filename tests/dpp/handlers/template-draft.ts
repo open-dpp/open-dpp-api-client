@@ -77,7 +77,7 @@ export const templateDraftsHandlers = [
   }),
   http.post(`${draftEndpointUrl}/${templateDraft.id}/sections`, async () => {
     return HttpResponse.json(templateDraft, {
-      status: 200,
+      status: 201,
     });
   }),
   http.post(
@@ -89,10 +89,18 @@ export const templateDraftsHandlers = [
     },
   ),
   http.post(
+    `${draftEndpointUrl}/${templateDraft.id}/sections/${sectionDraft.id}/move`,
+    async () => {
+      return HttpResponse.json(templateDraft, {
+        status: 201,
+      });
+    },
+  ),
+  http.post(
     `${draftEndpointUrl}/${templateDraft.id}/sections/${sectionDraft.id}/data-fields`,
     async () => {
       return HttpResponse.json(templateDraft, {
-        status: 200,
+        status: 201,
       });
     },
   ),
@@ -151,7 +159,7 @@ export const templateDraftsHandlers = [
 
   http.post(`${draftEndpointUrl}/${templateDraft.id}/publish`, async () => {
     return HttpResponse.json(template, {
-      status: 200,
+      status: 201,
     });
   }),
 ];

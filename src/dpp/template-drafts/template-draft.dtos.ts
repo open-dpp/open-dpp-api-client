@@ -73,3 +73,17 @@ export interface TemplateDraftUpdateDto {
   description: string;
   sectors: Sector[];
 }
+
+export enum MoveType {
+  POSITION = "Position",
+}
+
+export enum MoveDirection {
+  UP = "up",
+  DOWN = "down",
+}
+
+export interface MoveSectionDraftDto {
+  type: MoveType;
+  direction: MoveDirection;
+}
