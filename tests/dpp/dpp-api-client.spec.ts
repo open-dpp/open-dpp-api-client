@@ -9,7 +9,7 @@ import {
   VisibilityLevel,
 } from "../../src";
 import { randomUUID } from "node:crypto";
-import { activeOrganization, organizations } from "./handlers/organization";
+import { activeOrganization, organizations } from "../organization";
 import { model, responseDataValues, updateDataValues } from "./handlers/model";
 import { template } from "./handlers/template";
 import {

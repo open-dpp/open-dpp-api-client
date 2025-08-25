@@ -1,11 +1,8 @@
 import { http, HttpResponse } from "msw";
 import { marketplaceURL } from "./index";
 import { randomUUID } from "node:crypto";
-import {
-  PassportTemplateDto,
-  Sector,
-} from "../../../src/marketplace/passport-templates/passport-templates.dtos";
-import { activeOrganization } from "../../dpp/handlers/organization";
+import { PassportTemplateDto, Sector } from "../../../src";
+import { activeOrganization } from "../../organization";
 
 export const nowDate = new Date("2025-01-01T12:00:00Z");
 

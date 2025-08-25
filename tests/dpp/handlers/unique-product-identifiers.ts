@@ -5,7 +5,7 @@ import {
   GranularityLevel,
   UniqueProductIdentifierReferenceDto,
 } from "../../../src";
-import { activeOrganization } from "./organization";
+import { activeOrganization } from "../../organization";
 
 export const uniqueProductIdentifierId = randomUUID();
 export const uniqueProductIdentifierReference: UniqueProductIdentifierReferenceDto =

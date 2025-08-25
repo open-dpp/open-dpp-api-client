@@ -2,7 +2,7 @@ import { server } from "./msw.server";
 import { OpenDppClient } from "../../src";
 import { passportTemplate } from "./handlers/passport-templates";
 import { marketplaceURL } from "./handlers";
-import { activeOrganization } from "../dpp/handlers/organization";
+import { activeOrganization } from "../organization";
 
 describe("MarketplaceApiClient", () => {
   beforeAll(() => server.listen());

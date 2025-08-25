@@ -1,7 +1,7 @@
 import { http, HttpResponse } from "msw";
 
 import { randomUUID } from "node:crypto";
-import { baseURL } from "./index";
+import { baseURL } from "./dpp/handlers";
 
 export const organizations = [
   {

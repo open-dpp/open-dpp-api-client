@@ -26,4 +26,8 @@ export * from "./marketplace/passport-templates/passport-templates.namespace";
 export * from "./marketplace/passport-templates/passport-templates.dtos";
 export * from "./marketplace/marketplace-api-client";
 
+export * from "./agent-server/ai-configuration/ai-configuration.dtos";
+export * from "./agent-server/ai-configuration/ai-configuration.namespace";
+export * from "./agent-server/agent-server-api-client";
+
 export { VisibilityLevel } from "./dpp/template-drafts/template-draft.dtos";

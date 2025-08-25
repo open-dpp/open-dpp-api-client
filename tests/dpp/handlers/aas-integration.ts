@@ -7,7 +7,7 @@ import {
   AasPropertyWithParentDto,
   AssetAdministrationShellType,
 } from "../../../src";
-import { activeOrganization } from "./organization";
+import { activeOrganization } from "../../organization";
 
 export const connection: AasConnectionDto = {
   id: randomUUID(),

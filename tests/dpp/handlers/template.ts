@@ -7,7 +7,7 @@ import {
   TemplateDto,
 } from "../../../src";
 import { randomUUID } from "node:crypto";
-import { activeOrganization } from "./organization";
+import { activeOrganization } from "../../organization";
 
 const dataModelId = randomUUID();
 

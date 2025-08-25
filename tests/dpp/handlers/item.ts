@@ -1,7 +1,7 @@
 import { http, HttpResponse } from "msw";
 import { baseURL } from "./index";
 import { randomUUID } from "node:crypto";
-import { activeOrganization } from "./organization";
+import { activeOrganization } from "../../organization";
 import { ItemDto } from "../../../src";
 import { dataFieldId, dataSectionId, model } from "./model";
 
