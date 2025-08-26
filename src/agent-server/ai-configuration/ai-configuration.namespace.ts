@@ -5,12 +5,18 @@ import {
 } from "./ai-configuration.dtos";
 
 export class AiConfigurationNamespace {
-  private readonly configurationsEndpoint: string;
   constructor(
     public readonly axiosInstance: AxiosInstance,
     private readonly organizationId?: string,
-  ) {
-    this.configurationsEndpoint = `/organizations/${this.organizationId}/configurations`;
+  ) {}
+
+  private get configurationsEndpoint() {
+    if (!this.organizationId) {
+      throw new Error(
+        "Active organizationId is required for AI Configuration operations. Did you call setActiveOrganizationId()?",
+      );
+    }
+    return `/organizations/${this.organizationId}/configurations`;
   }
 
   public async upsert(data: AiConfigurationUpsertDto) {

@@ -5,8 +5,8 @@ import { TemplateDraftsNamespace } from "./template-drafts/template-drafts.names
 import { TemplatesNamespace } from "./templates/templates.namespace";
 import { UniqueProductIdentifiersNamespace } from "./unique-product-identifiers/unique-product-identifiers.namespace";
 import { AasIntegrationNamespace } from "./integrations/aas-integration.namespace";
-import axios, { AxiosInstance } from "axios";
-import { IApiClient, ApiClientOptions } from "../api-client";
+import { AxiosInstance } from "axios";
+import { ApiClientOptions, createAxiosClient, IApiClient } from "../api-client";
 import { ProductPassportsNamespace } from "./product-passport/product-passports.namespace";
 
 export class DppApiClient implements IApiClient {
@@ -37,16 +37,10 @@ export class DppApiClient implements IApiClient {
   }
 
   private createNewAxiosInstance() {
-    this.axiosInstance = axios.create({
-      baseURL: this.options.baseURL ?? "https://api.cloud.open-dpp.de",
-      headers: {
-        Authorization: this.options.apiKey
-          ? `Bearer ${this.options.apiKey}`
-          : "",
-        ...this.options.headers,
-      },
-      ...this.options,
-    });
+    this.axiosInstance = createAxiosClient(
+      this.options,
+      "https://api.cloud.open-dpp.de",
+    );
     this.organizations = new OrganizationsNamespace(this.axiosInstance);
     this.models = new ModelsNamespace(
       this.axiosInstance,

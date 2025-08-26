@@ -1,5 +1,5 @@
-import axios, { AxiosInstance } from "axios";
-import { ApiClientOptions, IApiClient } from "../api-client";
+import { AxiosInstance } from "axios";
+import { ApiClientOptions, createAxiosClient, IApiClient } from "../api-client";
 import { PassportTemplatesNamespace } from "./passport-templates/passport-templates.namespace";
 
 export class MarketplaceApiClient implements IApiClient {
@@ -23,16 +23,10 @@ export class MarketplaceApiClient implements IApiClient {
   }
 
   private createNewAxiosInstance() {
-    this.axiosInstance = axios.create({
-      baseURL: this.options.baseURL ?? "https://marketplace.cloud.open-dpp.de",
-      headers: {
-        Authorization: this.options.apiKey
-          ? `Bearer ${this.options.apiKey}`
-          : "",
-        ...this.options.headers,
-      },
-      ...this.options,
-    });
+    this.axiosInstance = createAxiosClient(
+      this.options,
+      "https://api.cloud.open-dpp.de",
+    );
     this.passportTemplates = new PassportTemplatesNamespace(
       this.axiosInstance,
       this.options.activeOrganizationId,
