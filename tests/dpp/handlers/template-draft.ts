@@ -11,7 +11,7 @@ import {
   TemplateDraftGetAllDto,
 } from "../../../src";
 import { randomUUID } from "node:crypto";
-import { activeOrganization } from "./organization";
+import { activeOrganization } from "../../organization";
 import { template } from "./template";
 
 const dataModelId = randomUUID();
