@@ -104,6 +104,14 @@ export const templateDraftsHandlers = [
       });
     },
   ),
+  http.post(
+    `${draftEndpointUrl}/${templateDraft.id}/sections/${sectionDraft.id}/data-fields/${dataFieldDraft.id}/move`,
+    async () => {
+      return HttpResponse.json(templateDraft, {
+        status: 201,
+      });
+    },
+  ),
   http.patch(
     `${draftEndpointUrl}/${templateDraft.id}/sections/${sectionDraft.id}/data-fields/${dataFieldDraft.id}`,
     async () => {
