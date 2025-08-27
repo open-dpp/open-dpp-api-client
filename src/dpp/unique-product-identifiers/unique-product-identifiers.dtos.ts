@@ -11,3 +11,7 @@ export interface UniqueProductIdentifierReferenceDto {
   modelId?: string;
   granularityLevel: GranularityLevel;
 }
+
+export interface UniqueProductIdentifierMetadataDto {
+  organizationId: string;
+}

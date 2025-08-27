@@ -3,7 +3,7 @@ import { OpenDppClient } from "../../src";
 import { aiConfigurationDto } from "./handlers/ai-configurations";
 import { agentServerURL } from "./handlers";
 import { activeOrganization } from "../organization";
-import { AiProvider } from "../../src/agent-server/ai-configuration/ai-configuration.dtos";
+import { AiProvider } from "../../src";
 
 describe("AgentServerApiClient", () => {
   beforeAll(() => server.listen());
@@ -23,7 +23,7 @@ describe("AgentServerApiClient", () => {
       });
       expect(response.data).toEqual(aiConfigurationDto);
     });
-    it("should return passport templates", async () => {
+    it("should return ai configuration", async () => {
       const response = await sdk.agentServer.aiConfigurations.get();
       expect(response.data).toEqual(aiConfigurationDto);
     });

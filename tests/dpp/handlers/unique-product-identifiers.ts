@@ -3,6 +3,7 @@ import { randomUUID } from "node:crypto";
 import { baseURL } from "./index";
 import {
   GranularityLevel,
+  UniqueProductIdentifierMetadataDto,
   UniqueProductIdentifierReferenceDto,
 } from "../../../src";
 import { activeOrganization } from "../../organization";
@@ -15,11 +16,22 @@ export const uniqueProductIdentifierReference: UniqueProductIdentifierReferenceD
     modelId: randomUUID(),
     granularityLevel: GranularityLevel.MODEL,
   };
+
+export const uniqueProductIdentifierMetadata: UniqueProductIdentifierMetadataDto =
+  {
+    organizationId: randomUUID(),
+  };
 export const uniqueProductIdentifierHandlers = [
   http.get(
     `${baseURL}/organizations/${activeOrganization.id}/unique-product-identifiers/${uniqueProductIdentifierId}/reference`,
     () => {
       return HttpResponse.json({ ...uniqueProductIdentifierReference });
+    },
+  ),
+  http.get(
+    `${baseURL}/unique-product-identifiers/${uniqueProductIdentifierId}/metadata`,
+    () => {
+      return HttpResponse.json({ ...uniqueProductIdentifierMetadata });
     },
   ),
 ];
