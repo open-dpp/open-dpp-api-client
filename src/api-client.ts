@@ -7,6 +7,7 @@ export interface IApiClient {
 
 export interface ApiClientOptions extends AxiosRequestConfig {
   apiKey?: string;
+  serviceToken?: string;
   activeOrganizationId?: string;
 }
 
@@ -19,6 +20,7 @@ export function createAxiosClient(
     baseURL: options.baseURL ?? defaultBaseUrl,
     headers: {
       ...options.headers,
+      service_token: options.serviceToken ? options.serviceToken : "",
       Authorization: options.apiKey ? `Bearer ${options.apiKey}` : "",
     },
   });
