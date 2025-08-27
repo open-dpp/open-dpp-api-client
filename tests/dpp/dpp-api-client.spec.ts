@@ -14,6 +14,7 @@ import { model, responseDataValues, updateDataValues } from "./handlers/model";
 import { template } from "./handlers/template";
 import {
   uniqueProductIdentifierId,
+  uniqueProductIdentifierMetadata,
   uniqueProductIdentifierReference,
 } from "./handlers/unique-product-identifiers";
 import { item1, item2 } from "./handlers/item";
@@ -344,6 +345,17 @@ describe("ApiClient", () => {
         uniqueProductIdentifierId,
       );
       expect(response.data).toEqual(uniqueProductIdentifierReference);
+    });
+
+    it("should get metadata of unique product identifier", async () => {
+      const sdk = new OpenDppClient({
+        dpp: { baseURL },
+      });
+      sdk.setActiveOrganizationId(activeOrganization.id);
+      const response = await sdk.dpp.uniqueProductIdentifiers.getMetadata(
+        uniqueProductIdentifierId,
+      );
+      expect(response.data).toEqual(uniqueProductIdentifierMetadata);
     });
   });
 
