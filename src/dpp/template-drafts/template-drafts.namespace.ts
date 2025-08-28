@@ -2,7 +2,7 @@ import { AxiosInstance } from "axios";
 import {
   DataFieldDraftCreateDto,
   DataFieldDraftUpdateDto,
-  MoveSectionDraftDto,
+  MoveDto,
   PublicationCreateDto,
   SectionDraftCreateDto,
   SectionDraftUpdateDto,
@@ -100,13 +100,21 @@ export class TemplateDraftsNamespace {
     );
   }
 
-  public async moveSection(
-    draftId: string,
-    sectionId: string,
-    data: MoveSectionDraftDto,
-  ) {
+  public async moveSection(draftId: string, sectionId: string, data: MoveDto) {
     return this.axiosInstance.post<TemplateDraftDto>(
       `${this.draftsEndpoint}/${draftId}/sections/${sectionId}/move`,
+      data,
+    );
+  }
+
+  public async moveDataField(
+    draftId: string,
+    sectionId: string,
+    dataFieldId: string,
+    data: MoveDto,
+  ) {
+    return this.axiosInstance.post<TemplateDraftDto>(
+      `${this.draftsEndpoint}/${draftId}/sections/${sectionId}/data-fields/${dataFieldId}/move`,
       data,
     );
   }

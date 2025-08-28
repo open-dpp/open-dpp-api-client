@@ -308,6 +308,21 @@ describe("ApiClient", () => {
       });
     });
 
+    it("should move data field", async () => {
+      const response = await sdk.dpp.templateDrafts.moveDataField(
+        templateDraft.id,
+        sectionDraft.id,
+        dataFieldDraft.id,
+        {
+          type: MoveType.POSITION,
+          direction: MoveDirection.DOWN,
+        },
+      );
+      expect(response.data).toEqual({
+        ...templateDraft,
+      });
+    });
+
     it("should get all template drafts", async () => {
       const response = await sdk.dpp.templateDrafts.getAll();
       expect(response.data).toEqual(draftsOfOrganization);

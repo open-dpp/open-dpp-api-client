@@ -83,7 +83,7 @@ export enum MoveDirection {
   DOWN = "down",
 }
 
-export interface MoveSectionDraftDto {
+export interface MoveDto {
   type: MoveType;
   direction: MoveDirection;
 }
