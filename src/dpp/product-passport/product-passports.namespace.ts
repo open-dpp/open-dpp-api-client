@@ -4,9 +4,9 @@ import { ProductPassportDto } from "./product-passport.dtos";
 export class ProductPassportsNamespace {
   constructor(private readonly axiosInstance: AxiosInstance) {}
 
-  public async getById(uuid: string, page?: string) {
+  public async getById(uuid: string) {
     return this.axiosInstance.get<ProductPassportDto>(
-      `/product-passports/${uuid}?page=${page}`,
+      `/product-passports/${uuid}`,
     );
   }
 }
