@@ -2,27 +2,37 @@ import { DppApiClient } from "./dpp/dpp-api-client";
 import { ApiClientOptions, IApiClient } from "./api-client";
 import { MarketplaceApiClient } from "./marketplace/marketplace-api-client";
 import { AgentServerApiClient } from "./agent-server/agent-server-api-client";
+import { AnalyticsApiClient } from "./analytics/analytics-api-client";
 
 type OpenDppClientOptions = {
   dpp?: ApiClientOptions;
   marketplace?: ApiClientOptions;
   agentServer?: ApiClientOptions;
+  analytics?: ApiClientOptions;
 };
 
 export class OpenDppClient {
   public readonly dpp: DppApiClient;
   public readonly marketplace: MarketplaceApiClient;
   public readonly agentServer: AgentServerApiClient;
+  public readonly analytics: AnalyticsApiClient;
   private readonly clients: IApiClient[];
   constructor({
     dpp = {},
     marketplace = {},
     agentServer = {},
+    analytics = {},
   }: OpenDppClientOptions) {
     this.dpp = new DppApiClient(dpp);
     this.marketplace = new MarketplaceApiClient(marketplace);
     this.agentServer = new AgentServerApiClient(agentServer);
-    this.clients = [this.dpp, this.marketplace, this.agentServer];
+    this.analytics = new AnalyticsApiClient(analytics);
+    this.clients = [
+      this.dpp,
+      this.marketplace,
+      this.agentServer,
+      this.analytics,
+    ];
   }
 
   public setApiKey(apiKey: string) {

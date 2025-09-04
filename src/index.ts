@@ -30,4 +30,8 @@ export * from "./agent-server/ai-configuration/ai-configuration.dtos";
 export * from "./agent-server/ai-configuration/ai-configuration.namespace";
 export * from "./agent-server/agent-server-api-client";
 
+export * from "./analytics/passport-metric/passport-metric.dtos";
+export * from "./analytics/passport-metric/passport-metric.namespace";
+export * from "./analytics/analytics-api-client";
+
 export { VisibilityLevel } from "./dpp/template-drafts/template-draft.dtos";
