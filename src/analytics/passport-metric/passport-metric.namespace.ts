@@ -1,5 +1,7 @@
 import { AxiosInstance } from "axios";
 import {
+  PageViewCreateDto,
+  PageViewDto,
   PassportMeasurementDto,
   PassportMetricQueryDto,
 } from "./passport-metric.dtos";
@@ -17,6 +19,13 @@ export class PassportMetricNamespace {
       );
     }
     return `/organizations/${this.organizationId}/passport-metrics`;
+  }
+
+  public async addPageView(data: PageViewCreateDto) {
+    return this.axiosInstance.post<PageViewDto>(
+      "/passport-metrics/page-views",
+      data,
+    );
   }
 
   public async query(query: PassportMetricQueryDto) {

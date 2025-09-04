@@ -8,6 +8,7 @@ import {
   PassportMetricQueryDto,
   TimePeriod,
 } from "../../../src";
+import { randomUUID } from "node:crypto";
 
 export const passportMetricQueryDto: PassportMetricQueryDto = {
   startDate: new Date("2025-01-01T12:00:00Z"),
@@ -24,7 +25,14 @@ export const passportMeasurementDto: PassportMeasurementDto = {
   sum: 9,
 };
 
+export const pageViewDto = {
+  id: randomUUID(),
+};
+
 export const passportMetricHandler = [
+  http.post(`${analyticsUrl}/passport-metrics/page-views`, () =>
+    HttpResponse.json(pageViewDto),
+  ),
   http.get(
     `${analyticsUrl}/organizations/${activeOrganization.id}/passport-metrics`,
     ({ request }) => {

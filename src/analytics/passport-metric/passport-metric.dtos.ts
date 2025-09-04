@@ -23,3 +23,12 @@ export interface PassportMetricQueryDto {
   measurementKey: string;
   period: string;
 }
+
+export interface PageViewCreateDto {
+  uuid: string;
+  page: string;
+}
+
+export interface PageViewDto {
+  id: string;
+}
