@@ -20,6 +20,9 @@ export const uniqueProductIdentifierReference: UniqueProductIdentifierReferenceD
 export const uniqueProductIdentifierMetadata: UniqueProductIdentifierMetadataDto =
   {
     organizationId: randomUUID(),
+    passportId: randomUUID(),
+    modelId: randomUUID(),
+    templateId: randomUUID(),
   };
 export const uniqueProductIdentifierHandlers = [
   http.get(

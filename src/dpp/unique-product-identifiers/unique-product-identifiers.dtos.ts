@@ -13,5 +13,8 @@ export interface UniqueProductIdentifierReferenceDto {
 }
 
 export interface UniqueProductIdentifierMetadataDto {
+  passportId: string;
+  modelId: string;
+  templateId: string;
   organizationId: string;
 }
