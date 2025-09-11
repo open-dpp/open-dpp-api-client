@@ -1,5 +1,6 @@
 export enum MeasurementType {
   PAGE_VIEWS = "PageViews",
+  FIELD_AGGREGATE = "FieldAggregate",
 }
 
 export enum TimePeriod {
@@ -18,7 +19,7 @@ export interface PassportMetricQueryDto {
   startDate: Date;
   endDate: Date;
   templateId: string;
-  modelId?: string;
+  modelId: string;
   type: MeasurementType;
   valueKey: string;
   period: string;
