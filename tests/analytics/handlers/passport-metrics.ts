@@ -15,8 +15,8 @@ export const passportMetricQueryDto: PassportMetricQueryDto = {
   endDate: new Date("2025-02-01T12:00:00Z"),
   templateId: "t1",
   modelId: "m1",
-  measurementType: MeasurementType.PAGE_VIEWS,
-  measurementKey: "https://example.com/passport",
+  type: MeasurementType.PAGE_VIEWS,
+  valueKey: "https://example.com/passport",
   period: TimePeriod.MONTH,
 };
 
@@ -59,8 +59,8 @@ export const passportMetricHandler = [
       assertParam("startDate", passportMetricQueryDto.startDate.toISOString());
       assertParam("templateId", passportMetricQueryDto.templateId);
       assertParam("modelId", passportMetricQueryDto.modelId || "");
-      assertParam("measurementType", passportMetricQueryDto.measurementType);
-      assertParam("measurementKey", passportMetricQueryDto.measurementKey);
+      assertParam("type", passportMetricQueryDto.type);
+      assertParam("valueKey", passportMetricQueryDto.valueKey);
       assertParam("period", passportMetricQueryDto.period);
 
       // If there are any errors, throw them with detailed information
