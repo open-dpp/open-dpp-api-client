@@ -69,7 +69,6 @@ export { DppApiClient } from "./dpp/dpp-api-client";
 export { PassportTemplatesNamespace } from "./marketplace/passport-templates/passport-templates.namespace";
 export { Sector } from "./marketplace/passport-templates/passport-templates.dtos";
 export type {
-  PassportTemplateCreateDto,
   PassportTemplateDto,
   PassportTemplateGetAllDto,
 } from "./marketplace/passport-templates/passport-templates.dtos";

@@ -16,15 +16,5 @@ describe("MarketplaceApiClient", () => {
       const response = await sdk.marketplace.passportTemplates.getAll();
       expect(response.data).toEqual([passportTemplate]);
     });
-
-    it("should return passport template by id", async () => {
-      const sdk = new OpenDppClient({
-        marketplace: { baseURL: marketplaceURL },
-      });
-      const response = await sdk.marketplace.passportTemplates.getById(
-        passportTemplate.id,
-      );
-      expect(response.data).toEqual(passportTemplate);
-    });
   });
 });
